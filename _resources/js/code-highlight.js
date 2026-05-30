@@ -43,12 +43,34 @@
         return `<span class="code-token-${className}">${escapeHtml(value)}</span>`;
     }
 
+    function highlightInvisibleCharacter(value) {
+        if (value === " ") {
+            return '<span class="code-invisible code-space">·</span>';
+        }
+
+        if (value === "\t") {
+            return '<span class="code-invisible code-tab">→···</span>';
+        }
+
+        if (value === "\n") {
+            return '<span class="code-invisible code-return">¬</span>\n';
+        }
+
+        return "";
+    }
+
     function highlight(code, language) {
         const patterns = patternsByLanguage[language] || [];
         let highlighted = "";
         let index = 0;
 
         while (index < code.length) {
+            if (code[index] === " " || code[index] === "\t" || code[index] === "\n") {
+                highlighted += highlightInvisibleCharacter(code[index]);
+                index += 1;
+                continue;
+            }
+
             const remaining = code.slice(index);
             const match = patterns
                 .map(([className, pattern]) => ({ className, match: remaining.match(pattern) }))

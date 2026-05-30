@@ -103,6 +103,8 @@
     const rootOutput = document.querySelector("[data-root-output]");
     const linkedBodyOutput = document.querySelector("[data-linked-body-output]");
     const reset = document.querySelector("[data-type-reset]");
+    const controlsToggle = document.querySelector("[data-controls-toggle]");
+    const controlsToggleLabel = document.querySelector("[data-controls-toggle-label]");
     const modeControls = Array.from(document.querySelectorAll("[data-mode-control]"));
     const roleControls = Array.from(document.querySelectorAll("[data-role-control]"));
     const roleOutputs = Array.from(document.querySelectorAll("[data-role-output]"));
@@ -127,6 +129,20 @@
 
     const formatPx = (value) => `${value.toFixed(2)}px`;
     const formatNote = (noteIndex) => `note${String(noteIndex).padStart(2, "0")}`;
+
+    function setControlsCollapsed(isCollapsed) {
+        page.dataset.controlsCollapsed = isCollapsed ? "true" : "false";
+
+        if (controlsToggle) {
+            controlsToggle.setAttribute("aria-expanded", (!isCollapsed).toString());
+        }
+
+        if (controlsToggleLabel) {
+            controlsToggleLabel.textContent = isCollapsed ? "+" : "-";
+        }
+    }
+
+    setControlsCollapsed(window.matchMedia("(max-width: 640px)").matches);
 
     function getMode() {
         return modeControls.find((control) => control.checked)?.value || defaults.mode;
@@ -480,6 +496,12 @@
 
     if (reset) {
         reset.addEventListener("click", restoreDefaults);
+    }
+
+    if (controlsToggle) {
+        controlsToggle.addEventListener("click", () => {
+            setControlsCollapsed(page.dataset.controlsCollapsed !== "true");
+        });
     }
 
     update();

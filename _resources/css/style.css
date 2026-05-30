@@ -901,13 +901,13 @@ body.doc-page code {
     border-left: 0;
     border-radius: 10px;
     box-shadow:
-        0 5px 7px -5px rgba(42, 42, 36, 0.34),
-        0 13px 18px -10px rgba(42, 42, 36, 0.27),
-        13px 13px 18px -10px rgba(42, 42, 36, 0.34),
-        -13px 13px 18px -10px rgba(42, 42, 36, 0.34),
-        0 23px 30px -20px rgba(42, 42, 36, 0.2),
-        23px 23px 30px -20px rgba(42, 42, 36, 0.24),
-        -23px 23px 30px -20px rgba(42, 42, 36, 0.24);
+        0 5px 7px -5px rgba(42, 42, 36, 0.27),
+        0 13px 18px -10px rgba(42, 42, 36, 0.22),
+        13px 13px 18px -10px rgba(42, 42, 36, 0.27),
+        -13px 13px 18px -10px rgba(42, 42, 36, 0.27),
+        0 23px 30px -20px rgba(42, 42, 36, 0.16),
+        23px 23px 30px -20px rgba(42, 42, 36, 0.19),
+        -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: 16px 20px;
     margin: 16px 8px 40px;
     overflow-x: auto;
@@ -969,6 +969,20 @@ body.doc-page code {
 .code-token-punctuation,
 .code-token-tree {
     color: #6f786b;
+}
+
+.code-invisible {
+    color: #53605a;
+    opacity: 0.48;
+    user-select: none;
+}
+
+.code-space {
+    padding: 0 0.02em;
+}
+
+.code-return {
+    margin-left: 0.22em;
 }
 
 .code-caption {
