@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=Inconsolata:wght@300;400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Inconsolata:wght@300;400&amp;display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../_resources/css/style.css" />
@@ -16,6 +16,7 @@
     <body class="doc-page">
         <a class="back" href="../">← Portfolio</a>
 
+        <main>
         <p class="doc-label">Technical Documentation</p>
         <h1>Sound On Paper</h1>
         <p class="subtitle">
@@ -104,11 +105,6 @@
         <p>The QR code points to a URL shaped like:</p>
 
         <div class="code-block"><pre data-code-language="url">https://soundonpaper.com/p/quiet-river-17#k=PUBLIC_SHARE_KEY</pre></div>
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/sound-on-paper/sound-code-url.png" alt="Sound on Paper — listener URL code view" />
-        </div>
-        -->
         <p class="code-caption">
             The slug
             <code>quiet-river-17</code>
@@ -354,12 +350,6 @@ app/
             >
         </div>
 
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/sound-on-paper/sound-code-structure.png" alt="Sound on Paper — route structure code view" />
-        </div>
-        -->
-
         <h3>Source structure</h3>
 
         <div class="code-block">
@@ -384,12 +374,6 @@ src/
     validation.ts          locked audio constraints (MP3/M4A, 10 MB, 3 min)</pre
             >
         </div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/sound-on-paper/sound-code-source.png" alt="Sound on Paper — source structure code view" />
-        </div>
-        -->
 
         <h3>Prisma models</h3>
         <ul class="feature-list">
@@ -461,6 +445,8 @@ src/
             <li>Do not promise guaranteed autoplay</li>
             <li>Do not add proactive copyright scanning of encrypted audio</li>
         </ul>
+
+        </main>
 
         <footer>
             <p class="footer-links">

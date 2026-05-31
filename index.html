@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;display=swap"
             rel="stylesheet"
         />
 
@@ -16,8 +16,7 @@
     </head>
     <body>
         <div class="page">
-            <!-- ─────────────────────────────────── Header -->
-            <header class="header" data-screen-label="00 Header">
+            <header class="header">
                 <a href="#" class="brand">RAY REICH</a>
                 <nav class="nav">
                     <a href="#work" class="active">Work</a>
@@ -43,11 +42,10 @@
                 </nav>
             </header>
 
-            <!-- ─────────────────────────────────── Hero -->
-            <section class="hero" data-screen-label="01 Hero">
-                <div class="hero-l">
+            <main>
+            <section class="hero">
+                <div>
                     <div class="eyebrow">Systems Designer &amp; Engineer</div>
-                    <!-- <h1>I design systems that bring order to complexity.</h1> -->
                     <h1>
                         I came to programming sideways, through
                         <i>music.</i>
@@ -67,17 +65,12 @@
                 </aside>
             </section>
 
-            <!-- ─────────────────────────────────── Selected Systems -->
-            <section id="work" data-screen-label="02 Selected Systems">
+            <section id="work">
                 <div class="section-head">
                     <div class="label">Selected Systems</div>
-                    <span class="view-all">
-                        <span></span>
-                    </span>
                 </div>
 
-                <!-- 01 Custom CMS -->
-                <article class="proj" data-screen-label="02.1 Custom CMS">
+                <article class="proj">
                     <div>
                         <div class="proj-index">01</div>
                         <img class="proj-icon" src="_resources/images/svg/02b_icon_cms.svg" alt="" />
@@ -98,101 +91,12 @@
                             <span class="tag">Local-first</span>
                         </div>
                     </div>
-                    <div class="proj-img img-cms" aria-label="Custom CMS analytics chart">
+                    <div class="proj-img" aria-label="Custom CMS analytics chart">
                         <img src="_resources/images/png/cms/cms-chart-3d.png" alt="Custom CMS — 3D analytics chart" />
-                        <svg viewBox="0 0 420 200" width="100%" height="100%" style="display: none">
-                            <rect width="420" height="200" fill="#fdfdfd" />
-                            <!-- sidebar -->
-                            <rect x="0" y="0" width="86" height="200" fill="#171717" />
-                            <g font-family="Inter, sans-serif" font-size="6" fill="#ededed">
-                                <text x="14" y="18" font-weight="600">Dashboard</text>
-                                <text x="14" y="36" fill="#9a9a9a">Content</text>
-                                <text x="14" y="50" fill="#9a9a9a">Pages</text>
-                                <text x="14" y="64" fill="#9a9a9a">Media</text>
-                                <text x="14" y="78" fill="#9a9a9a">Analytics</text>
-                                <text x="14" y="92" fill="#9a9a9a">Users</text>
-                                <text x="14" y="106" fill="#9a9a9a">Settings</text>
-                            </g>
-                            <!-- dot indicators -->
-                            <g fill="#9a9a9a">
-                                <circle cx="8" cy="34" r="0.8" />
-                                <circle cx="8" cy="48" r="0.8" />
-                                <circle cx="8" cy="62" r="0.8" />
-                                <circle cx="8" cy="76" r="0.8" />
-                                <circle cx="8" cy="90" r="0.8" />
-                                <circle cx="8" cy="104" r="0.8" />
-                            </g>
-                            <!-- right header -->
-                            <text
-                                x="100"
-                                y="22"
-                                font-family="Inter, sans-serif"
-                                font-size="9"
-                                font-weight="600"
-                                fill="#171717"
-                            >
-                                Dashboard
-                            </text>
-                            <!-- stat cards -->
-                            <g font-family="Inter, sans-serif">
-                                <text x="106" y="46" font-size="6" fill="#7d7d7d" letter-spacing="0.4">Posts</text>
-                                <text x="106" y="66" font-size="16" font-weight="600" fill="#171717">128</text>
-
-                                <text x="184" y="46" font-size="6" fill="#7d7d7d" letter-spacing="0.4">Drafts</text>
-                                <text x="184" y="66" font-size="16" font-weight="600" fill="#171717">24</text>
-
-                                <text x="258" y="46" font-size="6" fill="#7d7d7d" letter-spacing="0.4">Published</text>
-                                <text x="258" y="66" font-size="16" font-weight="600" fill="#171717">104</text>
-
-                                <text x="338" y="46" font-size="6" fill="#7d7d7d" letter-spacing="0.4">Views</text>
-                                <text x="338" y="66" font-size="16" font-weight="600" fill="#171717">8,432</text>
-                            </g>
-                            <!-- chart area -->
-                            <line x1="100" y1="88" x2="408" y2="88" stroke="#ececec" stroke-width="0.6" />
-                            <line
-                                x1="100"
-                                y1="118"
-                                x2="408"
-                                y2="118"
-                                stroke="#ececec"
-                                stroke-width="0.6"
-                                stroke-dasharray="1.5 2"
-                            />
-                            <line x1="100" y1="148" x2="408" y2="148" stroke="#ececec" stroke-width="0.6" />
-                            <line x1="100" y1="178" x2="408" y2="178" stroke="#ececec" stroke-width="0.6" />
-                            <!-- chart polyline -->
-                            <polyline
-                                fill="none"
-                                stroke="#4aa3d6"
-                                stroke-width="1.2"
-                                points="108,160 138,150 168,156 198,138 228,142 258,128 288,118 318,124 348,112 378,118 404,108"
-                            />
-                            <g fill="#4aa3d6">
-                                <circle cx="108" cy="160" r="1.6" />
-                                <circle cx="138" cy="150" r="1.6" />
-                                <circle cx="168" cy="156" r="1.6" />
-                                <circle cx="198" cy="138" r="1.6" />
-                                <circle cx="228" cy="142" r="1.6" />
-                                <circle cx="258" cy="128" r="1.6" />
-                                <circle cx="288" cy="118" r="1.6" />
-                                <circle cx="318" cy="124" r="1.6" />
-                                <circle cx="348" cy="112" r="1.6" />
-                                <circle cx="378" cy="118" r="1.6" />
-                                <circle cx="404" cy="108" r="1.6" />
-                            </g>
-                            <g font-family="Inter, sans-serif" font-size="4.6" fill="#9a9a9a">
-                                <text x="108" y="190" text-anchor="middle">May 1</text>
-                                <text x="168" y="190" text-anchor="middle">May 8</text>
-                                <text x="228" y="190" text-anchor="middle">May 15</text>
-                                <text x="288" y="190" text-anchor="middle">May 22</text>
-                                <text x="348" y="190" text-anchor="middle">May 29</text>
-                                <text x="404" y="190" text-anchor="middle">Jun 5</text>
-                            </g>
-                        </svg>
                     </div>
                 </article>
 
-                <article class="proj" data-screen-label="02.2 EduToneBox">
+                <article class="proj">
                     <div>
                         <div class="proj-index">02</div>
                         <img class="proj-icon" src="_resources/images/svg/03b_icon_edutonebox.svg" alt="" />
@@ -214,12 +118,11 @@
                         </div>
                     </div>
                     <div
-                        class="proj-img img-edutonebox"
+                        class="proj-img"
                         aria-label="Dark synthesizer interface with waveform visualizations and a list of modules"
                     >
                         <svg viewBox="0 0 420 200" width="100%" height="100%" style="display: block">
                             <rect width="420" height="200" fill="#0d0d0f" />
-                            <!-- top label bar -->
                             <text
                                 x="14"
                                 y="18"
@@ -262,7 +165,6 @@
                                 Parameters
                             </text>
                             <line x1="0" y1="26" x2="420" y2="26" stroke="#1f1f22" stroke-width="0.5" />
-                            <!-- left module list -->
                             <g font-family="Inter, sans-serif" font-size="6.5" fill="#cfcfcf">
                                 <text x="14" y="40">Oscillator</text>
                                 <text x="14" y="52">Envelope</text>
@@ -274,7 +176,6 @@
                                 <text x="14" y="124">Presets</text>
                             </g>
                             <line x1="86" y1="30" x2="86" y2="186" stroke="#1f1f22" stroke-width="0.5" />
-                            <!-- center waveform 1 -->
                             <g transform="translate(96,32)">
                                 <text x="0" y="6" font-family="Inter, sans-serif" font-size="5.5" fill="#7d7d7d">
                                     OSC1
@@ -295,7 +196,6 @@
                                     stroke-width="1.2"
                                 />
                             </g>
-                            <!-- center waveform 2 (modulation diamond) -->
                             <g transform="translate(96,98)">
                                 <text x="0" y="6" font-family="Inter, sans-serif" font-size="5.5" fill="#7d7d7d">
                                     Modulation
@@ -317,7 +217,6 @@
                                     <path d="M 150 38 L 166 22 L 182 38 L 166 54 Z" />
                                 </g>
                             </g>
-                            <!-- center FFT panel -->
                             <g transform="translate(218,32)">
                                 <text x="0" y="6" font-family="Inter, sans-serif" font-size="5.5" fill="#7d7d7d">
                                     FFT
@@ -337,7 +236,6 @@
                                     />
                                 </g>
                             </g>
-                            <!-- right params -->
                             <line x1="304" y1="30" x2="304" y2="186" stroke="#1f1f22" stroke-width="0.5" />
                             <g font-family="Inter, sans-serif" font-size="5.5" fill="#bdbdbd">
                                 <text x="312" y="40">Cutoff</text>
@@ -363,7 +261,7 @@
                     </div>
                 </article>
 
-                <article class="proj" data-screen-label="02.3 Sound on Paper">
+                <article class="proj">
                     <div>
                         <div class="proj-index">03</div>
                         <img class="proj-icon" src="_resources/images/svg/01b_icon_soundonpaper.svg" alt="" />
@@ -384,7 +282,7 @@
                         </div>
                     </div>
                     <div
-                        class="proj-img img-sound-on-paper"
+                        class="proj-img"
                         aria-label="Black card with concentric gold circles and a QR code, placed on a sandy surface beside a small stone"
                     >
                         <img
@@ -394,8 +292,7 @@
                     </div>
                 </article>
 
-                <!-- 04 AstroCal — App -->
-                <article class="proj" data-screen-label="02.4 AstroCal App">
+                <article class="proj">
                     <div>
                         <div class="proj-index">04</div>
                         <img class="proj-icon" src="_resources/images/svg/04b_icon_astrocal.svg" alt="" />
@@ -417,14 +314,14 @@
                         </div>
                     </div>
                     <div
-                        class="proj-img img-astrocal-app"
+                        class="proj-img"
                         aria-label="Phone mockup showing Astronomical Calendar app with moon phases and calendar grid"
                     >
                         <img src="_resources/images/png/astrocal-app/astrocal-app.png" alt="Astronomical Calendar app" />
                     </div>
                 </article>
 
-                <article class="proj" data-screen-label="02.5 Astronomical Calendar">
+                <article class="proj">
                     <div>
                         <div class="proj-index">05</div>
                         <img class="proj-icon" src="_resources/images/svg/05_astronomy_tools_icon.svg" alt="" />
@@ -444,7 +341,7 @@
                             <span class="tag">Zmanim</span>
                         </div>
                     </div>
-                    <div class="proj-img img-calendar" aria-label="AstroCal web screenshot">
+                    <div class="proj-img" aria-label="AstroCal web screenshot">
                         <img
                             src="_resources/images/png/astrocal-web/astrocal-web-screenshot-3d.png"
                             alt="AstroCal web — 3D screenshot"
@@ -452,7 +349,7 @@
                     </div>
                 </article>
 
-                <article class="proj" data-screen-label="02.6 Musical Interval Typography">
+                <article class="proj">
                     <div>
                         <div class="proj-index">06</div>
                         <img class="proj-icon" src="_resources/images/svg/06b_icon_typography.svg" alt="" />
@@ -469,7 +366,7 @@
                             <span class="tag">Type Scale</span>
                         </div>
                     </div>
-                    <div class="proj-img img-typography" aria-label="Musical Interval Typography scale chart">
+                    <div class="proj-img" aria-label="Musical Interval Typography scale chart">
                         <img
                             src="_resources/images/png/typography/typography-scale-3d.png"
                             alt="Musical Interval Typography — 3D type scale chart"
@@ -478,8 +375,9 @@
                 </article>
             </section>
 
-            <!-- ─────────────────────────────────── Footer -->
-            <footer class="footer" data-screen-label="03 Footer">
+            </main>
+
+            <footer class="footer">
                 <div class="footer-bio">
                     <p>
                         Musician and educator. Self-taught engineer.

@@ -1,3 +1,38 @@
+:root {
+    --paper: #fafaf8;
+    --ink: #111111;
+    --ink-2: #2a2a2a;
+    --muted: #6b6b6b;
+    --muted-2: #9a9a9a;
+    --rule: #e6e4df;
+    --serif: "Newsreader", "Source Serif 4", Georgia, serif;
+    --sans: "Inter", -apple-system, system-ui, sans-serif;
+    --mono: "Source Code Pro", "Inconsolata", "Courier New", monospace;
+    --code-selection-green: #9dae8f;
+    --code-syntax-green: rgb(166, 184, 150, 0.99);
+    --code-highlight-ink: #17181b;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background: #e2e2e2;
+}
+
+::-moz-selection {
+    background: #e2e2e2;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 body.typography-page {
     --fontRatio: calc(32 / 27);
     --rootPx: 9.8;
@@ -66,85 +101,162 @@ body.typography-page {
     --space-code: var(--note04);
     --page-measure: max(720px, calc(var(--type-title) * 15.5));
 
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 auto;
     width: min(var(--page-measure), calc(100vw - 48px));
     min-width: 0;
     max-width: none;
     padding: var(--space-page) var(--note09) var(--space-page-end);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.typography-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body.typography-page button {
+    font: inherit;
+}
+
+body.typography-page em {
+    font-style: italic;
 }
 
 body.typography-page .back {
+    display: inline-block;
+    letter-spacing: 0.14em;
     font-size: var(--type-small);
     line-height: var(--type-small-line);
     margin-bottom: var(--note10);
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+body.typography-page .back:hover {
+    color: var(--ink);
 }
 
 body.typography-page .doc-label {
+    letter-spacing: 0.22em;
     font-size: var(--type-small);
     line-height: var(--type-small-line);
     margin-bottom: var(--note03);
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
 body.typography-page h1 {
+    font-family: var(--serif);
+    font-weight: 400;
     font-size: var(--type-title);
     line-height: var(--type-title-line);
+    letter-spacing: -0.012em;
     margin: 0 0 var(--space-paragraph);
+    color: var(--ink);
 }
 
 body.typography-page h2 {
+    font-family: var(--serif);
+    font-weight: 400;
     font-size: var(--type-section);
     line-height: var(--type-section-line);
+    letter-spacing: -0.008em;
     margin: var(--space-section) 0 var(--space-paragraph);
+    color: var(--ink);
 }
 
 body.typography-page h3 {
+    font-family: var(--sans);
     font-size: var(--type-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.16em;
     line-height: var(--type-tertiary-line);
     margin: var(--space-subsection) 0 var(--note01);
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
 body.typography-page p {
+    color: #3a3a3a;
     font-size: var(--type-body);
     line-height: var(--type-body-line);
     margin: 0 0 var(--space-paragraph);
 }
 
 body.typography-page .subtitle {
+    font-family: var(--serif);
+    font-weight: 400;
     font-size: var(--type-subtitle);
     line-height: var(--type-subtitle-line);
     margin-bottom: var(--space-meta);
+    color: var(--ink-2);
 }
 
 body.typography-page .meta,
 body.typography-page .status-line {
+    color: var(--muted);
     font-size: var(--type-small);
     line-height: var(--type-small-line);
     margin-bottom: var(--space-meta);
 }
 
+body.typography-page .status-line span {
+    color: var(--ink-2);
+}
+
 body.typography-page .project-links {
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-project);
     margin-top: var(--space-paragraph);
 }
 
 body.typography-page .project-links a {
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-2);
     font-size: var(--type-small);
+    letter-spacing: 0.14em;
     line-height: var(--type-small-line);
+    padding-bottom: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+body.typography-page .project-links a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
 }
 
 body.typography-page hr {
+    border: none;
+    border-top: 1px solid var(--rule);
     margin: var(--space-rule) 0;
 }
 
 body.typography-page hr.thin {
+    border-top-width: 0.5px;
     margin: var(--space-rule-thin) 0;
 }
 
 body.typography-page code {
     background-color: #282e39;
     color: #f0f0f0;
+    font-family: "Inconsolata", "Courier New", monospace;
     font-size: var(--type-code);
     line-height: var(--type-code-line);
     padding: calc(var(--type-code) * 0.08) calc(var(--type-code) * 0.36);
+    border-radius: 2px;
 }
 
 body.typography-page .code-block {
@@ -161,6 +273,7 @@ body.typography-page .code-block {
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--space-code) calc(var(--space-code) * var(--fontRatio));
     margin: var(--space-code) calc(var(--space-code) * 0.45) calc(var(--space-meta) + var(--space-code));
+    overflow-x: auto;
 }
 
 body.typography-page .code-block pre {
@@ -169,6 +282,19 @@ body.typography-page .code-block pre {
     font-size: calc(var(--type-code) * 0.8);
     line-height: var(--type-code-line);
     margin: 0;
+    white-space: pre;
+}
+
+body.typography-page .code-block pre::selection,
+body.typography-page .code-block pre *::selection {
+    background-color: var(--code-selection-green);
+    color: var(--code-highlight-ink);
+}
+
+body.typography-page .code-block pre::-moz-selection,
+body.typography-page .code-block pre *::-moz-selection {
+    background-color: var(--code-selection-green);
+    color: var(--code-highlight-ink);
 }
 
 body.typography-page .code-block-complete {
@@ -180,6 +306,7 @@ body.typography-page .code-block-complete pre {
 }
 
 body.typography-page .code-caption {
+    color: var(--muted);
     font-size: var(--type-small);
     line-height: var(--type-small-line);
     margin-top: calc(var(--space-tight) * -0.5);
@@ -187,25 +314,130 @@ body.typography-page .code-caption {
     padding-left: calc(var(--space-code) * var(--fontRatio));
 }
 
+body.typography-page .origin-note {
+    border-left: 2px solid var(--rule);
+    padding: 14px 20px;
+    margin: 24px 0;
+}
+
+body.typography-page .origin-note p {
+    font-family: var(--serif);
+    font-style: italic;
+}
+
 body.typography-page .sources {
+    list-style: none;
+    padding: 0;
     margin: var(--space-tight) 0 var(--space-meta);
 }
 
 body.typography-page .sources li {
+    color: #3a3a3a;
     font-size: var(--type-body);
     line-height: var(--type-body-line);
+    position: relative;
     padding-left: var(--space-meta);
     margin-bottom: var(--space-tight);
 }
 
+body.typography-page .sources li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--muted-2);
+}
+
+body.typography-page .sources a,
+body.typography-page p a {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+body.typography-page .sources a:hover,
+body.typography-page p a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
 body.typography-page footer {
+    border-top: 1px solid var(--rule);
     margin-top: var(--note12);
     padding-top: var(--note06);
 }
 
 body.typography-page footer p {
+    color: var(--muted);
     font-size: var(--type-small);
+    letter-spacing: 0.06em;
     line-height: var(--type-small-line);
+    text-align: left;
+    margin-bottom: 0;
+}
+
+body.typography-page footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+body.typography-page footer a:hover {
+    color: var(--ink);
+}
+
+body.typography-page .code-token-comment {
+    color: #8f9887;
+}
+
+body.typography-page .code-token-selector {
+    color: #d7c88f;
+}
+
+body.typography-page .code-token-property,
+body.typography-page .code-token-path {
+    color: #9fb6d8;
+}
+
+body.typography-page .code-token-at-rule {
+    color: #c6a7d8;
+}
+
+body.typography-page .code-token-function,
+body.typography-page .code-token-command {
+    color: var(--code-syntax-green);
+}
+
+body.typography-page .code-token-keyword,
+body.typography-page .code-token-string {
+    color: #b9b28a;
+}
+
+body.typography-page .code-token-number,
+body.typography-page .code-token-flag {
+    color: #d6a77a;
+}
+
+body.typography-page .code-token-operator,
+body.typography-page .code-token-punctuation,
+body.typography-page .code-token-tree {
+    color: #6f786b;
+}
+
+body.typography-page .code-invisible {
+    color: #53605a;
+    opacity: 0.48;
+    user-select: none;
+}
+
+body.typography-page .code-space {
+    padding: 0 0.02em;
+}
+
+body.typography-page .code-return {
+    margin-left: 0.22em;
 }
 
 body.typography-page .type-controls {
@@ -440,14 +672,6 @@ body.typography-page .type-control-value {
 body.typography-page .type-control input[type="range"] {
     accent-color: var(--ink);
     width: 100%;
-}
-
-body.typography-page .type-control.is-linked-dependent {
-    opacity: 0.5;
-}
-
-body.typography-page .type-control.is-linked-dependent input[type="range"] {
-    cursor: not-allowed;
 }
 
 @media only screen and (max-width: 767px) {

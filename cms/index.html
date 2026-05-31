@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=Inconsolata:wght@300;400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Inconsolata:wght@300;400&amp;display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../_resources/css/style.css" />
@@ -16,6 +16,7 @@
     <body class="doc-page">
         <a class="back" href="../">← Portfolio</a>
 
+        <main>
         <p class="doc-label">Technical Documentation</p>
         <h1>Custom CMS &amp; Admin Panel</h1>
         <p class="subtitle">
@@ -95,12 +96,6 @@ _assets/docs/                  Current docs and historical plans and reports
 _production_logs/              Local synced access log input</pre
             >
         </div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/cms/cms-code-project-map.png" alt="Custom CMS — project map code view" />
-        </div>
-        -->
 
         <hr class="thin" />
 
@@ -255,11 +250,6 @@ cd admin-panel/_resources/python
 python3 simple_server.py</pre
             >
         </div>
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/cms/cms-code-backend.png" alt="Custom CMS — backend startup code view" />
-        </div>
-        -->
         <p class="code-caption">
             The configured admin start port is 5500, with up to 10 attempts for the next free port.
         </p>
@@ -268,21 +258,9 @@ python3 simple_server.py</pre
 
         <div class="code-block"><pre data-code-language="shell">open "_commands/ports_and_servers/servers/launch_PHP.command"</pre></div>
 
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/cms/cms-code-public-site.png" alt="Custom CMS — public site launch code view" />
-        </div>
-        -->
-
         <h3>Combined launcher</h3>
 
         <div class="code-block"><pre data-code-language="shell">open "_commands/CLEAN+LAUNCH.command"</pre></div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/cms/cms-code-launcher.png" alt="Custom CMS — combined launcher code view" />
-        </div>
-        -->
 
         <h3>Running tests</h3>
 
@@ -297,12 +275,6 @@ cd admin-panel/_resources/js
 npm test</pre
             >
         </div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/cms/cms-code-tests.png" alt="Custom CMS — test command code view" />
-        </div>
-        -->
 
         <hr class="thin" />
 
@@ -373,6 +345,8 @@ npm test</pre
             None of these represent an architectural constraint — they are known gaps, deliberately deferred given the
             local-only operational model, and clearly documented for any future deployment that changes that assumption.
         </p>
+
+        </main>
 
         <footer>
             <p>

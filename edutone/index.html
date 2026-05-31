@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=Inconsolata:wght@300;400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Inconsolata:wght@300;400&amp;display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../_resources/css/style.css" />
@@ -16,6 +16,7 @@
     <body class="doc-page">
         <a class="back" href="../">← Portfolio</a>
 
+        <main>
         <p class="doc-label">Technical Documentation</p>
         <h1>EduToneBox</h1>
         <p class="subtitle">
@@ -105,12 +106,6 @@
             >
         </div>
 
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/edutonebox/edutonebox-code-architecture.png" alt="EduToneBox — architecture diagram code view" />
-        </div>
-        -->
-
         <h3>Signal flow</h3>
 
         <div class="code-block">
@@ -123,12 +118,6 @@ Oscillator
   → CoreAudio or ALSA device</pre
             >
         </div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/edutonebox/edutonebox-code-signal-flow.png" alt="EduToneBox — signal flow code view" />
-        </div>
-        -->
 
         <h3>Control and visualization flow</h3>
 
@@ -146,12 +135,6 @@ Audio buffer
   → UI spectrum visualization</pre
             >
         </div>
-
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/edutonebox/edutonebox-code-control.png" alt="EduToneBox — control and visualization code view" />
-        </div>
-        -->
 
         <hr class="thin" />
 
@@ -294,12 +277,6 @@ AUDIO_BOX/
             >
         </div>
 
-        <!--
-        <div class="page-images page-images-full code-image">
-            <img src="../_resources/images/png/edutonebox/edutonebox-code-repository.png" alt="EduToneBox — repository layout code view" />
-        </div>
-        -->
-
         <hr class="thin" />
 
         <h2>OSC Control API</h2>
@@ -320,17 +297,17 @@ AUDIO_BOX/
             <tr>
                 <td>/osc/frequency</td>
                 <td>float</td>
-                <td class="meaning">Frequency in Hz</td>
+                <td>Frequency in Hz</td>
             </tr>
             <tr>
                 <td>/osc/amplitude</td>
                 <td>float</td>
-                <td class="meaning">Output amplitude, 0.0 to 1.0</td>
+                <td>Output amplitude, 0.0 to 1.0</td>
             </tr>
             <tr>
                 <td>/osc/waveform</td>
                 <td>int as float</td>
-                <td class="meaning">0 Sine · 1 Triangle · 2 Saw · 3 Square · 4 Pulse · 5 Custom</td>
+                <td>0 Sine · 1 Triangle · 2 Saw · 3 Square · 4 Pulse · 5 Custom</td>
             </tr>
         </table>
 
@@ -344,22 +321,22 @@ AUDIO_BOX/
             <tr>
                 <td>/osc/lfo/frequency</td>
                 <td>float</td>
-                <td class="meaning">LFO rate</td>
+                <td>LFO rate</td>
             </tr>
             <tr>
                 <td>/osc/lfo/amplitude</td>
                 <td>float</td>
-                <td class="meaning">LFO depth</td>
+                <td>LFO depth</td>
             </tr>
             <tr>
                 <td>/osc/lfo/waveform</td>
                 <td>int as float</td>
-                <td class="meaning">0 Sine · 1 Triangle · 2 Saw · 3 Square</td>
+                <td>0 Sine · 1 Triangle · 2 Saw · 3 Square</td>
             </tr>
             <tr>
                 <td>/osc/lfo/target</td>
                 <td>int as float</td>
-                <td class="meaning">0 None · 1 Frequency · 2 Amplitude · 3 Filter</td>
+                <td>0 None · 1 Frequency · 2 Amplitude · 3 Filter</td>
             </tr>
         </table>
 
@@ -373,32 +350,32 @@ AUDIO_BOX/
             <tr>
                 <td>/osc/adsr/attack</td>
                 <td>float</td>
-                <td class="meaning">Attack time in ms</td>
+                <td>Attack time in ms</td>
             </tr>
             <tr>
                 <td>/osc/adsr/decay</td>
                 <td>float</td>
-                <td class="meaning">Decay time in ms</td>
+                <td>Decay time in ms</td>
             </tr>
             <tr>
                 <td>/osc/adsr/sustain</td>
                 <td>float</td>
-                <td class="meaning">Sustain level, 0.0 to 1.0</td>
+                <td>Sustain level, 0.0 to 1.0</td>
             </tr>
             <tr>
                 <td>/osc/adsr/release</td>
                 <td>float</td>
-                <td class="meaning">Release time in ms</td>
+                <td>Release time in ms</td>
             </tr>
             <tr>
                 <td>/osc/adsr/noteon</td>
                 <td>—</td>
-                <td class="meaning">Trigger envelope</td>
+                <td>Trigger envelope</td>
             </tr>
             <tr>
                 <td>/osc/adsr/noteoff</td>
                 <td>—</td>
-                <td class="meaning">Release envelope</td>
+                <td>Release envelope</td>
             </tr>
         </table>
 
@@ -412,27 +389,27 @@ AUDIO_BOX/
             <tr>
                 <td>/osc/filter/cutoff</td>
                 <td>float</td>
-                <td class="meaning">Cutoff frequency in Hz</td>
+                <td>Cutoff frequency in Hz</td>
             </tr>
             <tr>
                 <td>/osc/filter/resonance</td>
                 <td>float</td>
-                <td class="meaning">Resonance/Q</td>
+                <td>Resonance/Q</td>
             </tr>
             <tr>
                 <td>/osc/filter/type</td>
                 <td>int as float</td>
-                <td class="meaning">0 LowPass · 1 HighPass · 2 BandPass · 3 Notch</td>
+                <td>0 LowPass · 1 HighPass · 2 BandPass · 3 Notch</td>
             </tr>
             <tr>
                 <td>/osc/filter/enabled</td>
                 <td>float</td>
-                <td class="meaning">0 off · 1 on</td>
+                <td>0 off · 1 on</td>
             </tr>
             <tr>
                 <td>/osc/filter/algorithm</td>
                 <td>int as float</td>
-                <td class="meaning">0 StateVariable · 1 Butterworth · 2 VirtualAnalog · 3 ModalResonator</td>
+                <td>0 StateVariable · 1 Butterworth · 2 VirtualAnalog · 3 ModalResonator</td>
             </tr>
         </table>
 
@@ -446,24 +423,24 @@ AUDIO_BOX/
             <tr>
                 <td>/osc/effect/type</td>
                 <td>int as float</td>
-                <td class="meaning">
+                <td>
                     0 None · 1 Reverb · 2 Delay · 3 Chorus · 4 Flanger · 5 Distortion · 6 BitCrusher
                 </td>
             </tr>
             <tr>
                 <td>/osc/effect/mix</td>
                 <td>float</td>
-                <td class="meaning">Dry/wet mix</td>
+                <td>Dry/wet mix</td>
             </tr>
             <tr>
                 <td>/osc/effect/param1</td>
                 <td>float</td>
-                <td class="meaning">Effect-specific normalized parameter</td>
+                <td>Effect-specific normalized parameter</td>
             </tr>
             <tr>
                 <td>/osc/effect/param2</td>
                 <td>float</td>
-                <td class="meaning">Effect-specific normalized parameter</td>
+                <td>Effect-specific normalized parameter</td>
             </tr>
         </table>
 
@@ -477,7 +454,7 @@ AUDIO_BOX/
             <tr>
                 <td>/spectrum/bin</td>
                 <td>bin index, magnitude</td>
-                <td class="meaning">FFT spectrum bin sent from engine to UI</td>
+                <td>FFT spectrum bin sent from engine to UI</td>
             </tr>
         </table>
 
@@ -568,6 +545,8 @@ AUDIO_BOX/
             The interesting aspect of this project is not only that it produces sound — it is that the codebase is
             organized to grow from a desktop prototype into a physical educational instrument.
         </p>
+
+        </main>
 
         <footer>
             <p>

@@ -142,7 +142,6 @@ button {
     margin: 0;
 }
 
-/* Capabilities (right column) */
 .caps {
     align-items: center;
     justify-content: center;
@@ -155,37 +154,6 @@ button {
     width: min(100%, 420px);
     height: auto;
     opacity: 0.9;
-}
-.cap {
-    display: grid;
-    grid-template-columns: 1fr 24px;
-    align-items: center;
-    gap: 16px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--rule);
-}
-.cap:first-child {
-    border-top: 1px solid var(--rule);
-}
-.cap-title {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 8px;
-    font-weight: 500;
-}
-.cap-body {
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: #3a3a3a;
-    margin: 0;
-    max-width: 30ch;
-}
-.cap .arr {
-    color: var(--ink-2);
-    font-size: 16px;
-    justify-self: end;
 }
 
 /* ── Section head: Selected Systems ─────────────────────────── */
@@ -204,16 +172,6 @@ button {
     color: var(--ink);
     font-weight: 500;
 }
-.view-all {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink);
-}
-
 /* ── Project row ────────────────────────────────────────────── */
 .proj {
     display: grid;
@@ -238,14 +196,6 @@ button {
     color: var(--ink);
     letter-spacing: -0.01em;
     text-align: center;
-}
-.proj-cat {
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 18px;
-    line-height: 1.6;
 }
 .proj-icon {
     display: block;
@@ -316,28 +266,6 @@ button {
     display: block;
 }
 
-/* ── Project image mocks (SVG-driven) ───────────────────────── */
-.img-sound-on-paper {
-    background: transparent;
-    display: grid;
-    place-items: center;
-}
-.img-edutonebox {
-    background: transparent;
-}
-.img-calendar {
-    background: transparent;
-}
-.img-astrocal-app {
-    background: transparent;
-}
-.img-cms {
-    background: transparent;
-}
-.img-typography {
-    background: transparent;
-}
-
 /* ── Footer ─────────────────────────────────────────────────── */
 .footer {
     display: grid;
@@ -356,20 +284,11 @@ button {
     font-weight: 500;
     color: var(--ink);
 }
-.footer p,
-.footer li {
+.footer p {
     font-size: 13px;
     line-height: 1.65;
     color: #3a3a3a;
     margin: 0;
-}
-.footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.footer ul li {
-    margin-bottom: 4px;
 }
 .footer-mark {
     width: 56px;
@@ -385,16 +304,8 @@ button {
     font-size: 13px;
     color: var(--ink);
 }
-.email-row .arr {
-    font-size: 14px;
-}
 .avail-block {
     margin-top: 18px;
-}
-
-/* Small atoms */
-.arr-right::after {
-    content: "→";
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
@@ -452,15 +363,6 @@ button {
         margin-right: 0;
         margin-top: 0;
         transform: translateY(-4px);
-    }
-    .proj-cat {
-        margin-top: 0;
-    }
-    .proj-cat br {
-        display: none;
-    }
-    .proj-cat::before {
-        content: "";
     }
     .proj-img {
         aspect-ratio: 16 / 9;
@@ -572,24 +474,10 @@ button {
         font-size: 14.5px;
     }
 
-    .cap {
-        padding: 18px 0;
-        grid-template-columns: 1fr 20px;
-        gap: 12px;
-    }
-    .cap-title {
-        font-size: 10.5px;
-    }
-    .cap-body {
-        font-size: 13px;
-        max-width: 100%;
-    }
-
     .section-head {
         padding: 14px 0;
     }
-    .section-head .label,
-    .view-all {
+    .section-head .label {
         font-size: 10.5px;
         letter-spacing: 0.18em;
     }
@@ -600,9 +488,6 @@ button {
     }
     .proj-index {
         font-size: 30px;
-    }
-    .proj-cat {
-        font-size: 10px;
     }
     .proj-title {
         font-size: 30px;
@@ -710,39 +595,6 @@ body.doc-page hr.thin {
     border-radius: 6px;
 }
 
-.page-images-full {
-    align-items: center;
-    flex-direction: column;
-}
-
-.page-images-full img {
-    max-width: 100%;
-    width: auto;
-}
-
-.code-image {
-    margin-top: 2px;
-    margin-bottom: 56px;
-}
-
-.code-image + .code-caption {
-    margin-top: -46px;
-    margin-bottom: 56px;
-}
-
-.code-image img {
-    width: min(100%, 720px);
-}
-
-h2 + .code-image,
-h3 + .code-image {
-    margin-top: -2px;
-}
-
-.code-image + h3 {
-    margin-top: 56px;
-}
-
 body.doc-page code {
     font-family: "Inconsolata", "Courier New", monospace;
     font-size: 13px;
@@ -825,39 +677,6 @@ body.doc-page code {
     left: 0;
     color: var(--muted-2);
     font-size: 0.9em;
-}
-
-/* Milestone list */
-.milestone-list {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0 20px;
-    counter-reset: milestone;
-}
-
-.milestone-list li {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #3a3a3a;
-    padding-left: 32px;
-    position: relative;
-    margin-bottom: 10px;
-    counter-increment: milestone;
-}
-
-.milestone-list li::before {
-    content: counter(milestone, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    font-family: "Inconsolata", "Courier New", monospace;
-    font-size: 11px;
-    color: var(--muted);
-    top: 0.25em;
-}
-
-.milestone-list li strong {
-    font-weight: 500;
-    color: var(--ink);
 }
 
 /* Tables */
@@ -1054,23 +873,6 @@ body.doc-page code {
     padding-left: 20px;
 }
 
-/* Architecture diagram */
-.arch-diagram {
-    background: #f3f2ee;
-    border-left: 2px solid var(--rule);
-    padding: 20px 24px;
-    margin: 16px 0;
-    overflow-x: auto;
-}
-
-.arch-diagram pre {
-    font-family: "Inconsolata", "Courier New", monospace;
-    font-size: 12px;
-    line-height: 1.75;
-    color: var(--muted);
-    white-space: pre;
-}
-
 /* Callout notes */
 .origin-note,
 .context-note,
@@ -1251,12 +1053,5 @@ body.doc-page footer a:hover {
     .contrast-columns {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-    .code-image {
-        margin-left: -16px;
-        margin-right: -16px;
-    }
-    .code-image img {
-        width: 100%;
     }
 }
