@@ -1,15 +1,12 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Musical Interval Typography System — Ray Reich</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Inconsolata:wght@300;400&amp;family=Source+Code+Pro:wght@400&amp;display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="../_resources/css/style-typography.css">
+        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
+        <link rel="stylesheet" href="../_resources/css/style-typography.css" />
         <script src="../_resources/js/code-highlight.js" defer></script>
         <script src="typography.js" defer></script>
     </head>
@@ -17,476 +14,503 @@
         <a class="back" href="../">← Portfolio</a>
 
         <main>
-        <p class="doc-label">Technical Documentation</p>
-        <h1>Musical Interval Typography</h1>
-        <p class="subtitle">A type scale derived from the intervals of a musical scale</p>
+            <p class="doc-label">Technical Documentation</p>
+            <h1>Musical Interval Typography</h1>
+            <p class="subtitle">A type scale derived from the intervals of a musical scale</p>
 
-        <p class="meta tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS custom properties</span>
-            <span class="tag">Zero dependencies</span>
-            <span class="tag">License: CC BY-NC 4.0</span>
-        </p>
-
-        <div class="project-links">
-            <a href="https://bachtogauss.com/about/#about-site" target="_blank">See it live →</a>
-        </div>
-
-        <section class="type-controls" aria-labelledby="type-controls-title">
-            <div class="type-controls-head">
-                <button
-                    class="type-panel-toggle"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="type-controls-content"
-                    data-controls-toggle
-                >
-                    <span data-controls-toggle-label>+</span>
-                </button>
-                <h2 id="type-controls-title">Live system controls</h2>
-                <button class="type-reset" type="button" data-type-reset>Reset</button>
-            </div>
-
-            <div class="type-controls-content" id="type-controls-content">
-                <fieldset class="type-mode" aria-label="Control mode">
-                    <label class="type-mode-option">
-                        <input type="radio" name="type-mode" value="linked" checked data-mode-control>
-                        <span>Linked</span>
-                    </label>
-                    <label class="type-mode-option">
-                        <input type="radio" name="type-mode" value="free" data-mode-control>
-                        <span>Free</span>
-                    </label>
-                </fieldset>
-
-                <div class="type-control-grid">
-                    <label class="type-control" for="interval-control">
-                        <span class="type-control-label">Interval</span>
-                        <input id="interval-control" type="range" min="0" max="9" step="1" value="2">
-                        <span class="type-control-value" data-interval-output>Minor third · 32/27</span>
-                    </label>
-
-                    <label class="type-control" for="root-control">
-                        <span class="type-control-label">Root anchor</span>
-                        <input id="root-control" type="range" min="8" max="20" step="0.1" value="9.8">
-                        <span class="type-control-value" data-root-output>9.8px</span>
-                    </label>
-
-                    <label class="type-control" for="linked-body-control" data-linked-only>
-                        <span class="type-control-label">Body anchor</span>
-                        <input
-                            id="linked-body-control"
-                            type="range"
-                            min="2"
-                            max="7"
-                            step="1"
-                            value="3"
-                            data-linked-body-control>
-                        <span class="type-control-value" data-linked-body-output>note03 · 13.98px</span>
-                    </label>
-                </div>
-
-                <div class="linked-readouts" data-linked-readouts>
-                    <span data-linked-readout="body">Body note03 / leading note06</span>
-                    <span data-linked-readout="rhythm">Body leading note06</span>
-                    <span data-linked-readout="h1">H1 note10 / leading note11</span>
-                    <span data-linked-readout="h2">H2 note07 / leading note08</span>
-                    <span data-linked-readout="h3">H3 note02 / leading note04</span>
-                    <span data-linked-readout="subtitle">Subtitle note04 / leading note07</span>
-                    <span data-linked-readout="code">Code note03 / leading note05</span>
-                    <span data-linked-readout="small">Small note02 / leading note04</span>
-                    <span data-linked-readout="paragraph">Paragraph note04</span>
-                    <span data-linked-readout="section">Section note11</span>
-                    <span data-linked-readout="page">Page top note13</span>
-                    <span data-linked-readout="pageBottom">Page bottom note14</span>
-                </div>
-
-                <div class="free-controls" data-free-controls>
-                <div class="role-controls">
-                    <label class="type-control" for="h1-note-control">
-                        <span class="type-control-label">H1 size</span>
-                        <input
-                            id="h1-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="10"
-                            data-role-control="h1">
-                        <span class="type-control-value" data-role-output="h1">note10 · 45.93px</span>
-                    </label>
-
-                    <label class="type-control" for="h1-line-control">
-                        <span class="type-control-label">H1 leading</span>
-                        <input
-                            id="h1-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="11"
-                            data-line-control="h1">
-                        <span class="type-control-value" data-line-output="h1">note11 · 54.44px</span>
-                    </label>
-
-                    <label class="type-control" for="h2-note-control">
-                        <span class="type-control-label">H2 size</span>
-                        <input
-                            id="h2-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="7"
-                            data-role-control="h2">
-                        <span class="type-control-value" data-role-output="h2">note07 · 27.60px</span>
-                    </label>
-
-                    <label class="type-control" for="h2-line-control">
-                        <span class="type-control-label">H2 leading</span>
-                        <input
-                            id="h2-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="8"
-                            data-line-control="h2">
-                        <span class="type-control-value" data-line-output="h2">note08 · 32.70px</span>
-                    </label>
-
-                    <label class="type-control" for="h3-note-control">
-                        <span class="type-control-label">H3 size</span>
-                        <input
-                            id="h3-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="2"
-                            data-role-control="h3">
-                        <span class="type-control-value" data-role-output="h3">note02 · 11.80px</span>
-                    </label>
-
-                    <label class="type-control" for="h3-line-control">
-                        <span class="type-control-label">H3 leading</span>
-                        <input
-                            id="h3-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="4"
-                            data-line-control="h3">
-                        <span class="type-control-value" data-line-output="h3">note04 · 16.57px</span>
-                    </label>
-
-                    <label class="type-control" for="subtitle-note-control">
-                        <span class="type-control-label">Subtitle size</span>
-                        <input
-                            id="subtitle-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="4"
-                            data-role-control="subtitle">
-                        <span class="type-control-value" data-role-output="subtitle">note04 · 16.57px</span>
-                    </label>
-
-                    <label class="type-control" for="subtitle-line-control">
-                        <span class="type-control-label">Subtitle leading</span>
-                        <input
-                            id="subtitle-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="7"
-                            data-line-control="subtitle">
-                        <span class="type-control-value" data-line-output="subtitle">note07 · 27.59px</span>
-                    </label>
-
-                    <label class="type-control" for="body-note-control">
-                        <span class="type-control-label">Body size</span>
-                        <input
-                            id="body-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="3"
-                            data-role-control="body">
-                        <span class="type-control-value" data-role-output="body">note03 · 13.98px</span>
-                    </label>
-
-                    <label class="type-control" for="body-line-control">
-                        <span class="type-control-label">Body leading</span>
-                        <input
-                            id="body-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="6"
-                            data-line-control="body">
-                        <span class="type-control-value" data-line-output="body">note06 · 23.28px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="code-note-control">
-                        <span class="type-control-label">Code size</span>
-                        <input
-                            id="code-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="3"
-                            data-role-control="code">
-                        <span class="type-control-value" data-role-output="code">note03 · 13.98px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="code-line-control">
-                        <span class="type-control-label">Code leading</span>
-                        <input
-                            id="code-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="5"
-                            data-line-control="code">
-                        <span class="type-control-value" data-line-output="code">note05 · 19.64px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="code-space-control">
-                        <span class="type-control-label">Code padding</span>
-                        <input
-                            id="code-space-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="4"
-                            data-space-control="code">
-                        <span class="type-control-value" data-space-output="code">note04 · 16.57px</span>
-                    </label>
-
-                    <label class="type-control" for="small-note-control">
-                        <span class="type-control-label">Small/meta size</span>
-                        <input
-                            id="small-note-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="2"
-                            data-role-control="small">
-                        <span class="type-control-value" data-role-output="small">note02 · 11.80px</span>
-                    </label>
-
-                    <label class="type-control" for="small-line-control">
-                        <span class="type-control-label">Small leading</span>
-                        <input
-                            id="small-line-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="4"
-                            data-line-control="small">
-                        <span class="type-control-value" data-line-output="small">note04 · 16.57px</span>
-                    </label>
-                </div>
-
-                <div class="spacing-controls">
-                    <label class="type-control" for="page-top-control">
-                        <span class="type-control-label">Page top</span>
-                        <input
-                            id="page-top-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="13"
-                            data-space-control="pageTop">
-                        <span class="type-control-value" data-space-output="pageTop">note13 · 76.47px</span>
-                    </label>
-
-                    <label class="type-control" for="page-bottom-control">
-                        <span class="type-control-label">Page bottom</span>
-                        <input
-                            id="page-bottom-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="14"
-                            data-space-control="pageBottom">
-                        <span class="type-control-value" data-space-output="pageBottom">note14 · 90.63px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="paragraph-gap-control">
-                        <span class="type-control-label">Paragraph gap</span>
-                        <input
-                            id="paragraph-gap-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="4"
-                            data-space-control="paragraph">
-                        <span class="type-control-value" data-space-output="paragraph">note04 · 16.57px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="section-gap-control">
-                        <span class="type-control-label">Section gap</span>
-                        <input
-                            id="section-gap-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="11"
-                            data-space-control="section">
-                        <span class="type-control-value" data-space-output="section">note11 · 54.44px</span>
-                    </label>
-
-                    <label class="type-control type-control-third" for="rule-gap-control">
-                        <span class="type-control-label">Rule gap</span>
-                        <input
-                            id="rule-gap-control"
-                            type="range"
-                            min="0"
-                            max="16"
-                            step="1"
-                            value="10"
-                            data-space-control="rule">
-                        <span class="type-control-value" data-space-output="rule">note10 · 45.93px</span>
-                    </label>
-                </div>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <h2>Origin</h2>
-
-        <div class="origin-note">
-            <p>
-                I was trying to build the most beautiful text-based website I could imagine. At some point I asked a
-                question I couldn't stop thinking about: what if font sizes weren't arbitrary? What if, instead of
-                choosing numbers that felt right, you established a ratio — the way you'd establish a color palette —
-                and then let every size, margin, line height, and spacing value derive from it? Lock the designer into a
-                system, and any value you choose will harmonize with all the others, the way notes in a key harmonize.
-                The ratio I chose was a musical interval. Getting the math to actually behave took much longer than
-                expected, but when it clicked, every measurement on the page suddenly belonged.
+            <p class="meta tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS custom properties</span>
+                <span class="tag">Zero dependencies</span>
+                <span class="tag">License: CC BY-NC 4.0</span>
             </p>
-        </div>
 
-        <hr class="thin">
+            <div class="project-links">
+                <a href="https://bachtogauss.com/about/#about-site" target="_blank">See it live →</a>
+            </div>
 
-        <h2>Summary</h2>
+            <section class="type-controls" aria-labelledby="type-controls-title">
+                <div class="type-controls-head">
+                    <button
+                        class="type-panel-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="type-controls-content"
+                        data-controls-toggle
+                    >
+                        <span data-controls-toggle-label>+</span>
+                    </button>
+                    <h2 id="type-controls-title">System controls</h2>
+                    <button class="type-reset" type="button" data-type-reset>Reset</button>
+                </div>
 
-        <p>
-            This is a pure CSS system — no JavaScript, no build step, no dependencies — in which a single ratio (the
-            minor third, expressed as 32/27) governs every measurement on the page: font sizes, margins, padding, line
-            heights, and vertical rhythm.
-        </p>
+                <div class="type-controls-content" id="type-controls-content">
+                    <fieldset class="type-mode" aria-label="Control mode">
+                        <label class="type-mode-option">
+                            <input type="radio" name="type-mode" value="linked" checked data-mode-control />
+                            <span>Linked</span>
+                        </label>
+                        <label class="type-mode-option">
+                            <input type="radio" name="type-mode" value="free" data-mode-control />
+                            <span>Free</span>
+                        </label>
+                    </fieldset>
 
-        <p>
-            The underlying design system is essentially one of math and variables, using only HTML and CSS. It takes
-            inputs for a ratio (ideally a musical interval), a minimum font size (set to 16px for accessibility), and a
-            scaling factor which determines how everything grows in accordance with the viewport width. To best
-            accommodate text-only content, the body width is set to 50% — notice how the padding fluidly expands to fill
-            the screen in the margins as the viewport width is adjusted, while keeping all sizing and spacing related
-            and within bounds.
-        </p>
+                    <div class="type-control-grid">
+                        <label class="type-control" for="interval-control">
+                            <span class="type-control-label">Interval</span>
+                            <input id="interval-control" type="range" min="0" max="9" step="1" value="2" />
+                            <span class="type-control-value" data-interval-output>Minor third · 32/27</span>
+                        </label>
 
-        <p>
-            An interesting aspect of this fluid responsiveness is that there are practically no media queries involved.
-            In truth, there are precisely two in use: one changes the text from justified to left-aligned on small
-            screen sizes for improved aesthetics and legibility; the other sets the viewport width at which point the
-            side margins start to shrink, maintaining a correct and balanced look on all device sizes.
-        </p>
+                        <label class="type-control" for="root-control">
+                            <span class="type-control-label">Root anchor</span>
+                            <input id="root-control" type="range" min="8" max="20" step="0.1" value="9.8" />
+                            <span class="type-control-value" data-root-output>9.8px</span>
+                        </label>
 
-        <p>
-            The system is not limited to determining font sizes. Musical intervals are employed wherever possible, so
-            that margins, padding, line heights, header and paragraph spacing (vertical rhythm), and anything else to do
-            with size and space are all based on the one fundamental musical interval.
-        </p>
+                        <label class="type-control" for="linked-body-control" data-linked-only>
+                            <span class="type-control-label">Body anchor</span>
+                            <input
+                                id="linked-body-control"
+                                type="range"
+                                min="2"
+                                max="7"
+                                step="1"
+                                value="3"
+                                data-linked-body-control
+                            />
+                            <span class="type-control-value" data-linked-body-output>note03 · 13.98px</span>
+                        </label>
+                    </div>
 
-        <hr class="thin">
+                    <div class="linked-readouts" data-linked-readouts>
+                        <span data-linked-readout="body">Body note03 / leading note06</span>
+                        <span data-linked-readout="rhythm">Body leading note06</span>
+                        <span data-linked-readout="h1">H1 note10 / leading note11</span>
+                        <span data-linked-readout="h2">H2 note07 / leading note08</span>
+                        <span data-linked-readout="h3">H3 note02 / leading note04</span>
+                        <span data-linked-readout="subtitle">Subtitle note04 / leading note07</span>
+                        <span data-linked-readout="code">Code note03 / leading note05</span>
+                        <span data-linked-readout="small">Small note02 / leading note04</span>
+                        <span data-linked-readout="paragraph">Paragraph note04</span>
+                        <span data-linked-readout="section">Section note11</span>
+                        <span data-linked-readout="page">Page top note13</span>
+                        <span data-linked-readout="pageBottom">Page bottom note14</span>
+                    </div>
 
-        <h2>The Code</h2>
+                    <div class="free-controls" data-free-controls>
+                        <div class="role-controls">
+                            <label class="type-control" for="h1-note-control">
+                                <span class="type-control-label">H1 size</span>
+                                <input
+                                    id="h1-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="10"
+                                    data-role-control="h1"
+                                />
+                                <span class="type-control-value" data-role-output="h1">note10 · 45.93px</span>
+                            </label>
 
-        <h3>The ratio</h3>
+                            <label class="type-control" for="h1-line-control">
+                                <span class="type-control-label">H1 leading</span>
+                                <input
+                                    id="h1-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="11"
+                                    data-line-control="h1"
+                                />
+                                <span class="type-control-value" data-line-output="h1">note11 · 54.44px</span>
+                            </label>
 
-        <div class="code-block"><pre data-code-language="css">--fontRatio: calc(32 / 27);</pre></div>
-        <p class="code-caption">
-            Sets the Font Ratio variable — the basis for the entire system. Preferably a musical interval, though any
-            numerical value in any form will do.
-        </p>
+                            <label class="type-control" for="h2-note-control">
+                                <span class="type-control-label">H2 size</span>
+                                <input
+                                    id="h2-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="7"
+                                    data-role-control="h2"
+                                />
+                                <span class="type-control-value" data-role-output="h2">note07 · 27.60px</span>
+                            </label>
 
-        <h3>Minimum font size</h3>
+                            <label class="type-control" for="h2-line-control">
+                                <span class="type-control-label">H2 leading</span>
+                                <input
+                                    id="h2-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="8"
+                                    data-line-control="h2"
+                                />
+                                <span class="type-control-value" data-line-output="h2">note08 · 32.70px</span>
+                            </label>
 
-        <div class="code-block"><pre data-code-language="css">--minFontSize: calc((16 / var(--fontRatio)) * 1px);</pre></div>
-        <p class="code-caption">
-            Defines the Minimum Font Size variable, to be used in conjunction with Note 00. Starts at 16px for
-            accessibility.
-        </p>
+                            <label class="type-control" for="h3-note-control">
+                                <span class="type-control-label">H3 size</span>
+                                <input
+                                    id="h3-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="2"
+                                    data-role-control="h3"
+                                />
+                                <span class="type-control-value" data-role-output="h3">note02 · 11.80px</span>
+                            </label>
 
-        <h3>Note 00 — the root</h3>
+                            <label class="type-control" for="h3-line-control">
+                                <span class="type-control-label">H3 leading</span>
+                                <input
+                                    id="h3-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="4"
+                                    data-line-control="h3"
+                                />
+                                <span class="type-control-value" data-line-output="h3">note04 · 16.57px</span>
+                            </label>
 
-        <div class="code-block"><pre data-code-language="css">--note00: clamp(var(--minFontSize), var(--fontSizeGrow), 1000000000px);</pre></div>
-        <p class="code-caption">
-            Defines the Note 00 variable — the starting point for all other Notes — scaling all the way up to infinity
-            (1 billion pixels, to be precise).
-        </p>
+                            <label class="type-control" for="subtitle-note-control">
+                                <span class="type-control-label">Subtitle size</span>
+                                <input
+                                    id="subtitle-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="4"
+                                    data-role-control="subtitle"
+                                />
+                                <span class="type-control-value" data-role-output="subtitle">note04 · 16.57px</span>
+                            </label>
 
-        <h3>The scale</h3>
+                            <label class="type-control" for="subtitle-line-control">
+                                <span class="type-control-label">Subtitle leading</span>
+                                <input
+                                    id="subtitle-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="7"
+                                    data-line-control="subtitle"
+                                />
+                                <span class="type-control-value" data-line-output="subtitle">note07 · 27.59px</span>
+                            </label>
 
-        <div class="code-block">
-            <pre data-code-language="css">
+                            <label class="type-control" for="body-note-control">
+                                <span class="type-control-label">Body size</span>
+                                <input
+                                    id="body-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="3"
+                                    data-role-control="body"
+                                />
+                                <span class="type-control-value" data-role-output="body">note03 · 13.98px</span>
+                            </label>
+
+                            <label class="type-control" for="body-line-control">
+                                <span class="type-control-label">Body leading</span>
+                                <input
+                                    id="body-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="6"
+                                    data-line-control="body"
+                                />
+                                <span class="type-control-value" data-line-output="body">note06 · 23.28px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="code-note-control">
+                                <span class="type-control-label">Code size</span>
+                                <input
+                                    id="code-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="3"
+                                    data-role-control="code"
+                                />
+                                <span class="type-control-value" data-role-output="code">note03 · 13.98px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="code-line-control">
+                                <span class="type-control-label">Code leading</span>
+                                <input
+                                    id="code-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="5"
+                                    data-line-control="code"
+                                />
+                                <span class="type-control-value" data-line-output="code">note05 · 19.64px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="code-space-control">
+                                <span class="type-control-label">Code padding</span>
+                                <input
+                                    id="code-space-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="4"
+                                    data-space-control="code"
+                                />
+                                <span class="type-control-value" data-space-output="code">note04 · 16.57px</span>
+                            </label>
+
+                            <label class="type-control" for="small-note-control">
+                                <span class="type-control-label">Small/meta size</span>
+                                <input
+                                    id="small-note-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="2"
+                                    data-role-control="small"
+                                />
+                                <span class="type-control-value" data-role-output="small">note02 · 11.80px</span>
+                            </label>
+
+                            <label class="type-control" for="small-line-control">
+                                <span class="type-control-label">Small leading</span>
+                                <input
+                                    id="small-line-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="4"
+                                    data-line-control="small"
+                                />
+                                <span class="type-control-value" data-line-output="small">note04 · 16.57px</span>
+                            </label>
+                        </div>
+
+                        <div class="spacing-controls">
+                            <label class="type-control" for="page-top-control">
+                                <span class="type-control-label">Page top</span>
+                                <input
+                                    id="page-top-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="13"
+                                    data-space-control="pageTop"
+                                />
+                                <span class="type-control-value" data-space-output="pageTop">note13 · 76.47px</span>
+                            </label>
+
+                            <label class="type-control" for="page-bottom-control">
+                                <span class="type-control-label">Page bottom</span>
+                                <input
+                                    id="page-bottom-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="14"
+                                    data-space-control="pageBottom"
+                                />
+                                <span class="type-control-value" data-space-output="pageBottom">note14 · 90.63px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="paragraph-gap-control">
+                                <span class="type-control-label">Paragraph gap</span>
+                                <input
+                                    id="paragraph-gap-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="4"
+                                    data-space-control="paragraph"
+                                />
+                                <span class="type-control-value" data-space-output="paragraph">note04 · 16.57px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="section-gap-control">
+                                <span class="type-control-label">Section gap</span>
+                                <input
+                                    id="section-gap-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="11"
+                                    data-space-control="section"
+                                />
+                                <span class="type-control-value" data-space-output="section">note11 · 54.44px</span>
+                            </label>
+
+                            <label class="type-control type-control-third" for="rule-gap-control">
+                                <span class="type-control-label">Rule gap</span>
+                                <input
+                                    id="rule-gap-control"
+                                    type="range"
+                                    min="0"
+                                    max="16"
+                                    step="1"
+                                    value="10"
+                                    data-space-control="rule"
+                                />
+                                <span class="type-control-value" data-space-output="rule">note10 · 45.93px</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr />
+
+            <h2>Origin</h2>
+
+            <div class="origin-note">
+                <p>
+                    I was trying to build the most beautiful text-based website I could imagine. At some point I asked a
+                    question I couldn't stop thinking about: what if font sizes weren't arbitrary? What if, instead of
+                    choosing numbers that felt right, you established a ratio — the way you'd establish a color palette
+                    — and then let every size, margin, line height, and spacing value derive from it? Lock the designer
+                    into a system, and any value you choose will harmonize with all the others, the way notes in a key
+                    harmonize. The ratio I chose was a musical interval. Getting the math to actually behave took much
+                    longer than expected, but when it clicked, every measurement on the page suddenly belonged.
+                </p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Summary</h2>
+
+            <p>
+                This is a pure CSS system — no JavaScript, no build step, no dependencies — in which a single ratio (the
+                minor third, expressed as 32/27) governs every measurement on the page: font sizes, margins, padding,
+                line heights, and vertical rhythm.
+            </p>
+
+            <p>
+                The underlying design system is essentially one of math and variables, using only HTML and CSS. It takes
+                inputs for a ratio (ideally a musical interval), a minimum font size (set to 16px for accessibility),
+                and a scaling factor which determines how everything grows in accordance with the viewport width. To
+                best accommodate text-only content, the body width is set to 50% — notice how the padding fluidly
+                expands to fill the screen in the margins as the viewport width is adjusted, while keeping all sizing
+                and spacing related and within bounds.
+            </p>
+
+            <p>
+                An interesting aspect of this fluid responsiveness is that there are practically no media queries
+                involved. In truth, there are precisely two in use: one changes the text from justified to left-aligned
+                on small screen sizes for improved aesthetics and legibility; the other sets the viewport width at which
+                point the side margins start to shrink, maintaining a correct and balanced look on all device sizes.
+            </p>
+
+            <p>
+                The system is not limited to determining font sizes. Musical intervals are employed wherever possible,
+                so that margins, padding, line heights, header and paragraph spacing (vertical rhythm), and anything
+                else to do with size and space are all based on the one fundamental musical interval.
+            </p>
+
+            <hr class="thin" />
+
+            <h2>The Code</h2>
+
+            <h3>The ratio</h3>
+
+            <div class="code-block"><pre data-code-language="css">--fontRatio: calc(32 / 27);</pre></div>
+            <p class="code-caption">
+                Sets the Font Ratio variable — the basis for the entire system. Preferably a musical interval, though
+                any numerical value in any form will do.
+            </p>
+
+            <h3>Minimum font size</h3>
+
+            <div class="code-block">
+                <pre data-code-language="css">--minFontSize: calc((16 / var(--fontRatio)) * 1px);</pre>
+            </div>
+            <p class="code-caption">
+                Defines the Minimum Font Size variable, to be used in conjunction with Note 00. Starts at 16px for
+                accessibility.
+            </p>
+
+            <h3>Note 00 — the root</h3>
+
+            <div class="code-block">
+                <pre data-code-language="css">
+--note00: clamp(var(--minFontSize), var(--fontSizeGrow), 1000000000px);</pre
+                >
+            </div>
+            <p class="code-caption">
+                Defines the Note 00 variable — the starting point for all other Notes — scaling all the way up to
+                infinity (1 billion pixels, to be precise).
+            </p>
+
+            <h3>The scale</h3>
+
+            <div class="code-block">
+                <pre data-code-language="css">
 --note01: calc(var(--note00) * var(--fontRatio));
 --note02: calc(var(--note01) * var(--fontRatio));
 --note03: calc(var(--note02) * var(--fontRatio));
 --note04: calc(var(--note03) * var(--fontRatio));</pre
-            >
-        </div>
-        <p class="code-caption">
-            Each subsequent Note is defined by multiplying the immediately previous Note by the Font Ratio. These Notes
-            are used to size everything. More can be added as needed.
-        </p>
+                >
+            </div>
+            <p class="code-caption">
+                Each subsequent Note is defined by multiplying the immediately previous Note by the Font Ratio. These
+                Notes are used to size everything. More can be added as needed.
+            </p>
 
-        <h3>The viewport-width track</h3>
+            <h3>The viewport-width track</h3>
 
-        <p>
-            The Note system's unit is tied to pixels. In order to adjust how the body and page margins grow and shrink
-            according to viewport width, a parallel system with
-            <code>vw</code>
-            units is required.
-        </p>
+            <p>
+                The Note system's unit is tied to pixels. In order to adjust how the body and page margins grow and
+                shrink according to viewport width, a parallel system with
+                <code>vw</code>
+                units is required.
+            </p>
 
-        <div class="code-block">
-            <pre data-code-language="css">
+            <div class="code-block">
+                <pre data-code-language="css">
 --minFontSizeVW: calc((16 / var(--fontRatio)) * 1vw);
 --note00VW: clamp(var(--minFontSizeVW), 1vw, 1000000000px);
 --note01VW: calc(var(--note00VW) * var(--fontRatio));
 --bodyMinWidth: calc(100 / var(--fontRatio) * var(--note01) / 2);
 --bodyMinWidthVW: calc(100 / var(--fontRatio) * var(--note01VW) / 2);
 --fontSizeGrow: 1vw;</pre
-            >
-        </div>
-        <p class="code-caption">
-            The vw-unit track mirrors the px track and is used exclusively for body and margin proportions.
-        </p>
+                >
+            </div>
+            <p class="code-caption">
+                The vw-unit track mirrors the px track and is used exclusively for body and margin proportions.
+            </p>
 
-        <h3>Body sizing</h3>
+            <h3>Body sizing</h3>
 
-        <div class="code-block">
-            <pre data-code-language="css">
+            <div class="code-block">
+                <pre data-code-language="css">
 body {
   width: 50vw;
   min-width: var(--bodyMinWidth);
@@ -499,17 +523,17 @@ body {
     width: calc(var(--bodyMinWidthVW) / 767 * 100);
   }
 }</pre
-            >
-        </div>
-        <p class="code-caption">
-            The only media query concerned with sizing and responsiveness. At 767px the body sizes down using vw-based
-            variables.
-        </p>
+                >
+            </div>
+            <p class="code-caption">
+                The only media query concerned with sizing and responsiveness. At 767px the body sizes down using
+                vw-based variables.
+            </p>
 
-        <h3>The complete block</h3>
+            <h3>The complete block</h3>
 
-        <div class="code-block code-block-complete">
-            <pre data-code-language="css">
+            <div class="code-block code-block-complete">
+                <pre data-code-language="css">
 /*
   The following musical interval system and its associated code,
   created by Raymond Reich for bachtogauss.com,
@@ -557,84 +581,85 @@ body {
     width: calc(var(--bodyMinWidthVW) / 767 * 100);
   }
 }</pre
-            >
-        </div>
-        <p class="code-caption">The complete block. Free to use with credit, under CC BY-NC 4.0.</p>
+                >
+            </div>
+            <p class="code-caption">The complete block. Free to use with credit, under CC BY-NC 4.0.</p>
 
-        <h3>Example usage</h3>
+            <h3>Example usage</h3>
 
-        <div class="code-block">
-            <pre data-code-language="css">
+            <div class="code-block">
+                <pre data-code-language="css">
 font-size: var(--note03);
 line-height: var(--note06);
 margin-top: var(--note08);</pre
-            >
-        </div>
-        <p class="code-caption">
-            How the system's implementation looks for a few properties — in this case, body text on this very page.
-        </p>
-
-        <hr>
-
-        <h2>Sources &amp; Inspiration</h2>
-
-        <p>
-            A significant amount was learned, and much inspiration taken, from the following works — upon which this
-            system builds:
-        </p>
-
-        <ul class="sources">
-            <li>
-                <a href="https://alistapart.com/article/more-meaningful-typography/" target="_blank">
-                    More Meaningful Typography — Tim Brown
-                </a>
-            </li>
-            <li>
-                <a href="https://practicaltypography.com/" target="_blank">Practical Typography — Matthew Butterick</a>
-            </li>
-            <li>
-                <a href="https://medium.com/@jordan.foster/typographic-scales-979272e0ad08" target="_blank">
-                    Typographic Scaling — Fozzie Foster
-                </a>
-            </li>
-            <li>
-                <a href="https://www.modularscale.com/" target="_blank">
-                    Modular Scale Calculator — Scott Kellum &amp; Tim Brown
-                </a>
-            </li>
-            <li>
-                <a href="https://spencermortensen.com/articles/typographic-scale/" target="_blank">
-                    Typographic Scale — Spencer Mortensen
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://medium.com/sketch-app-sources/exploring-responsive-type-scales-cf1da541be54"
-                    target="_blank"
                 >
-                    Exploring Responsive Type Scales — Joseph Mueller
-                </a>
-            </li>
-            <li>
-                <a href="https://pairfonts.eu/articles/typographic-scale.php" target="_blank">
-                    The Typographic Scale — G.P.
-                </a>
-            </li>
-            <li>
-                <a href="https://8thlight.com/insights/vertical-rhythm-in-typography" target="_blank">
-                    Vertical Rhythm in Typography — Chris Peak
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://www.codementor.io/@ricardozea/100-responsive-typography-system-using-a-modular-scale-s5rhft58g"
-                    target="_blank"
-                >
-                    100% Responsive Typography System using a Modular Scale — Ricardo Zea
-                </a>
-            </li>
-        </ul>
+            </div>
+            <p class="code-caption">
+                How the system's implementation looks for a few properties — in this case, body text on this very page.
+            </p>
 
+            <hr />
+
+            <h2>Sources &amp; Inspiration</h2>
+
+            <p>
+                A significant amount was learned, and much inspiration taken, from the following works — upon which this
+                system builds:
+            </p>
+
+            <ul class="sources">
+                <li>
+                    <a href="https://alistapart.com/article/more-meaningful-typography/" target="_blank">
+                        More Meaningful Typography — Tim Brown
+                    </a>
+                </li>
+                <li>
+                    <a href="https://practicaltypography.com/" target="_blank">
+                        Practical Typography — Matthew Butterick
+                    </a>
+                </li>
+                <li>
+                    <a href="https://medium.com/@jordan.foster/typographic-scales-979272e0ad08" target="_blank">
+                        Typographic Scaling — Fozzie Foster
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.modularscale.com/" target="_blank">
+                        Modular Scale Calculator — Scott Kellum &amp; Tim Brown
+                    </a>
+                </li>
+                <li>
+                    <a href="https://spencermortensen.com/articles/typographic-scale/" target="_blank">
+                        Typographic Scale — Spencer Mortensen
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://medium.com/sketch-app-sources/exploring-responsive-type-scales-cf1da541be54"
+                        target="_blank"
+                    >
+                        Exploring Responsive Type Scales — Joseph Mueller
+                    </a>
+                </li>
+                <li>
+                    <a href="https://pairfonts.eu/articles/typographic-scale.php" target="_blank">
+                        The Typographic Scale — G.P.
+                    </a>
+                </li>
+                <li>
+                    <a href="https://8thlight.com/insights/vertical-rhythm-in-typography" target="_blank">
+                        Vertical Rhythm in Typography — Chris Peak
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.codementor.io/@ricardozea/100-responsive-typography-system-using-a-modular-scale-s5rhft58g"
+                        target="_blank"
+                    >
+                        100% Responsive Typography System using a Modular Scale — Ricardo Zea
+                    </a>
+                </li>
+            </ul>
         </main>
 
         <footer>

@@ -1,0 +1,492 @@
+/** ---------------- */
+/**   INITIAL SETUP  */
+/** ---------------- */
+
+/** Meyer Reset */
+/*  
+    This reset is based on multiple projects for Advertising Agencies
+    where QA resources are readily available and testing is thorough.
+    
+    It uses Eric Meyer's reset, Normalize, and some custom styles.
+
+    This also sets all containing elements to overflow: auto; This allows for 
+    a simple clearing, but will allow for scroll bars if overflow needs to be reset.
+    Overflow should be reset if a scroll bar is visible, as the width or height is
+    probably calculated incorrectly, causing the issue.
+    
+    http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+    
+    normalize.css v3.0.2 | MIT License | git.io/normalize
+*/
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*Flexible Elements*/
+article,
+address,
+aside,
+code,
+samp,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    overflow: auto;
+}
+
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+main,
+article,
+aside,
+code,
+samp,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+    z-index: 1;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/********** END MEYER RESET ************/
+
+/** Misc Normalize */
+
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+
+/* FF Outline Remover */
+*|*:link {
+    outline: none !important;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+main {
+    overflow: visible;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/** Brand (from Ian) */
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block; /* 1 */
+    vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+    display: none;
+}
+
+abbr {
+    text-decoration: underline dotted #36d60a;
+}
+
+acronym {
+    border-bottom: 0.1em dotted #666;
+}
+
+address {
+    font-style: italic;
+    color: #2190d7;
+    background: #f6f4f0;
+    border: 0.1em solid #e5e5e5;
+    padding: 0.8em;
+}
+
+del {
+    color: #cd2318;
+    text-decoration: line-through;
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+ins {
+    color: #32c10d;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+mark {
+    background: #ffff00;
+    color: #000000;
+}
+
+sub {
+    line-height: 0;
+    font-size: 65%;
+    position: relative;
+    vertical-align: sub;
+}
+
+sup {
+    font-size: 65%;
+    position: relative;
+    top: 0;
+    vertical-align: super;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/** Inputs & Buttons */
+
+input {
+    font-size: var(--note01);
+    line-height: var(--note02);
+    font-family: "Quattro";
+    width: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+::placeholder {
+    font-size: var(--note01);
+    color: darkgray;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+input[type="image"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+a.button {
+    background: lightgray;
+    border: 1px solid #f0f0f0;
+    color: #17181b;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 100;
+    font-style: normal;
+    font-size: var(--note02);
+    font-family: "Caslon";
+    cursor: pointer;
+    box-shadow: none;
+    width: var(--note14);
+    height: auto;
+    margin: 0;
+    padding: 1em 1.875em;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: 0;
+    display: inline-block;
+    line-height: 1.1;
+    transition: background 0.3s linear !important;
+    animation: fadeInAnimation ease 1s;
+}
+
+/* input & button */
+@media (hover: hover) {
+    input[type="image"]:hover,
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover,
+    button:hover,
+    a.button:hover {
+        color: #17181b;
+        cursor: pointer;
+        background: darkgray;
+        border: 1px solid #f0f0f0;
+        text-decoration: none;
+    }
+}
+
+input[type="image"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active,
+button:active,
+a.button:active {
+    color: #17181b;
+    cursor: pointer;
+    background: darkgray;
+    border: 1px solid #f0f0f0;
+    text-decoration: none;
+}
+
+input[type="image"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus,
+button:focus,
+a.button:focus {
+    color: #17181b;
+    cursor: pointer;
+    background: darkgray;
+    border: 1px solid #f0f0f0;
+    text-decoration: none;
+}
+
+input[disabled="disabled"],
+input[type="button"][disabled="disabled"],
+input[type="submit"][disabled=""],
+input[type="reset"][disabled="disabled"],
+button[disabled="disabled"],
+button[disabled=""],
+a.button.disabled,
+button.disabled {
+    background: darkgray !important;
+    color: #f0f0f0 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    border: 1px solid #f0f0f0 !important;
+}
+
+/* file selector for upload */
+input[type="file"] {
+    height: auto;
+    vertical-align: bottom;
+    padding: 0;
+    border: 0;
+    display: inline-block;
+}
+
+input[type="image"] {
+    display: inline-block;
+}
+
+input[type="checkbox"] {
+    padding: 0;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    margin: 0 0.4em 0 0.5em;
+    vertical-align: middle;
+    border: 0;
+    appearance: none;
+    -webkit-appearance: checkbox;
+}
+
+input[type="radio"] {
+    padding: 0;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    margin: 0 0.4em 0 0.5em;
+    vertical-align: middle;
+    border: 0;
+    appearance: none;
+    -webkit-appearance: radio;
+}
+
+input[type="radio"][disabled="disabled"] {
+    cursor: not-allowed;
+}
+
+input[type="checkbox"][disabled="disabled"] {
+    cursor: not-allowed;
+}
+
+textarea {
+    width: 100%;
+    height: auto;
+    background: #f0f0f0;
+    border: 1px solid #17181b;
+    border-radius: 0;
+    padding: 10px;
+    color: #17181b;
+    margin: 0;
+    transition: all 0.15s linear;
+    appearance: none;
+    -webkit-appearance: none;
+    resize: none;
+    font-size: var(--note01);
+    font-family: "Quattro";
+    line-height: var(--note03);
+}
+
+@media all and (max-width: 639px) {
+    textarea {
+        width: 100%;
+    }
+}
+
+textarea:hover {
+    border: 1px solid #17181b;
+}
+
+textarea:active {
+    border: 1px solid #17181b;
+}
+
+textarea:focus {
+    border: 1px solid #17181b;
+}

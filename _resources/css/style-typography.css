@@ -13,12 +13,6 @@
     --code-highlight-ink: #17181b;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 ::selection {
     background: #e2e2e2;
 }
@@ -27,10 +21,26 @@
     background: #e2e2e2;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
+body.typography-page em,
+body.typography-page i {
+    font-style: italic;
+}
+
+body.typography-page main,
+body.typography-page article,
+body.typography-page aside,
+body.typography-page code,
+body.typography-page samp,
+body.typography-page details,
+body.typography-page figcaption,
+body.typography-page figure,
+body.typography-page footer,
+body.typography-page header,
+body.typography-page hgroup,
+body.typography-page menu,
+body.typography-page nav,
+body.typography-page section {
+    overflow: visible;
 }
 
 body.typography-page {
@@ -121,7 +131,14 @@ body.typography-page a {
 }
 
 body.typography-page button {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
     font: inherit;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: auto;
 }
 
 body.typography-page em {
@@ -268,6 +285,7 @@ body.typography-page hr.thin {
 }
 
 body.typography-page code {
+    display: inline;
     background-color: #282e39;
     color: #f0f0f0;
     font-family: "Inconsolata", "Courier New", monospace;
@@ -690,6 +708,9 @@ body.typography-page .type-control-value {
 
 body.typography-page .type-control input[type="range"] {
     accent-color: var(--ink);
+    font: inherit;
+    padding: 0;
+    text-align: initial;
     width: 100%;
 }
 
