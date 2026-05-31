@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Musical Interval Typography System — Ray Reich</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
             href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Inconsolata:wght@300;400&amp;family=Source+Code+Pro:wght@400&amp;display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="../_resources/css/style-typography.css" />
+            rel="stylesheet">
+        <link rel="stylesheet" href="../_resources/css/style-typography.css">
         <script src="../_resources/js/code-highlight.js" defer></script>
         <script src="typography.js" defer></script>
     </head>
@@ -51,11 +50,11 @@
             <div class="type-controls-content" id="type-controls-content">
                 <fieldset class="type-mode" aria-label="Control mode">
                     <label class="type-mode-option">
-                        <input type="radio" name="type-mode" value="linked" checked data-mode-control />
+                        <input type="radio" name="type-mode" value="linked" checked data-mode-control>
                         <span>Linked</span>
                     </label>
                     <label class="type-mode-option">
-                        <input type="radio" name="type-mode" value="free" data-mode-control />
+                        <input type="radio" name="type-mode" value="free" data-mode-control>
                         <span>Free</span>
                     </label>
                 </fieldset>
@@ -63,13 +62,13 @@
                 <div class="type-control-grid">
                     <label class="type-control" for="interval-control">
                         <span class="type-control-label">Interval</span>
-                        <input id="interval-control" type="range" min="0" max="9" step="1" value="2" />
+                        <input id="interval-control" type="range" min="0" max="9" step="1" value="2">
                         <span class="type-control-value" data-interval-output>Minor third · 32/27</span>
                     </label>
 
                     <label class="type-control" for="root-control">
                         <span class="type-control-label">Root anchor</span>
-                        <input id="root-control" type="range" min="8" max="20" step="0.1" value="9.8" />
+                        <input id="root-control" type="range" min="8" max="20" step="0.1" value="9.8">
                         <span class="type-control-value" data-root-output>9.8px</span>
                     </label>
 
@@ -82,13 +81,12 @@
                             max="7"
                             step="1"
                             value="3"
-                            data-linked-body-control
-                        />
+                            data-linked-body-control>
                         <span class="type-control-value" data-linked-body-output>note03 · 13.98px</span>
                     </label>
                 </div>
 
-                <div class="linked-readouts" data-linked-readouts aria-label="Linked system readouts">
+                <div class="linked-readouts" data-linked-readouts>
                     <span data-linked-readout="body">Body note03 / leading note06</span>
                     <span data-linked-readout="rhythm">Body leading note06</span>
                     <span data-linked-readout="h1">H1 note10 / leading note11</span>
@@ -104,7 +102,7 @@
                 </div>
 
                 <div class="free-controls" data-free-controls>
-                <div class="role-controls" aria-label="Type size and leading note assignments">
+                <div class="role-controls">
                     <label class="type-control" for="h1-note-control">
                         <span class="type-control-label">H1 size</span>
                         <input
@@ -114,8 +112,7 @@
                             max="16"
                             step="1"
                             value="10"
-                            data-role-control="h1"
-                        />
+                            data-role-control="h1">
                         <span class="type-control-value" data-role-output="h1">note10 · 45.93px</span>
                     </label>
 
@@ -128,8 +125,7 @@
                             max="16"
                             step="1"
                             value="11"
-                            data-line-control="h1"
-                        />
+                            data-line-control="h1">
                         <span class="type-control-value" data-line-output="h1">note11 · 54.44px</span>
                     </label>
 
@@ -142,8 +138,7 @@
                             max="16"
                             step="1"
                             value="7"
-                            data-role-control="h2"
-                        />
+                            data-role-control="h2">
                         <span class="type-control-value" data-role-output="h2">note07 · 27.60px</span>
                     </label>
 
@@ -156,8 +151,7 @@
                             max="16"
                             step="1"
                             value="8"
-                            data-line-control="h2"
-                        />
+                            data-line-control="h2">
                         <span class="type-control-value" data-line-output="h2">note08 · 32.70px</span>
                     </label>
 
@@ -170,8 +164,7 @@
                             max="16"
                             step="1"
                             value="2"
-                            data-role-control="h3"
-                        />
+                            data-role-control="h3">
                         <span class="type-control-value" data-role-output="h3">note02 · 11.80px</span>
                     </label>
 
@@ -184,8 +177,7 @@
                             max="16"
                             step="1"
                             value="4"
-                            data-line-control="h3"
-                        />
+                            data-line-control="h3">
                         <span class="type-control-value" data-line-output="h3">note04 · 16.57px</span>
                     </label>
 
@@ -198,8 +190,7 @@
                             max="16"
                             step="1"
                             value="4"
-                            data-role-control="subtitle"
-                        />
+                            data-role-control="subtitle">
                         <span class="type-control-value" data-role-output="subtitle">note04 · 16.57px</span>
                     </label>
 
@@ -212,8 +203,7 @@
                             max="16"
                             step="1"
                             value="7"
-                            data-line-control="subtitle"
-                        />
+                            data-line-control="subtitle">
                         <span class="type-control-value" data-line-output="subtitle">note07 · 27.59px</span>
                     </label>
 
@@ -226,8 +216,7 @@
                             max="16"
                             step="1"
                             value="3"
-                            data-role-control="body"
-                        />
+                            data-role-control="body">
                         <span class="type-control-value" data-role-output="body">note03 · 13.98px</span>
                     </label>
 
@@ -240,8 +229,7 @@
                             max="16"
                             step="1"
                             value="6"
-                            data-line-control="body"
-                        />
+                            data-line-control="body">
                         <span class="type-control-value" data-line-output="body">note06 · 23.28px</span>
                     </label>
 
@@ -254,8 +242,7 @@
                             max="16"
                             step="1"
                             value="3"
-                            data-role-control="code"
-                        />
+                            data-role-control="code">
                         <span class="type-control-value" data-role-output="code">note03 · 13.98px</span>
                     </label>
 
@@ -268,8 +255,7 @@
                             max="16"
                             step="1"
                             value="5"
-                            data-line-control="code"
-                        />
+                            data-line-control="code">
                         <span class="type-control-value" data-line-output="code">note05 · 19.64px</span>
                     </label>
 
@@ -282,8 +268,7 @@
                             max="16"
                             step="1"
                             value="4"
-                            data-space-control="code"
-                        />
+                            data-space-control="code">
                         <span class="type-control-value" data-space-output="code">note04 · 16.57px</span>
                     </label>
 
@@ -296,8 +281,7 @@
                             max="16"
                             step="1"
                             value="2"
-                            data-role-control="small"
-                        />
+                            data-role-control="small">
                         <span class="type-control-value" data-role-output="small">note02 · 11.80px</span>
                     </label>
 
@@ -310,13 +294,12 @@
                             max="16"
                             step="1"
                             value="4"
-                            data-line-control="small"
-                        />
+                            data-line-control="small">
                         <span class="type-control-value" data-line-output="small">note04 · 16.57px</span>
                     </label>
                 </div>
 
-                <div class="spacing-controls" aria-label="Spacing note assignments">
+                <div class="spacing-controls">
                     <label class="type-control" for="page-top-control">
                         <span class="type-control-label">Page top</span>
                         <input
@@ -326,8 +309,7 @@
                             max="16"
                             step="1"
                             value="13"
-                            data-space-control="pageTop"
-                        />
+                            data-space-control="pageTop">
                         <span class="type-control-value" data-space-output="pageTop">note13 · 76.47px</span>
                     </label>
 
@@ -340,8 +322,7 @@
                             max="16"
                             step="1"
                             value="14"
-                            data-space-control="pageBottom"
-                        />
+                            data-space-control="pageBottom">
                         <span class="type-control-value" data-space-output="pageBottom">note14 · 90.63px</span>
                     </label>
 
@@ -354,8 +335,7 @@
                             max="16"
                             step="1"
                             value="4"
-                            data-space-control="paragraph"
-                        />
+                            data-space-control="paragraph">
                         <span class="type-control-value" data-space-output="paragraph">note04 · 16.57px</span>
                     </label>
 
@@ -368,8 +348,7 @@
                             max="16"
                             step="1"
                             value="11"
-                            data-space-control="section"
-                        />
+                            data-space-control="section">
                         <span class="type-control-value" data-space-output="section">note11 · 54.44px</span>
                     </label>
 
@@ -382,8 +361,7 @@
                             max="16"
                             step="1"
                             value="10"
-                            data-space-control="rule"
-                        />
+                            data-space-control="rule">
                         <span class="type-control-value" data-space-output="rule">note10 · 45.93px</span>
                     </label>
                 </div>
@@ -391,7 +369,7 @@
             </div>
         </section>
 
-        <hr />
+        <hr>
 
         <h2>Origin</h2>
 
@@ -407,7 +385,7 @@
             </p>
         </div>
 
-        <hr class="thin" />
+        <hr class="thin">
 
         <h2>Summary</h2>
 
@@ -439,7 +417,7 @@
             with size and space are all based on the one fundamental musical interval.
         </p>
 
-        <hr class="thin" />
+        <hr class="thin">
 
         <h2>The Code</h2>
 
@@ -596,7 +574,7 @@ margin-top: var(--note08);</pre
             How the system's implementation looks for a few properties — in this case, body text on this very page.
         </p>
 
-        <hr />
+        <hr>
 
         <h2>Sources &amp; Inspiration</h2>
 

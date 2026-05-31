@@ -402,37 +402,57 @@ button {
         display: none;
     }
     .mobile-nav-button {
-        align-items: center;
         border-radius: 3px;
         cursor: pointer;
-        display: inline-flex;
-        flex-direction: column;
-        gap: 4px;
+        display: inline-block;
         height: 34px;
-        justify-content: center;
         margin-left: auto;
         position: relative;
         width: 42px;
         z-index: 60;
     }
-    .mobile-nav-button span {
+    .mobile-nav-button::before,
+    .mobile-nav-button::after,
+    .mobile-nav-icon {
         background: var(--ink);
         display: block;
         height: 1px;
+        left: 12px;
+        position: absolute;
+        top: 17px;
         transform-origin: center;
         transition:
             opacity 0.15s ease,
+            top 0.15s ease,
             transform 0.15s ease;
         width: 18px;
     }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button span:nth-child(1) {
-        transform: translateY(5px) rotate(45deg);
+    .mobile-nav-button::before,
+    .mobile-nav-button::after {
+        content: "";
     }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button span:nth-child(2) {
+    .mobile-nav-button::before {
+        top: 12px;
+    }
+    .mobile-nav-button::after {
+        top: 22px;
+    }
+    .mobile-nav-icon {
+        color: transparent;
+        font-size: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button::before {
+        top: 17px;
+        transform: rotate(45deg);
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button .mobile-nav-icon {
         opacity: 0;
     }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button span:nth-child(3) {
-        transform: translateY(-5px) rotate(-45deg);
+    .mobile-nav-toggle:checked ~ .mobile-nav-button::after {
+        top: 17px;
+        transform: rotate(-45deg);
     }
     .mobile-nav {
         align-items: center;
@@ -910,7 +930,7 @@ body.doc-page code {
     margin: 16px 0 24px;
 }
 
-.contrast-col h4 {
+.contrast-col h3 {
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
