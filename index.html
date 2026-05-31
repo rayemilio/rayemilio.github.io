@@ -29,7 +29,7 @@
                     <span class="arr">↗</span>
                 </a>
                 <input class="mobile-nav-toggle" id="mobile-nav-toggle" type="checkbox" aria-label="Toggle navigation" />
-                <label class="mobile-nav-button" for="mobile-nav-toggle" aria-label="Toggle navigation">
+                <label class="mobile-nav-button" for="mobile-nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -43,32 +43,32 @@
             </header>
 
             <main>
-            <section class="hero">
-                <div>
-                    <div class="eyebrow">Systems Designer &amp; Engineer</div>
-                    <h1>
-                        I came to programming sideways, through
-                        <i>music.</i>
-                    </h1>
-                    <p class="hero-sub">
-                        Whether it&rsquo;s synthesis, astronomy, publishing, typography, or cryptography, I ask the same
-                        questions: How does this system work? How can it be made more efficient? More beautiful?
-                    </p>
-                </div>
+                <section class="hero">
+                    <div>
+                        <div class="eyebrow">Systems Designer &amp; Engineer</div>
+                        <h1>
+                            I came to programming sideways, through
+                            <i>music.</i>
+                        </h1>
+                        <p class="hero-sub">
+                            Whether it&rsquo;s synthesis, astronomy, publishing, typography, or cryptography, I ask the same
+                            questions: How does this system work? How can it be made more efficient? More beautiful?
+                        </p>
+                    </div>
 
-                <aside class="caps" aria-label="Geometric systems diagram">
-                    <img
-                        class="hero-diagram"
-                        src="_resources/images/png/home/transparent_diagram.png"
-                        alt="Transparent geometric systems diagram"
-                    />
-                </aside>
-            </section>
+                    <aside class="caps" aria-label="Geometric systems diagram">
+                        <img
+                            class="hero-diagram"
+                            src="_resources/images/png/home/transparent_diagram.png"
+                            alt="Transparent geometric systems diagram"
+                        />
+                    </aside>
+                </section>
 
-            <section id="work">
-                <div class="section-head">
-                    <div class="label">Selected Systems</div>
-                </div>
+                <section id="work" aria-labelledby="work-title">
+                    <div class="section-head">
+                        <h2 class="label" id="work-title">Selected Systems</h2>
+                    </div>
 
                 <article class="proj">
                     <div>
@@ -91,7 +91,7 @@
                             <span class="tag">Local-first</span>
                         </div>
                     </div>
-                    <div class="proj-img" aria-label="Custom CMS analytics chart">
+                    <div class="proj-img">
                         <img src="_resources/images/png/cms/cms-chart-3d.png" alt="Custom CMS — 3D analytics chart" />
                     </div>
                 </article>
@@ -119,9 +119,18 @@
                     </div>
                     <div
                         class="proj-img"
-                        aria-label="Dark synthesizer interface with waveform visualizations and a list of modules"
                     >
-                        <svg viewBox="0 0 420 200" width="100%" height="100%" style="display: block">
+                        <svg
+                            viewBox="0 0 420 200"
+                            width="100%"
+                            height="100%"
+                            style="display: block"
+                            role="img"
+                            aria-labelledby="edutonebox-preview-title"
+                        >
+                            <title id="edutonebox-preview-title">
+                                Dark synthesizer interface with waveform visualizations and a list of modules
+                            </title>
                             <rect width="420" height="200" fill="#0d0d0f" />
                             <text
                                 x="14"
@@ -283,7 +292,6 @@
                     </div>
                     <div
                         class="proj-img"
-                        aria-label="Black card with concentric gold circles and a QR code, placed on a sandy surface beside a small stone"
                     >
                         <img
                             src="_resources/images/png/sound-on-paper/sound-on-paper.png"
@@ -315,7 +323,6 @@
                     </div>
                     <div
                         class="proj-img"
-                        aria-label="Phone mockup showing Astronomical Calendar app with moon phases and calendar grid"
                     >
                         <img src="_resources/images/png/astrocal-app/astrocal-app.png" alt="Astronomical Calendar app" />
                     </div>
@@ -341,7 +348,7 @@
                             <span class="tag">Zmanim</span>
                         </div>
                     </div>
-                    <div class="proj-img" aria-label="AstroCal web screenshot">
+                    <div class="proj-img">
                         <img
                             src="_resources/images/png/astrocal-web/astrocal-web-screenshot-3d.png"
                             alt="AstroCal web — 3D screenshot"
@@ -366,14 +373,14 @@
                             <span class="tag">Type Scale</span>
                         </div>
                     </div>
-                    <div class="proj-img" aria-label="Musical Interval Typography scale chart">
+                    <div class="proj-img">
                         <img
                             src="_resources/images/png/typography/typography-scale-3d.png"
                             alt="Musical Interval Typography — 3D type scale chart"
                         />
                     </div>
                 </article>
-            </section>
+                </section>
 
             </main>
 
