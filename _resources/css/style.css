@@ -644,6 +644,10 @@ body.doc-page code {
     margin-bottom: 20px;
 }
 
+.meta.tags {
+    margin-bottom: 20px;
+}
+
 .status-line {
     font-size: 12px;
     color: var(--muted);
@@ -950,7 +954,6 @@ body.doc-page code {
     text-transform: uppercase;
     color: var(--ink-2);
     text-decoration: none;
-    border-bottom: 1px solid var(--rule);
     padding-bottom: 2px;
     transition:
         color 0.15s ease,
@@ -1030,6 +1033,7 @@ body.doc-page .footer-links {
 
 body.doc-page footer a {
     color: var(--muted);
+    border-bottom: 0;
     text-decoration: none;
     transition: color 0.15s ease;
 }

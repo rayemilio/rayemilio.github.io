@@ -142,7 +142,7 @@
         }
     }
 
-    setControlsCollapsed(window.matchMedia("(max-width: 640px)").matches);
+    setControlsCollapsed(true);
 
     function getMode() {
         return modeControls.find((control) => control.checked)?.value || defaults.mode;
