@@ -172,6 +172,9 @@ button {
     height: auto;
     opacity: 0.9;
 }
+.caps picture {
+    display: block;
+}
 
 /* ── Section head: Selected Systems ─────────────────────────── */
 .section-head {
@@ -282,6 +285,11 @@ button {
     height: 100%;
     object-fit: contain;
     display: block;
+}
+.proj-img picture {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* ── Footer ─────────────────────────────────────────────────── */
