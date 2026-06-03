@@ -223,8 +223,8 @@ button {
     width: 48px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 18px;
-    opacity: 0.85;
+    margin-top: 8px;
+    opacity: 0.35;
 }
 .proj-body {
     padding-top: 0;
