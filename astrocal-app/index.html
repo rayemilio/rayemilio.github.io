@@ -17,7 +17,7 @@
 
         <main>
         <p class="doc-label">Portfolio Case Study</p>
-        <h1>moondial</h1>
+        <h1 class="tracked-wordmark">moondial</h1>
         <p class="subtitle">
             An e-ink celestial almanac for iOS and Android, built with React Native for moon phases,
             sun and moon timing, photo-light windows, Zmanim, and timezone-aware locations
@@ -140,21 +140,20 @@
             results so a failure in one domain does not erase usable data from another.
         </p>
 
-        <div class="code-block">
+        <div class="code-block source-tree">
             <pre data-code-language="tree">
 src/
-  components/          E-ink UI, moon disk, sky arc, ledgers, controls, icons
+  components/          E-ink UI, MoonDisk, SkyArc, ledgers, controls
   components/icons/    Bottom tab icons
-  components/symbols/  Moon phase and eclipse SVG symbols
-  context/             Startup readiness and launch animation context
+  components/symbols/  Phase and eclipse SVG symbols
+  context/             Startup readiness and launch animation
   navigation/          React Navigation bottom tabs
   screens/             Today, Calendar, and Settings screens
-  services/            Calendar engine, location, geocoding, moon data, time services
-  store/               Zustand calendar, location, settings, and persistence store
+  services/            Calendar engine, location, geocoding, moon/time data
+  store/               Zustand calendar, location, settings, persistence
   styles/              Shared theme, colors, typography, spacing
   types/               Shared TypeScript interfaces
-  utils/               Astronomy, halachic, eclipse, timezone, moon, and adapter helpers</pre
-            >
+  utils/               Astronomy, halachic, eclipse, timezone adapters</pre>
         </div>
 
         <h3>Calculation pipeline</h3>

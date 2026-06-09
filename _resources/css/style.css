@@ -246,6 +246,10 @@ button {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+.proj-title .tracked-wordmark,
+body.doc-page h1.tracked-wordmark {
+    letter-spacing: 0.14em;
+}
 .proj-tag {
     font-size: 14px;
     color: var(--ink-2);
@@ -842,6 +846,10 @@ body.doc-page code {
     padding: 16px 20px;
     margin: 16px 8px 40px;
     overflow-x: auto;
+}
+
+.code-block.source-tree {
+    padding: 12px 14px;
 }
 
 .code-block pre {
