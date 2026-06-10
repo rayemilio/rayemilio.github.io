@@ -321,10 +321,12 @@ body.doc-page h1.tracked-wordmark {
     margin: 0;
 }
 .footer-mark {
-    width: 56px;
-    height: 56px;
-    margin-top: 16px;
-    color: var(--ink);
+    display: block;
+    width: 160px;
+    height: 160px;
+    margin-top: -10px;
+    object-fit: contain;
+    transform: translateX(-30%);
 }
 .email-row {
     display: inline-flex;
@@ -562,8 +564,8 @@ body.doc-page h1.tracked-wordmark {
         grid-column: auto;
     }
     .footer-mark {
-        width: 44px;
-        height: 44px;
+        width: 128px;
+        height: 128px;
     }
 }
 
@@ -643,6 +645,18 @@ body.doc-page hr.thin {
     width: 45%;
     height: auto;
     border-radius: 6px;
+}
+
+.about-photo {
+    margin: 0 0 28px;
+}
+
+.about-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    filter: grayscale(1);
 }
 
 body.doc-page code {
@@ -744,6 +758,65 @@ body.doc-page .capability-card li {
 
 .status-line span {
     color: var(--ink-2);
+}
+
+.beta-status {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px 16px;
+    margin: 8px 0 28px;
+}
+
+.beta-status .status-line {
+    color: var(--ink-2);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.beta-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 0;
+}
+
+.beta-links a {
+    align-items: center;
+    border: 1px solid var(--rule);
+    color: var(--ink-2);
+    display: inline-flex;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    min-height: 28px;
+    padding: 0 11px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.beta-links a:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+@media (max-width: 640px) {
+    .beta-status {
+        gap: 8px;
+    }
+
+    .beta-links a {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        min-height: 28px;
+        padding: 0 9px;
+    }
 }
 
 /* Feature lists */
