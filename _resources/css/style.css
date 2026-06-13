@@ -96,7 +96,7 @@ button {
     position: absolute;
     left: 0;
     top: calc(100% + 5px);
-    font-size: 10.5px;
+    font-size: 9.5px;
     letter-spacing: 0.26em;
     line-height: 1.2;
     text-transform: uppercase;
