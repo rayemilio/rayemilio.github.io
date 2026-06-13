@@ -508,6 +508,11 @@ body.doc-page h1.tracked-wordmark {
         padding: 22px 0 18px;
     }
 
+    body.doc-page.nav-page {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
     .hero {
         grid-template-columns: 1fr;
         gap: 56px;
@@ -639,7 +644,7 @@ body.doc-page {
 
 body.doc-page.nav-page {
     max-width: 1240px;
-    padding-top: 0;
+    padding: 0 56px 96px;
 }
 
 body.doc-page.nav-page main {
@@ -1295,7 +1300,7 @@ body.doc-page footer a:hover {
         padding: 40px 16px 72px;
     }
     body.doc-page.nav-page {
-        padding-top: 0;
+        padding: 0 20px 72px;
     }
     body.doc-page.nav-page main {
         padding-top: 56px;
