@@ -172,8 +172,8 @@ button {
     display: block;
     width: clamp(24px, 0.48em, 40px);
     height: clamp(36px, 0.71em, 60px);
-    background: currentColor;
-    animation: hero-cursor-blink 1.25s steps(1, end) infinite;
+    background: var(--ink-2);
+    animation: hero-cursor-blink 1.4s steps(1, end) infinite;
 }
 @keyframes hero-cursor-blink {
     50% {
