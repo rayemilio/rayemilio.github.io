@@ -161,6 +161,14 @@ body.typography-page .back:hover {
     color: var(--ink);
 }
 
+body.typography-page.back-link-muted .back {
+    color: #c4c4c4;
+}
+
+body.typography-page.back-link-muted .back:hover {
+    color: var(--ink);
+}
+
 @media (min-width: 980px) {
     body.typography-page {
         padding-top: calc(var(--space-page) + var(--type-small-line) + var(--note10));

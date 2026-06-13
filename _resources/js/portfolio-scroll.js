@@ -158,13 +158,34 @@
         }
     }
 
+    function initBackLinkFade() {
+        if (document.body.classList.contains("nav-page")) {
+            return;
+        }
+
+        const backLink = document.querySelector(".back");
+
+        if (!backLink) {
+            return;
+        }
+
+        function updateBackLinkState() {
+            document.body.classList.toggle("back-link-muted", window.scrollY > 24);
+        }
+
+        updateBackLinkState();
+        window.addEventListener("scroll", updateBackLinkState, { passive: true });
+    }
+
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", function () {
             initPortfolioScroll();
             initMobileNavLock();
+            initBackLinkFade();
         });
     } else {
         initPortfolioScroll();
         initMobileNavLock();
+        initBackLinkFade();
     }
 })();

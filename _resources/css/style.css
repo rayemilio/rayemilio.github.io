@@ -797,6 +797,14 @@ body.doc-page .capability-card li {
     color: var(--ink);
 }
 
+body.back-link-muted .back {
+    color: #c4c4c4;
+}
+
+body.back-link-muted .back:hover {
+    color: var(--ink);
+}
+
 @media (min-width: 980px) {
     body.doc-page:not(.nav-page) {
         padding-top: 140px;
