@@ -100,7 +100,7 @@ button {
     letter-spacing: 0.26em;
     line-height: 1.2;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--muted-2);
     white-space: nowrap;
 }
 .nav {
@@ -148,7 +148,7 @@ button {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 64px;
-    padding: 88px 0 110px;
+    padding: 143px 0 110px;
 }
 .hero h1 {
     font-family: var(--serif);
@@ -188,6 +188,7 @@ button {
     padding-top: 8px;
     display: flex;
     flex-direction: column;
+    transform: translateY(-28px);
 }
 .hero-diagram {
     display: block;
@@ -399,13 +400,16 @@ body.doc-page h1.tracked-wordmark {
     .hero {
         grid-template-columns: 1fr;
         gap: 56px;
-        padding: 56px 0 72px;
+        padding: 111px 0 72px;
     }
     .hero h1 {
         max-width: 18ch;
     }
     .hero-sub {
         max-width: 56ch;
+    }
+    .caps {
+        transform: translateY(-28px);
     }
 
     .proj {
@@ -541,7 +545,7 @@ body.doc-page h1.tracked-wordmark {
 
     .hero {
         gap: 40px;
-        padding: 40px 0 56px;
+        padding: 82px 0 56px;
     }
     .hero h1 {
         font-size: clamp(40px, 11vw, 60px);
@@ -549,6 +553,9 @@ body.doc-page h1.tracked-wordmark {
     }
     .hero-sub {
         font-size: 14.5px;
+    }
+    .caps {
+        transform: none;
     }
 
     .section-head {
