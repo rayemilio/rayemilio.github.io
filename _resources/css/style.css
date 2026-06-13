@@ -787,21 +787,13 @@ body.doc-page .capability-card li {
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--back-link-color, var(--muted));
     text-decoration: none;
     margin-bottom: 48px;
     transition: color 0.15s ease;
 }
 
 .back:hover {
-    color: var(--ink);
-}
-
-body.back-link-muted .back {
-    color: #c4c4c4;
-}
-
-body.back-link-muted .back:hover {
     color: var(--ink);
 }
 

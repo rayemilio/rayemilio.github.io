@@ -169,8 +169,28 @@
             return;
         }
 
+        const startColor = [107, 107, 107];
+        const endColor = [208, 208, 208];
+        const fadeDistance = 300;
+        let frameRequested = false;
+
+        function setBackLinkColor() {
+            const progress = Math.min(Math.max(window.scrollY / fadeDistance, 0), 1);
+            const color = startColor.map(function (channel, index) {
+                return Math.round(channel + (endColor[index] - channel) * progress);
+            });
+
+            document.body.style.setProperty("--back-link-color", `rgb(${color.join(", ")})`);
+            frameRequested = false;
+        }
+
         function updateBackLinkState() {
-            document.body.classList.toggle("back-link-muted", window.scrollY > 24);
+            if (frameRequested) {
+                return;
+            }
+
+            frameRequested = true;
+            requestAnimationFrame(setBackLinkColor);
         }
 
         updateBackLinkState();

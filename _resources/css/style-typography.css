@@ -152,20 +152,12 @@ body.typography-page .back {
     line-height: var(--type-small-line);
     margin-bottom: var(--note10);
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--back-link-color, var(--muted));
     text-decoration: none;
     transition: color 0.15s ease;
 }
 
 body.typography-page .back:hover {
-    color: var(--ink);
-}
-
-body.typography-page.back-link-muted .back {
-    color: #c4c4c4;
-}
-
-body.typography-page.back-link-muted .back:hover {
     color: var(--ink);
 }
 
