@@ -47,6 +47,17 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+html.mobile-nav-locked,
+body.mobile-nav-locked {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+body.mobile-nav-locked {
+    left: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+}
 a {
     color: inherit;
     text-decoration: none;
@@ -77,8 +88,13 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: var(--paper);
+    box-shadow: 0 14px 0 var(--paper);
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 40;
 }
 .brand-block {
     position: relative;
@@ -372,6 +388,102 @@ body.doc-page h1.tracked-wordmark {
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
+/* Compact header nav: switch to overlay before header links crowd the brand */
+@media (max-width: 1200px) {
+    .nav {
+        display: none;
+    }
+    .contact-btn {
+        display: none;
+    }
+    .mobile-nav-button {
+        border-radius: 3px;
+        cursor: pointer;
+        display: inline-block;
+        height: 34px;
+        margin-left: auto;
+        position: relative;
+        width: 42px;
+        z-index: 60;
+    }
+    .mobile-nav-button::before,
+    .mobile-nav-button::after,
+    .mobile-nav-icon {
+        background: var(--ink);
+        display: block;
+        height: 1px;
+        left: 12px;
+        position: absolute;
+        top: 17px;
+        transform-origin: center;
+        transition:
+            opacity 0.15s ease,
+            top 0.15s ease,
+            transform 0.15s ease;
+        width: 18px;
+    }
+    .mobile-nav-button::before,
+    .mobile-nav-button::after {
+        content: "";
+    }
+    .mobile-nav-button::before {
+        top: 12px;
+    }
+    .mobile-nav-button::after {
+        top: 22px;
+    }
+    .mobile-nav-icon {
+        color: transparent;
+        font-size: 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button::before {
+        top: 17px;
+        transform: rotate(45deg);
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button {
+        position: fixed;
+        right: 20px;
+        top: 18px;
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button .mobile-nav-icon {
+        opacity: 0;
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav-button::after {
+        top: 17px;
+        transform: rotate(-45deg);
+    }
+    .mobile-nav {
+        align-items: center;
+        background: rgba(226, 226, 226, 0.88);
+        backdrop-filter: blur(10px);
+        display: none;
+        flex-direction: column;
+        gap: 30px;
+        height: 100vh;
+        height: 100dvh;
+        inset: 0;
+        justify-content: center;
+        overflow: hidden;
+        overscroll-behavior: contain;
+        padding: 32px;
+        position: fixed;
+        z-index: 50;
+    }
+    .mobile-nav a,
+    .mobile-nav span {
+        color: var(--ink-2);
+        font-size: 15px;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+    .mobile-nav-toggle:checked ~ .mobile-nav {
+        display: flex;
+    }
+}
+
 /* Medium screens: tighten the project image column */
 @media (max-width: 1100px) {
     .proj {
@@ -389,13 +501,6 @@ body.doc-page h1.tracked-wordmark {
     .header {
         padding: 22px 0 18px;
     }
-    .nav {
-        gap: 20px;
-    }
-    .nav a:nth-child(n + 3),
-    .nav span:nth-child(n + 3) {
-        display: none;
-    } /* keep first two nav items */
 
     .hero {
         grid-template-columns: 1fr;
@@ -458,89 +563,6 @@ body.doc-page h1.tracked-wordmark {
     .brand {
         font-size: 14px;
         letter-spacing: 0.14em;
-    }
-    .nav {
-        display: none;
-    } /* drop nav on small phones */
-    .contact-btn {
-        display: none;
-    }
-    .mobile-nav-button {
-        border-radius: 3px;
-        cursor: pointer;
-        display: inline-block;
-        height: 34px;
-        margin-left: auto;
-        position: relative;
-        width: 42px;
-        z-index: 60;
-    }
-    .mobile-nav-button::before,
-    .mobile-nav-button::after,
-    .mobile-nav-icon {
-        background: var(--ink);
-        display: block;
-        height: 1px;
-        left: 12px;
-        position: absolute;
-        top: 17px;
-        transform-origin: center;
-        transition:
-            opacity 0.15s ease,
-            top 0.15s ease,
-            transform 0.15s ease;
-        width: 18px;
-    }
-    .mobile-nav-button::before,
-    .mobile-nav-button::after {
-        content: "";
-    }
-    .mobile-nav-button::before {
-        top: 12px;
-    }
-    .mobile-nav-button::after {
-        top: 22px;
-    }
-    .mobile-nav-icon {
-        color: transparent;
-        font-size: 0;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button::before {
-        top: 17px;
-        transform: rotate(45deg);
-    }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button .mobile-nav-icon {
-        opacity: 0;
-    }
-    .mobile-nav-toggle:checked ~ .mobile-nav-button::after {
-        top: 17px;
-        transform: rotate(-45deg);
-    }
-    .mobile-nav {
-        align-items: center;
-        background: rgba(226, 226, 226, 0.88);
-        backdrop-filter: blur(10px);
-        display: none;
-        flex-direction: column;
-        gap: 30px;
-        inset: 0;
-        justify-content: center;
-        padding: 32px;
-        position: fixed;
-        z-index: 50;
-    }
-    .mobile-nav a,
-    .mobile-nav span {
-        color: var(--ink-2);
-        font-size: 15px;
-        letter-spacing: 0.18em;
-        line-height: 1;
-        text-transform: uppercase;
-    }
-    .mobile-nav-toggle:checked ~ .mobile-nav {
-        display: flex;
     }
 
     .hero {

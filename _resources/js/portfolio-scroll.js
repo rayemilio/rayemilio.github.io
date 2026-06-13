@@ -61,6 +61,14 @@
             link.addEventListener("click", storePortfolioScroll);
         });
 
+        document.querySelectorAll('.nav a[href], .mobile-nav a[href]').forEach(function (link) {
+            const href = link.getAttribute("href");
+
+            if (href === "capabilities/" || href === "about/" || href === "notes/") {
+                link.addEventListener("click", storePortfolioScroll);
+            }
+        });
+
         document.querySelectorAll('a[href="../"]').forEach(function (link) {
             const label = link.textContent.toLowerCase();
 
@@ -72,9 +80,73 @@
         restorePortfolioScroll();
     }
 
+    function initMobileNavLock() {
+        const toggle = document.querySelector(".mobile-nav-toggle");
+        const nav = document.querySelector(".mobile-nav");
+
+        if (!toggle || !nav) {
+            return;
+        }
+
+        let lockedScrollY = 0;
+
+        function lockPage() {
+            lockedScrollY = window.scrollY;
+            document.documentElement.classList.add("mobile-nav-locked");
+            document.body.classList.add("mobile-nav-locked");
+            document.body.style.top = `-${lockedScrollY}px`;
+        }
+
+        function unlockPage() {
+            document.documentElement.classList.remove("mobile-nav-locked");
+            document.body.classList.remove("mobile-nav-locked");
+            document.body.style.top = "";
+            window.scrollTo(0, lockedScrollY);
+        }
+
+        toggle.addEventListener("change", function () {
+            if (toggle.checked) {
+                lockPage();
+            } else {
+                unlockPage();
+            }
+        });
+
+        nav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (!toggle.checked) {
+                    return;
+                }
+
+                toggle.checked = false;
+                unlockPage();
+            });
+        });
+
+        const desktopQuery = window.matchMedia("(min-width: 1201px)");
+        const unlockOnDesktop = function (event) {
+            if (!event.matches || !toggle.checked) {
+                return;
+            }
+
+            toggle.checked = false;
+            unlockPage();
+        };
+
+        if (desktopQuery.addEventListener) {
+            desktopQuery.addEventListener("change", unlockOnDesktop);
+        } else {
+            desktopQuery.addListener(unlockOnDesktop);
+        }
+    }
+
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initPortfolioScroll);
+        document.addEventListener("DOMContentLoaded", function () {
+            initPortfolioScroll();
+            initMobileNavLock();
+        });
     } else {
         initPortfolioScroll();
+        initMobileNavLock();
     }
 })();
