@@ -80,12 +80,28 @@ button {
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
 }
+.brand-block {
+    position: relative;
+}
 .brand {
+    display: inline-block;
     font-family: var(--sans);
     font-weight: 500;
     font-size: 15px;
+    line-height: 1;
     letter-spacing: 0.12em;
     color: var(--ink);
+}
+.brand-tagline {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
 }
 .nav {
     display: flex;
@@ -134,13 +150,6 @@ button {
     gap: 64px;
     padding: 88px 0 110px;
 }
-.eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 38px;
-}
 .hero h1 {
     font-family: var(--serif);
     font-weight: 400;
@@ -150,6 +159,20 @@ button {
     margin: 0 0 36px;
     color: var(--ink);
     max-width: 12ch;
+}
+.hero-cursor {
+    display: inline-block;
+    width: 35px;
+    height: 0.72em;
+    margin-left: 0.12em;
+    background: currentColor;
+    vertical-align: -0.04em;
+    animation: hero-cursor-blink 1.25s steps(1, end) infinite;
+}
+@keyframes hero-cursor-blink {
+    50% {
+        opacity: 0;
+    }
 }
 .hero-sub {
     font-size: 15px;
@@ -350,6 +373,12 @@ body.doc-page h1.tracked-wordmark {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .hero-cursor {
+        animation: none;
+    }
+}
+
 /* Tablet / narrow desktop: stack hero, projects, footer */
 @media (max-width: 900px) {
     .page {
@@ -513,10 +542,6 @@ body.doc-page h1.tracked-wordmark {
     .hero {
         gap: 40px;
         padding: 40px 0 56px;
-    }
-    .eyebrow {
-        margin-bottom: 26px;
-        font-size: 10.5px;
     }
     .hero h1 {
         font-size: clamp(40px, 11vw, 60px);
