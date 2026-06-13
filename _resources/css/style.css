@@ -160,13 +160,19 @@ button {
     color: var(--ink);
     max-width: 12ch;
 }
-.hero-cursor {
+.hero-ending {
     display: inline-block;
-    width: 35px;
-    height: 0.72em;
-    margin-left: 0.12em;
+    position: relative;
+    white-space: nowrap;
+}
+.hero-cursor {
+    position: absolute;
+    left: calc(100% + 0.12em);
+    top: 0.05em;
+    display: block;
+    width: clamp(24px, 0.48em, 40px);
+    height: clamp(36px, 0.71em, 60px);
     background: currentColor;
-    vertical-align: -0.04em;
     animation: hero-cursor-blink 1.25s steps(1, end) infinite;
 }
 @keyframes hero-cursor-blink {
@@ -371,12 +377,6 @@ body.doc-page h1.tracked-wordmark {
     .proj {
         grid-template-columns: 60px 1fr 340px;
         gap: 28px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-cursor {
-        animation: none;
     }
 }
 
