@@ -12,8 +12,34 @@
         <link rel="stylesheet" href="../_resources/css/style.css">
         <script src="../_resources/js/portfolio-scroll.js"></script>
     </head>
-    <body class="doc-page capabilities-page">
-        <a class="back" href="../">← Portfolio</a>
+    <body class="doc-page nav-page capabilities-page">
+        <header class="header">
+            <div class="brand-block">
+                <a href="../" class="brand">OBJECTS ON PURPOSE</a>
+                <div class="brand-tagline">A design house for purposeful things</div>
+            </div>
+            <nav class="nav">
+                <a href="../#work">Work</a>
+                <a href="../capabilities/" class="active">Capabilities</a>
+                <a href="../about/">About</a>
+                <a href="../notes/">Notes</a>
+            </nav>
+            <a class="contact-btn" href="mailto:hello@objectsonpurpose.com">
+                Contact
+                <span class="arr">↗</span>
+            </a>
+            <input class="mobile-nav-toggle" id="mobile-nav-toggle" type="checkbox" aria-label="Toggle navigation">
+            <label class="mobile-nav-button" for="mobile-nav-toggle">
+                <span class="mobile-nav-icon">Menu</span>
+            </label>
+            <nav class="mobile-nav" aria-label="Mobile navigation">
+                <a href="../#work">Work</a>
+                <a href="../capabilities/" class="active" aria-current="page">Capabilities</a>
+                <a href="../about/">About</a>
+                <a href="../notes/">Notes</a>
+                <a href="mailto:hello@objectsonpurpose.com">Contact</a>
+            </nav>
+        </header>
 
         <main>
         <p class="doc-label">Capabilities</p>

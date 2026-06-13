@@ -69,10 +69,11 @@
             }
         });
 
-        document.querySelectorAll('a[href="../"]').forEach(function (link) {
+        document.querySelectorAll('a[href="../"], a[href="../#work"]').forEach(function (link) {
             const label = link.textContent.toLowerCase();
+            const href = link.getAttribute("href");
 
-            if (label.includes("portfolio")) {
+            if (label.includes("portfolio") || label.includes("work") || href === "../") {
                 link.addEventListener("click", markPortfolioReturn);
             }
         });
@@ -104,6 +105,12 @@
             window.scrollTo(0, lockedScrollY);
         }
 
+        function isInternalPageNavigation(link) {
+            const url = new URL(link.href, window.location.href);
+
+            return url.origin === window.location.origin && url.pathname !== window.location.pathname;
+        }
+
         toggle.addEventListener("change", function () {
             if (toggle.checked) {
                 lockPage();
@@ -115,6 +122,17 @@
         nav.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
                 if (!toggle.checked) {
+                    return;
+                }
+
+                nav.querySelectorAll(".active").forEach(function (item) {
+                    item.classList.remove("active");
+                    item.removeAttribute("aria-current");
+                });
+                link.classList.add("active");
+                link.setAttribute("aria-current", "page");
+
+                if (isInternalPageNavigation(link)) {
                     return;
                 }
 

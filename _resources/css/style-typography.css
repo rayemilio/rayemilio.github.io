@@ -161,6 +161,22 @@ body.typography-page .back:hover {
     color: var(--ink);
 }
 
+@media (min-width: 980px) {
+    body.typography-page {
+        padding-top: calc(var(--space-page) + var(--type-small-line) + var(--note10));
+    }
+    body.typography-page .back {
+        position: fixed;
+        top: var(--space-page);
+        transform: translateX(calc(-100% - 48px));
+        z-index: 30;
+    }
+    body.typography-page footer > p:not(.footer-links),
+    body.typography-page footer .footer-links span:has(a[href="../"]) {
+        visibility: hidden;
+    }
+}
+
 body.typography-page .doc-label {
     letter-spacing: 0.22em;
     font-size: var(--type-small);

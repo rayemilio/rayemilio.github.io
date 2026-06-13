@@ -89,7 +89,6 @@ button {
     align-items: center;
     justify-content: space-between;
     background: var(--paper);
-    box-shadow: 0 14px 0 var(--paper);
     padding: 28px 0 22px;
     border-bottom: 1px solid var(--rule);
     position: sticky;
@@ -473,11 +472,18 @@ body.doc-page h1.tracked-wordmark {
     }
     .mobile-nav a,
     .mobile-nav span {
+        border-bottom: 1.5px solid transparent;
         color: var(--ink-2);
         font-size: 15px;
         letter-spacing: 0.18em;
         line-height: 1;
+        padding-bottom: 4px;
         text-transform: uppercase;
+    }
+    .mobile-nav a.active,
+    .mobile-nav span.active {
+        border-bottom-color: var(--ink);
+        color: var(--ink);
     }
     .mobile-nav-toggle:checked ~ .mobile-nav {
         display: flex;
@@ -631,10 +637,21 @@ body.doc-page {
     padding: 72px 40px 96px;
 }
 
+body.doc-page.nav-page {
+    max-width: 1240px;
+    padding-top: 0;
+}
+
+body.doc-page.nav-page main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 72px;
+}
+
 body.doc-page h1 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: clamp(40px, 4vw, 48px);
     line-height: 1.08;
     letter-spacing: -0.012em;
     margin: 0 0 18px;
@@ -773,6 +790,22 @@ body.doc-page .capability-card li {
 
 .back:hover {
     color: var(--ink);
+}
+
+@media (min-width: 980px) {
+    body.doc-page:not(.nav-page) {
+        padding-top: 140px;
+    }
+    .back {
+        position: fixed;
+        top: 75px;
+        transform: translateX(calc(-100% - 48px));
+        z-index: 30;
+    }
+    body.doc-page:not(.nav-page) footer > p:not(.footer-links),
+    body.doc-page:not(.nav-page) footer .footer-links span:has(a[href="../"]) {
+        visibility: hidden;
+    }
 }
 
 /* Doc header labels */
@@ -1260,6 +1293,12 @@ body.doc-page footer a:hover {
 @media (max-width: 640px) {
     body.doc-page {
         padding: 40px 16px 72px;
+    }
+    body.doc-page.nav-page {
+        padding-top: 0;
+    }
+    body.doc-page.nav-page main {
+        padding-top: 56px;
     }
     body.doc-page h1 {
         font-size: clamp(28px, 7vw, 40px);
