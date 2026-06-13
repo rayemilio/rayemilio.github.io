@@ -168,10 +168,10 @@ button {
 .hero-cursor {
     position: absolute;
     left: calc(100% + 0.12em);
-    top: 0.05em;
+    top: -0.14em;
     display: block;
-    width: clamp(24px, 0.48em, 40px);
-    height: clamp(36px, 0.71em, 60px);
+    width: clamp(2px, 0.05em, 4px);
+    height: clamp(60px, 1.08em, 90px);
     background: var(--ink-2);
     animation: hero-cursor-blink 1.4s steps(1, end) infinite;
 }
