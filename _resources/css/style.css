@@ -12,6 +12,17 @@
     --code-selection-green: #9dae8f;
     --code-syntax-green: rgb(166, 184, 150, 0.99);
     --code-highlight-ink: #17181b;
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 24px;
+    --s-6: 32px;
+    --s-7: 40px;
+    --s-8: 48px;
+    --s-9: 64px;
+    --s-10: 96px;
+    --s-11: 144px;
 }
 
 ::selection {
@@ -80,7 +91,7 @@ button {
 .page {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 0 56px 0;
+    padding: 0 var(--s-9) 0;
 }
 
 /* ── Header ─────────────────────────────────────────────────── */
@@ -89,7 +100,7 @@ button {
     align-items: center;
     justify-content: space-between;
     background: var(--paper);
-    padding: 28px 0 22px;
+    padding: var(--s-6) 0;
     border-bottom: 1px solid var(--rule);
     position: sticky;
     top: 0;
@@ -101,27 +112,29 @@ button {
 .brand {
     display: inline-block;
     font-family: var(--sans);
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 1;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.16em;
     color: var(--ink);
 }
 .brand-tagline {
     position: absolute;
     left: 0;
-    top: calc(100% + 5px);
-    font-size: 9.5px;
-    letter-spacing: 0.26em;
-    line-height: 1.2;
+    top: calc(100% + 6px);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 0.926px;
+    line-height: 1.1;
     text-transform: uppercase;
-    color: var(--muted-2);
+    color: #a6a5a1;
     white-space: nowrap;
 }
 .nav {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: var(--s-6);
 }
 .nav a,
 .nav span {
@@ -129,7 +142,7 @@ button {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-2);
-    padding-bottom: 4px;
+    padding-bottom: var(--s-1);
 }
 .nav a.active {
     border-bottom: 1.5px solid var(--ink);
@@ -137,16 +150,13 @@ button {
 .contact-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    border: 1px solid #1a1a1a;
-    padding: 9px 16px 9px 18px;
-    border-radius: 3px;
+    gap: var(--s-2);
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    background: transparent;
-    color: var(--ink);
+    color: var(--ink-2);
     cursor: pointer;
+    padding-bottom: var(--s-1);
 }
 .contact-btn .arr {
     font-size: 14px;
@@ -162,8 +172,8 @@ button {
 .hero {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
-    gap: 64px;
-    padding: 143px 0 110px;
+    gap: var(--s-9);
+    padding: var(--s-11) 0 var(--s-10);
 }
 .hero h1 {
     font-family: var(--serif);
@@ -171,7 +181,7 @@ button {
     font-size: clamp(54px, 7.2vw, 84px);
     line-height: 1.04;
     letter-spacing: -0.012em;
-    margin: 0 0 36px;
+    margin: 0 0 var(--s-6);
     color: var(--ink);
     max-width: 12ch;
 }
@@ -188,11 +198,19 @@ button {
     width: clamp(2px, 0.05em, 4px);
     height: clamp(60px, 1.08em, 90px);
     background: var(--ink-2);
-    animation: hero-cursor-blink 1.4s steps(1, end) infinite;
+    animation: hero-cursor-blink 2.71828s linear infinite;
 }
 @keyframes hero-cursor-blink {
-    50% {
+    0%,
+    47% {
+        opacity: 1;
+    }
+    50%,
+    97% {
         opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 .hero-sub {
@@ -206,7 +224,7 @@ button {
 .caps {
     align-items: center;
     justify-content: center;
-    padding-top: 8px;
+    padding-top: var(--s-2);
     display: flex;
     flex-direction: column;
     transform: translateY(-28px);
@@ -226,7 +244,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 0;
+    padding: var(--s-4) 0;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
 }
@@ -242,8 +260,8 @@ button {
 .proj {
     display: grid;
     grid-template-columns: 70px 1fr 420px;
-    gap: 36px;
-    padding: 38px 0 42px;
+    gap: var(--s-6);
+    padding: var(--s-7) 0;
     border-bottom: 1px solid var(--rule);
     align-items: start;
 }
@@ -268,7 +286,7 @@ button {
     width: 48px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8px;
+    margin-top: var(--s-2);
     opacity: 0.35;
 }
 .proj-body {
@@ -280,7 +298,7 @@ button {
     font-size: 34px;
     line-height: 1.15;
     letter-spacing: -0.012em;
-    margin: 0 0 12px;
+    margin: 0 0 var(--s-3);
     color: var(--ink);
 }
 .proj-title a {
@@ -298,27 +316,27 @@ body.doc-page h1.tracked-wordmark {
 .proj-tag {
     font-size: 14px;
     color: var(--ink-2);
-    margin: 0 0 12px;
+    margin: 0 0 var(--s-3);
     line-height: 1.5;
 }
 .proj-desc {
     font-size: 13.5px;
     line-height: 1.6;
     color: #4a4a4a;
-    margin: 0 0 22px;
+    margin: 0 0 var(--s-5);
     max-width: 44ch;
 }
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--s-2);
 }
 .tag {
     font-size: 11.5px;
     letter-spacing: 0.02em;
     color: #3a3a3a;
     background: #fff;
-    padding: 5px 12px;
+    padding: var(--s-1) var(--s-3);
     border-radius: 4px;
 }
 .proj-img {
@@ -345,17 +363,17 @@ body.doc-page h1.tracked-wordmark {
 .footer {
     display: grid;
     grid-template-columns: 1.2fr 1.35fr 0.9fr;
-    gap: 48px;
-    padding: 60px 0 64px;
+    gap: var(--s-8);
+    padding: var(--s-9) 0;
     border-top: 1px solid var(--rule);
-    margin-top: 24px;
+    margin-top: var(--s-5);
 }
 .footer h4 {
     font-size: 11px;
     letter-spacing: 0.22em;
     line-height: 1.1;
     text-transform: uppercase;
-    margin: 0 0 4px;
+    margin: 0 0 var(--s-1);
     font-weight: 500;
     color: var(--ink);
 }
@@ -376,13 +394,13 @@ body.doc-page h1.tracked-wordmark {
 .email-row {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--s-2);
     margin-top: 2px;
     font-size: 13px;
     color: var(--ink);
 }
 .avail-block {
-    margin-top: 18px;
+    margin-top: var(--s-4);
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
@@ -459,14 +477,14 @@ body.doc-page h1.tracked-wordmark {
         backdrop-filter: blur(10px);
         display: none;
         flex-direction: column;
-        gap: 30px;
+        gap: var(--s-6);
         height: 100vh;
         height: 100dvh;
         inset: 0;
         justify-content: center;
         overflow: hidden;
         overscroll-behavior: contain;
-        padding: 32px;
+        padding: var(--s-6);
         position: fixed;
         z-index: 50;
     }
@@ -477,7 +495,7 @@ body.doc-page h1.tracked-wordmark {
         font-size: 15px;
         letter-spacing: 0.18em;
         line-height: 1;
-        padding-bottom: 4px;
+        padding-bottom: var(--s-1);
         text-transform: uppercase;
     }
     .mobile-nav a.active,
@@ -494,29 +512,29 @@ body.doc-page h1.tracked-wordmark {
 @media (max-width: 1100px) {
     .proj {
         grid-template-columns: 60px 1fr 340px;
-        gap: 28px;
+        gap: var(--s-5);
     }
 }
 
 /* Tablet / narrow desktop: stack hero, projects, footer */
 @media (max-width: 900px) {
     .page {
-        padding: 0 32px;
+        padding: 0 var(--s-6);
     }
 
     .header {
-        padding: 22px 0 18px;
+        padding: var(--s-5) 0 var(--s-4);
     }
 
     body.doc-page.nav-page {
-        padding-left: 32px;
-        padding-right: 32px;
+        padding-left: var(--s-6);
+        padding-right: var(--s-6);
     }
 
     .hero {
         grid-template-columns: 1fr;
-        gap: 56px;
-        padding: 111px 0 72px;
+        gap: var(--s-8);
+        padding: var(--s-10) 0 var(--s-9);
     }
     .hero h1 {
         max-width: 18ch;
@@ -530,13 +548,13 @@ body.doc-page h1.tracked-wordmark {
 
     .proj {
         grid-template-columns: 1fr;
-        gap: 18px;
-        padding: 32px 0 36px;
+        gap: var(--s-4);
+        padding: var(--s-6) 0 var(--s-7);
     }
     .proj > div:first-child {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: var(--s-4);
         justify-items: initial;
     }
     .proj-icon {
@@ -552,8 +570,8 @@ body.doc-page h1.tracked-wordmark {
 
     .footer {
         grid-template-columns: 1fr 1fr;
-        gap: 36px 32px;
-        padding: 48px 0 56px;
+        gap: var(--s-7) var(--s-6);
+        padding: var(--s-8) 0 var(--s-9);
     }
     .footer-bio {
         grid-column: 1 / -1;
@@ -563,12 +581,12 @@ body.doc-page h1.tracked-wordmark {
 /* Phone */
 @media (max-width: 640px) {
     .page {
-        padding: 0 20px;
+        padding: 0 var(--s-5);
     }
 
     .header {
-        padding: 18px 0 14px;
-        gap: 12px;
+        padding: var(--s-4) 0 var(--s-3);
+        gap: var(--s-3);
         flex-wrap: wrap;
     }
     .brand {
@@ -577,8 +595,8 @@ body.doc-page h1.tracked-wordmark {
     }
 
     .hero {
-        gap: 40px;
-        padding: 82px 0 56px;
+        gap: var(--s-7);
+        padding: var(--s-10) 0 var(--s-9);
     }
     .hero h1 {
         font-size: clamp(40px, 11vw, 60px);
@@ -592,7 +610,7 @@ body.doc-page h1.tracked-wordmark {
     }
 
     .section-head {
-        padding: 14px 0;
+        padding: var(--s-3) 0;
     }
     .section-head .label {
         font-size: 10.5px;
@@ -600,8 +618,8 @@ body.doc-page h1.tracked-wordmark {
     }
 
     .proj {
-        padding: 28px 0 32px;
-        gap: 16px;
+        padding: var(--s-6) 0;
+        gap: var(--s-4);
     }
     .proj-index {
         font-size: 30px;
@@ -617,13 +635,13 @@ body.doc-page h1.tracked-wordmark {
     }
     .tag {
         font-size: 11px;
-        padding: 4px 10px;
+        padding: var(--s-1) var(--s-2);
     }
 
     .footer {
         grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 40px 0 48px;
+        gap: var(--s-6);
+        padding: var(--s-7) 0 var(--s-8);
     }
     .footer-bio {
         grid-column: auto;
@@ -639,18 +657,18 @@ body.doc-page h1.tracked-wordmark {
 body.doc-page {
     max-width: 720px;
     margin: 0 auto;
-    padding: 72px 40px 96px;
+    padding: var(--s-9) var(--s-7) var(--s-10);
 }
 
 body.doc-page.nav-page {
     max-width: 1240px;
-    padding: 0 56px 96px;
+    padding: 0 var(--s-9) var(--s-10);
 }
 
 body.doc-page.nav-page main {
     max-width: 720px;
     margin: 0 auto;
-    padding-top: 72px;
+    padding-top: var(--s-9);
 }
 
 body.doc-page h1 {
@@ -659,7 +677,7 @@ body.doc-page h1 {
     font-size: clamp(40px, 4vw, 48px);
     line-height: 1.08;
     letter-spacing: -0.012em;
-    margin: 0 0 18px;
+    margin: 0 0 var(--s-4);
     color: var(--ink);
 }
 
@@ -669,7 +687,7 @@ body.doc-page h2 {
     font-size: 26px;
     line-height: 1.2;
     letter-spacing: -0.008em;
-    margin: 56px 0 14px;
+    margin: var(--s-9) 0 var(--s-3);
     color: var(--ink);
 }
 
@@ -680,14 +698,14 @@ body.doc-page h3 {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 28px 0 10px;
+    margin: var(--s-5) 0 var(--s-2);
 }
 
 body.doc-page p {
     font-size: 14px;
     line-height: 1.65;
     color: #3a3a3a;
-    margin: 0 0 16px;
+    margin: 0 0 var(--s-4);
 }
 
 body.doc-page p:last-child {
@@ -701,20 +719,20 @@ body.doc-page em {
 body.doc-page hr {
     border: none;
     border-top: 1px solid var(--rule);
-    margin: 48px 0;
+    margin: var(--s-8) 0;
 }
 
 body.doc-page hr.thin {
     border-top-width: 0.5px;
-    margin: 32px 0;
+    margin: var(--s-6) 0;
 }
 
 .page-images {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 16px;
-    margin: 32px 0;
+    gap: var(--s-4);
+    margin: var(--s-6) 0;
 }
 
 .page-images img {
@@ -724,7 +742,7 @@ body.doc-page hr.thin {
 }
 
 .about-photo {
-    margin: 0 0 28px;
+    margin: 0 0 var(--s-6);
 }
 
 .about-photo img {
@@ -748,9 +766,9 @@ body.doc-page code {
 .capability-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 48px;
-    row-gap: 32px;
-    margin: 32px 0 0;
+    column-gap: var(--s-8);
+    row-gap: var(--s-6);
+    margin: var(--s-6) 0 0;
 }
 
 .capability-card {
@@ -765,7 +783,7 @@ body.doc-page .capability-card h2 {
     line-height: 1.4;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 0 0 12px;
+    margin: 0 0 var(--s-3);
 }
 
 .capability-card ul {
@@ -789,7 +807,7 @@ body.doc-page .capability-card li {
     text-transform: uppercase;
     color: var(--back-link-color, var(--muted));
     text-decoration: none;
-    margin-bottom: 48px;
+    margin-bottom: var(--s-8);
     transition: color 0.15s ease;
 }
 
@@ -799,7 +817,7 @@ body.doc-page .capability-card li {
 
 @media (min-width: 980px) {
     body.doc-page:not(.nav-page) {
-        padding-top: 140px;
+        padding-top: var(--s-11);
     }
     .back {
         position: fixed;
@@ -819,7 +837,7 @@ body.doc-page .capability-card li {
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 14px;
+    margin-bottom: var(--s-3);
 }
 
 .subtitle {
@@ -828,24 +846,24 @@ body.doc-page .capability-card li {
     font-size: 18px;
     line-height: 1.45;
     color: var(--ink-2);
-    margin-bottom: 20px;
+    margin-bottom: var(--s-5);
 }
 
 .meta {
     font-size: 12px;
     color: var(--muted);
-    margin-bottom: 20px;
+    margin-bottom: var(--s-5);
 }
 
 .meta.tags {
-    margin-bottom: 20px;
+    margin-bottom: var(--s-5);
 }
 
 .status-line {
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.04em;
-    margin-bottom: 20px;
+    margin-bottom: var(--s-5);
 }
 
 .status-line span {
@@ -856,8 +874,8 @@ body.doc-page .capability-card li {
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 10px 16px;
-    margin: 8px 0 28px;
+    gap: var(--s-2) var(--s-4);
+    margin: var(--s-2) 0 var(--s-6);
 }
 
 .beta-status .status-line {
@@ -872,7 +890,7 @@ body.doc-page .capability-card li {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 10px;
+    gap: var(--s-2);
     margin: 0;
 }
 
@@ -885,7 +903,7 @@ body.doc-page .capability-card li {
     letter-spacing: 0.14em;
     line-height: 1;
     min-height: 28px;
-    padding: 0 11px;
+    padding: 0 var(--s-3);
     text-decoration: none;
     text-transform: uppercase;
     transition:
@@ -900,14 +918,14 @@ body.doc-page .capability-card li {
 
 @media (max-width: 640px) {
     .beta-status {
-        gap: 8px;
+        gap: var(--s-2);
     }
 
     .beta-links a {
         font-size: 11px;
         letter-spacing: 0.12em;
         min-height: 28px;
-        padding: 0 9px;
+        padding: 0 var(--s-2);
     }
 }
 
@@ -915,16 +933,16 @@ body.doc-page .capability-card li {
 .feature-list {
     list-style: none;
     padding: 0;
-    margin: 12px 0 20px;
+    margin: var(--s-3) 0 var(--s-5);
 }
 
 .feature-list li {
     font-size: 14px;
     line-height: 1.6;
     color: #3a3a3a;
-    padding-left: 20px;
+    padding-left: var(--s-4);
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: var(--s-1);
 }
 
 .feature-list li::before {
@@ -941,7 +959,7 @@ body.doc-page .capability-card li {
 .doc-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 16px 0 24px;
+    margin: var(--s-4) 0 var(--s-5);
 }
 
 .stack-table td,
@@ -950,7 +968,7 @@ body.doc-page .capability-card li {
 .doc-table th {
     font-size: 13.5px;
     line-height: 1.5;
-    padding: 10px 16px 10px 0;
+    padding: var(--s-2) var(--s-4) var(--s-2) 0;
     border-bottom: 1px solid var(--rule);
     vertical-align: top;
     color: var(--ink-2);
@@ -970,7 +988,7 @@ body.doc-page .capability-card li {
     color: var(--muted);
     white-space: nowrap;
     width: 42%;
-    padding-right: 20px;
+    padding-right: var(--s-4);
 }
 
 .doc-table th {
@@ -985,13 +1003,13 @@ body.doc-page .capability-card li {
 .milestone-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 16px 0 24px;
+    margin: var(--s-4) 0 var(--s-5);
 }
 
 .milestone-table td {
     font-size: 13.5px;
     line-height: 1.5;
-    padding: 10px 16px 10px 0;
+    padding: var(--s-2) var(--s-4) var(--s-2) 0;
     border-bottom: 1px solid var(--rule);
     vertical-align: top;
     color: var(--ink-2);
@@ -1003,7 +1021,7 @@ body.doc-page .capability-card li {
     color: var(--muted);
     white-space: nowrap;
     width: 4%;
-    padding-right: 16px;
+    padding-right: var(--s-4);
 }
 
 .milestone-table td:nth-child(2) {
@@ -1016,7 +1034,7 @@ body.doc-page .capability-card li {
     font-size: 12px;
     white-space: nowrap;
     width: 16%;
-    padding-right: 16px;
+    padding-right: var(--s-4);
 }
 
 .milestone-table td:last-child {
@@ -1044,8 +1062,8 @@ body.doc-page .capability-card li {
         0 23px 30px -20px rgba(42, 42, 36, 0.16),
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
-    padding: 16px 20px;
-    margin: 16px 8px 40px;
+    padding: var(--s-4);
+    margin: var(--s-4) var(--s-2) var(--s-7);
     overflow-x: auto;
 }
 
@@ -1125,8 +1143,8 @@ body.doc-page .capability-card li {
     font-size: 12px;
     color: var(--muted);
     margin-top: -8px;
-    margin-bottom: 16px;
-    padding-left: 20px;
+    margin-bottom: var(--s-4);
+    padding-left: var(--s-4);
 }
 
 /* Callout notes */
@@ -1136,8 +1154,8 @@ body.doc-page .capability-card li {
 .status-note,
 .principle-note {
     border-left: 2px solid var(--rule);
-    padding: 14px 20px;
-    margin: 24px 0;
+    padding: var(--s-3) var(--s-4);
+    margin: var(--s-5) 0;
 }
 
 .origin-note p,
@@ -1157,8 +1175,8 @@ body.doc-page .capability-card li {
 .contrast-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin: 16px 0 24px;
+    gap: var(--s-6);
+    margin: var(--s-4) 0 var(--s-5);
 }
 
 .contrast-col h3 {
@@ -1167,7 +1185,7 @@ body.doc-page .capability-card li {
     text-transform: uppercase;
     color: var(--muted);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: var(--s-2);
 }
 
 .contrast-col ul {
@@ -1179,9 +1197,9 @@ body.doc-page .capability-card li {
     font-size: 13.5px;
     line-height: 1.55;
     color: #3a3a3a;
-    padding-left: 18px;
+    padding-left: var(--s-4);
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: var(--s-1);
 }
 
 .contrast-col li::before {
@@ -1194,9 +1212,9 @@ body.doc-page .capability-card li {
 
 /* Project links */
 .project-links {
-    margin-top: 16px;
+    margin-top: var(--s-4);
     display: flex;
-    gap: 24px;
+    gap: var(--s-5);
     flex-wrap: wrap;
 }
 
@@ -1222,7 +1240,7 @@ body.doc-page .capability-card li {
 .sources {
     list-style: none;
     padding: 0;
-    margin: 12px 0 20px;
+    margin: var(--s-3) 0 var(--s-5);
 }
 
 .credits li,
@@ -1230,9 +1248,9 @@ body.doc-page .capability-card li {
     font-size: 13.5px;
     line-height: 1.6;
     color: #3a3a3a;
-    padding-left: 18px;
+    padding-left: var(--s-4);
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: var(--s-1);
 }
 
 .credits li::before,
@@ -1263,8 +1281,8 @@ body.doc-page p a:hover {
 
 /* Footer */
 body.doc-page footer {
-    margin-top: 64px;
-    padding-top: 24px;
+    margin-top: var(--s-9);
+    padding-top: var(--s-5);
     border-top: 1px solid var(--rule);
 }
 
@@ -1280,7 +1298,7 @@ body.doc-page .footer-links {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    gap: 24px;
+    gap: var(--s-5);
 }
 
 body.doc-page footer a {
@@ -1297,26 +1315,26 @@ body.doc-page footer a:hover {
 /* Doc page responsive */
 @media (max-width: 640px) {
     body.doc-page {
-        padding: 40px 16px 72px;
+        padding: var(--s-7) var(--s-4) var(--s-9);
     }
     body.doc-page.nav-page {
-        padding: 0 20px 72px;
+        padding: 0 var(--s-5) var(--s-9);
     }
     body.doc-page.nav-page main {
-        padding-top: 56px;
+        padding-top: var(--s-9);
     }
     body.doc-page h1 {
         font-size: clamp(28px, 7vw, 40px);
     }
     body.doc-page h2 {
         font-size: 22px;
-        margin: 40px 0 12px;
+        margin: var(--s-7) 0 var(--s-3);
     }
     .capability-grid {
         grid-template-columns: 1fr;
     }
     .contrast-columns {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: var(--s-5);
     }
 }
