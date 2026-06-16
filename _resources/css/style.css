@@ -8,7 +8,7 @@
     --rule-2: #ececec;
     --serif: "Newsreader", "Source Serif 4", Georgia, serif;
     --sans: "Inter", -apple-system, system-ui, sans-serif;
-    --mono: "Source Code Pro", "Inconsolata", "Courier New", monospace;
+    --mono: "Source Code Pro", ui-monospace, "Courier New", monospace;
     --code-selection-green: #9dae8f;
     --code-syntax-green: rgb(166, 184, 150, 0.99);
     --code-highlight-ink: #17181b;
@@ -755,8 +755,8 @@ body.doc-page hr.thin {
 
 body.doc-page code {
     display: inline;
-    font-family: "Inconsolata", "Courier New", monospace;
-    font-size: 13px;
+    font-family: var(--mono);
+    font-size: 12px;
     background: #f3f2ee;
     padding: 1px 5px;
     border-radius: 2px;
@@ -983,7 +983,7 @@ body.doc-page .capability-card li {
 }
 
 .files-table td:first-child {
-    font-family: "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
     white-space: nowrap;
@@ -1016,7 +1016,7 @@ body.doc-page .capability-card li {
 }
 
 .milestone-table td:first-child {
-    font-family: "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
     white-space: nowrap;

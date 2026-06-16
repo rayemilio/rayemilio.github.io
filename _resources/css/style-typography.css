@@ -7,7 +7,7 @@
     --rule: #e6e4df;
     --serif: "Newsreader", "Source Serif 4", Georgia, serif;
     --sans: "Inter", -apple-system, system-ui, sans-serif;
-    --mono: "Source Code Pro", "Inconsolata", "Courier New", monospace;
+    --mono: "Source Code Pro", ui-monospace, "Courier New", monospace;
     --code-selection-green: #9dae8f;
     --code-syntax-green: rgb(166, 184, 150, 0.99);
     --code-highlight-ink: #17181b;
@@ -304,7 +304,7 @@ body.typography-page code {
     display: inline;
     background-color: #282e39;
     color: #f0f0f0;
-    font-family: "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
     font-size: var(--type-code);
     line-height: var(--type-code-line);
     padding: calc(var(--type-code) * 0.08) calc(var(--type-code) * 0.36);
@@ -330,7 +330,7 @@ body.typography-page .code-block {
 
 body.typography-page .code-block pre {
     color: #e7e3d8;
-    font-family: "Source Code Pro", "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
     font-size: calc(var(--type-code) * 0.8);
     line-height: var(--type-code-line);
     margin: 0;
@@ -653,7 +653,7 @@ body.typography-page .linked-readouts {
 
 body.typography-page .linked-readouts span {
     color: var(--muted);
-    font-family: "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
     font-size: 10.5px;
     line-height: 1.2;
     min-width: 0;
@@ -719,7 +719,7 @@ body.typography-page .type-control-label {
 
 body.typography-page .type-control-value {
     color: var(--muted);
-    font-family: "Inconsolata", "Courier New", monospace;
+    font-family: var(--mono);
 }
 
 body.typography-page .type-control input[type="range"] {
