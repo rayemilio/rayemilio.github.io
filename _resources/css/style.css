@@ -240,6 +240,9 @@ button {
 }
 
 /* ── Section head: Selected Systems ─────────────────────────── */
+#work {
+    scroll-margin-top: calc(var(--s-6) + var(--s-6) + var(--s-4) + 1px);
+}
 .section-head {
     display: flex;
     align-items: center;
@@ -413,6 +416,9 @@ body.doc-page h1.tracked-wordmark {
     .contact-btn {
         display: none;
     }
+    #work {
+        scroll-margin-top: calc(var(--s-6) + var(--s-6) + 34px + 1px);
+    }
     .mobile-nav-button {
         border-radius: 3px;
         cursor: pointer;
@@ -522,10 +528,6 @@ body.doc-page h1.tracked-wordmark {
         padding: 0 var(--s-6);
     }
 
-    .header {
-        padding: var(--s-5) 0 var(--s-4);
-    }
-
     body.doc-page.nav-page {
         padding-left: var(--s-6);
         padding-right: var(--s-6);
@@ -582,16 +584,6 @@ body.doc-page h1.tracked-wordmark {
 @media (max-width: 640px) {
     .page {
         padding: 0 var(--s-5);
-    }
-
-    .header {
-        padding: var(--s-4) 0 var(--s-3);
-        gap: var(--s-3);
-        flex-wrap: wrap;
-    }
-    .brand {
-        font-size: 14px;
-        letter-spacing: 0.14em;
     }
 
     .hero {
