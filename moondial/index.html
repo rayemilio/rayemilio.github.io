@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="moondial is an e-ink React Native celestial almanac for iOS and Android with Today, Calendar, Settings, moon phases, sun and moon timing, photo-light windows, Zmanim, and timezone-aware locations."
+            content="moondial is an e-ink React Native celestial almanac for iOS and Android with Today, Ephemeris, Settings, moon phases, sun and moon timing, photo-light windows, Zmanim, and timezone-aware locations."
         />
         <title>moondial — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
@@ -73,7 +73,7 @@
             <p>
                 moondial turns the original browser calendar into a Today-first mobile almanac. It keeps the real
                 astronomy, eclipse, photography-light, and Zmanim calculations, but presents them through a quieter
-                interface built for quick reading: a moon-led Today screen, a continuous Calendar view, and Settings for
+                interface built for quick reading: a moon-led Today screen, a continuous Ephemeris view, and Settings for
                 location and display preferences.
             </p>
 
@@ -81,8 +81,9 @@
                 <p>
                     The current app is branded around a pencil-on-paper e-ink system: Cormorant Garamond for display
                     text, DM Mono for labels and tabular values, fine linework, muted graphite color, and
-                    light-mode-only surfaces. The polish work is deliberately rendering and interaction work; the
-                    calculation engines are treated as locked behavior.
+                    restrained light and dark surfaces. Light is the default e-ink mode, while dark mode includes
+                    Graphite, OLED, and Celestial styles with more specialized accent colors. The polish work is
+                    deliberately rendering and interaction work; the calculation engines are treated as locked behavior.
                 </p>
             </div>
 
@@ -90,7 +91,7 @@
                 The app coordinates independent calculation domains for sun and moon rise/set events, moon phases,
                 eclipses, blue and golden hour windows, and halachic Zmanim. Location, timezone, persisted settings,
                 custom SVG iconography, app startup behavior, and platform-specific release details are handled behind a
-                three-tab interface: Today, Calendar, and Settings.
+                three-tab interface: Today, Ephemeris, and Settings.
             </p>
 
             <hr class="thin" />
@@ -100,8 +101,8 @@
             <p>
                 Today is the front door. It is locked to the live date and reads like a small celestial instrument:
                 location and coordinates at the top, a large animated moon, moon age and illumination, moonrise and
-                moonset, a sky arc for sun and moon positions, a sunrise / solar noon / sunset ledger, photo-light
-                windows, and optional Zmanim.
+                moon culmination, moonset, a sky arc for sun and moon positions, a sunrise / solar noon / sunset ledger,
+                photo-light windows, and optional Zmanim.
             </p>
 
             <ul class="feature-list">
@@ -116,15 +117,18 @@
                 </li>
                 <li>Light ledger for sunrise, solar noon, sunset, blue hour, and golden hour</li>
                 <li>
-                    Moonrise, moonset, sunrise, solar noon, and sunset values animate with
+                    Moonrise, moon culmination, moonset, sunrise, solar noon, and sunset values animate with
                     <code>TimeSettleText</code>
                 </li>
                 <li>
-                    Sequential value reveals coordinated through
-                    <code>FadeInOnReplay</code>
+                    Moon illumination and age stay linked to the hero moon's animation progress instead of running as
+                    separate decorative reveals
                 </li>
                 <li>Startup overlay hides hydration flicker until persisted settings and first Today data are ready</li>
-                <li>Date block, moon hero, light arc, and time values support targeted animation replay</li>
+                <li>
+                    Date, moon, light arc, and time values support scoped replay: whole-page replay from the main date
+                    block, moon/stat replay from the moon, and row-level replay from time values
+                </li>
             </ul>
 
             <hr class="thin" />
@@ -134,16 +138,16 @@
             <h3>Today</h3>
             <ul class="feature-list">
                 <li>Current-date e-ink almanac with animated moon, sky arc, and light ledger</li>
-                <li>Moon illumination percentage, moon age, phase name, moonrise, and moonset</li>
+                <li>Moon illumination percentage, moon age, phase name, moonrise, moon culmination, and moonset</li>
                 <li>Sunrise, solar noon, sunset, blue hour, golden hour, and optional Zmanim</li>
                 <li>Bottom-tab transitions and Today animations tuned around Reduce Motion and launch readiness</li>
             </ul>
 
-            <h3>Calendar</h3>
+            <h3>Ephemeris</h3>
             <ul class="feature-list">
                 <li>Interactive six-row month calendar with day, month, and year navigation</li>
                 <li>Moon phase glyphs and solar/lunar eclipse glyphs rendered in calendar cells</li>
-                <li>Inline timetable for the selected date below the month grid</li>
+                <li>Inline timetable for the selected date, including active-location moonrise, culmination, and moonset</li>
                 <li>This Month section for principal phases and eclipse rows</li>
                 <li>Upcoming board for New Moon, Full Moon, and eclipse events</li>
             </ul>
@@ -157,7 +161,8 @@
                     <code>tz-lookup</code>
                     IANA timezone resolution for selected locations
                 </li>
-                <li>Sunday or Monday week start, 12-hour or 24-hour time format, and feature toggles</li>
+                <li>Sunday or Monday week start, 12-hour or 24-hour time format, theme mode, and feature toggles</li>
+                <li>Light, Dark, and Auto theme modes with Graphite, OLED, and Celestial dark styles</li>
                 <li>Moon phase, solar eclipse, lunar eclipse, photography light, Zmanim, and GRA/MGA controls</li>
                 <li>AsyncStorage-backed persistence for location and display preferences</li>
             </ul>
@@ -180,8 +185,8 @@ src/
   components/symbols/  Phase and eclipse SVG symbols
   context/             Startup readiness and launch animation
   navigation/          React Navigation bottom tabs
-  screens/             Today, Calendar, and Settings screens
-  services/            Calendar engine, location, geocoding, moon/time data
+  screens/             Today, Ephemeris, and Settings screens
+  services/            Ephemeris/calendar engine, location, geocoding, moon/time data
   store/               Zustand calendar, location, settings, persistence
   styles/              Shared theme, colors, typography, spacing
   types/               Shared TypeScript interfaces
@@ -192,7 +197,7 @@ src/
             <h3>Calculation pipeline</h3>
 
             <p>
-                Calendar navigation is render-first: the visible month and selected date update immediately, while
+                Ephemeris navigation is render-first: the visible month and selected date update immediately, while
                 cached or cold data attaches only when its returned key still matches the current view. That keeps
                 interaction responsive even when eclipse or upcoming-event searches are still filling in.
             </p>
@@ -200,11 +205,11 @@ src/
             <ul class="feature-list">
                 <li>
                     <code>calendarDataEngine</code>
-                    owns Calendar data orchestration with memory-only caches for month events, selected-day timetables,
+                    owns Ephemeris data orchestration with memory-only caches for month events, selected-day timetables,
                     and upcoming data
                 </li>
                 <li>
-                    Calendar prefetching prioritizes visible phase and eclipse markers before below-the-fold timetable
+                    Ephemeris prefetching prioritizes visible phase and eclipse markers before below-the-fold timetable
                     and upcoming work
                 </li>
                 <li>
@@ -221,7 +226,7 @@ src/
                     <code>astroDataAdapter</code>
                     bridges calculation output into the screen-readable
                     <code>DayData</code>
-                    shape used by Today, Calendar,
+                    shape used by Today, Ephemeris,
                     <code>LightLedger</code>
                     , and
                     <code>SkyArc</code>
@@ -240,11 +245,11 @@ src/
                 </tr>
                 <tr>
                     <td>CalendarScreen.tsx</td>
-                    <td>Continuous month calendar, selected-day timetable, this-month rows, upcoming board</td>
+                    <td>Ephemeris composition: continuous month calendar, selected-day timetable, this-month rows, upcoming board</td>
                 </tr>
                 <tr>
                     <td>SettingsScreen.tsx</td>
-                    <td>Location, display, calendar marker, section, and Zmanim controls</td>
+                    <td>Location, display, theme, calendar marker, section, and Zmanim controls</td>
                 </tr>
                 <tr>
                     <td>calendarDataEngine.ts</td>
@@ -268,7 +273,7 @@ src/
                 </tr>
                 <tr>
                     <td>MoonDisk.tsx</td>
-                    <td>SVG phased moon used by Today, Calendar, and timetable views</td>
+                    <td>SVG phased moon used by Today, Ephemeris, and timetable views</td>
                 </tr>
                 <tr>
                     <td>LightLedger.tsx</td>
@@ -357,9 +362,10 @@ src/
 
             <h3>Today-first product shape</h3>
             <p>
-                The month calendar is no longer the only center of gravity. Today leads with the information a user
-                wants while standing outside or planning the light: moon phase, moon age, moonrise, moonset, sun
-                position, blue and golden hour, and Zmanim. Calendar remains the deeper planning view.
+                The month ephemeris is no longer the only center of gravity. Today leads with the information a user
+                wants while standing outside or planning the light: moon phase, moon age, moonrise, moon culmination,
+                moonset, sun
+                position, blue and golden hour, and Zmanim. Ephemeris remains the deeper planning view.
             </p>
 
             <h3>Fault-tolerant data merging</h3>
@@ -375,13 +381,13 @@ src/
             <p>
                 Principal moon phases now route through
                 <code>moonPhaseEventService</code>
-                as the canonical phase enumeration path. Calendar markers, moon summaries, and upcoming data all draw
+                as the canonical phase enumeration path. Ephemeris markers, moon summaries, and upcoming data all draw
                 from the same service so phase times cannot diverge between parts of the interface.
             </p>
 
-            <h3>Responsive Calendar orchestration</h3>
+            <h3>Responsive Ephemeris orchestration</h3>
             <p>
-                The Calendar screen uses memory-only caches, promise dedupe, stale-key guards, and cooperative
+                The Ephemeris screen uses memory-only caches, promise dedupe, stale-key guards, and cooperative
                 prefetching. Visible phase and eclipse markers are warmed before below-the-fold sections because
                 calendar cells are what users scan while navigating.
             </p>
@@ -397,8 +403,8 @@ src/
             <h3>Rendering polish without calculation drift</h3>
             <p>
                 The current animation and visual work is presentation-only. The sky arc, marker clipping, page-turn time
-                values, launch overlay, bottom-tab clearance, and app icon updates preserve the underlying astronomy,
-                eclipse, photography-light, and Zmanim engine behavior.
+                values, moon hit targets, north marker, theme colors, launch overlay, bottom-tab clearance, and app icon
+                updates preserve the underlying astronomy, eclipse, photography-light, and Zmanim engine behavior.
             </p>
 
             <hr class="thin" />
@@ -441,6 +447,7 @@ src/
                     First Quarter and Last Quarter times are calculated, but the Upcoming board intentionally remains a
                     product decision
                 </li>
+                <li>Formal fastlane lanes are still planned; current beta uploads use local credential-backed commands</li>
                 <li>
                     Android release signing uses private local credentials that must remain outside tracked git files
                 </li>
