@@ -755,7 +755,7 @@ body.doc-page code {
     color: var(--ink-2);
 }
 
-.capability-grid {
+.instrument-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--s-8);
@@ -763,11 +763,11 @@ body.doc-page code {
     margin: var(--s-6) 0 0;
 }
 
-.capability-card {
+.instrument-card {
     padding: 0;
 }
 
-body.doc-page .capability-card h2 {
+body.doc-page .instrument-card h2 {
     font-family: var(--sans);
     font-size: 12px;
     font-weight: 500;
@@ -778,13 +778,13 @@ body.doc-page .capability-card h2 {
     margin: 0 0 var(--s-3);
 }
 
-.capability-card ul {
+.instrument-card ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-body.doc-page .capability-card li {
+body.doc-page .instrument-card li {
     font-size: 14px;
     line-height: 1.35;
     color: #3a3a3a;
@@ -1322,7 +1322,7 @@ body.doc-page footer a:hover {
         font-size: 22px;
         margin: var(--s-7) 0 var(--s-3);
     }
-    .capability-grid {
+    .instrument-grid {
         grid-template-columns: 1fr;
     }
     .contrast-columns {

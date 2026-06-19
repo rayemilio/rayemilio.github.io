@@ -64,7 +64,7 @@
         document.querySelectorAll('.nav a[href], .mobile-nav a[href]').forEach(function (link) {
             const href = link.getAttribute("href");
 
-            if (href === "capabilities/" || href === "about/" || href === "notes/") {
+            if (href === "instruments/" || href === "about/" || href === "notes/") {
                 link.addEventListener("click", storePortfolioScroll);
             }
         });
