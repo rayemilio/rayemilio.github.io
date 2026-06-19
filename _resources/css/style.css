@@ -715,6 +715,12 @@ body.doc-page p:last-child {
     margin-bottom: 0;
 }
 
+body.doc-page .doc-signature {
+    margin-top: var(--s-7);
+    color: var(--muted);
+    font-style: italic;
+}
+
 body.doc-page em {
     font-style: italic;
 }
