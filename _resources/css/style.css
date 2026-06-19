@@ -416,8 +416,11 @@ body.doc-page h1.tracked-wordmark {
     .contact-btn {
         display: none;
     }
+    .header {
+        padding: var(--s-5) 0;
+    }
     #work {
-        scroll-margin-top: calc(var(--s-6) + var(--s-6) + 34px + 1px);
+        scroll-margin-top: calc(var(--s-5) + var(--s-5) + 34px + 1px);
     }
     .mobile-nav-button {
         border-radius: 3px;
@@ -467,8 +470,8 @@ body.doc-page h1.tracked-wordmark {
     }
     .mobile-nav-toggle:checked ~ .mobile-nav-button {
         position: fixed;
-        right: 20px;
-        top: 18px;
+        right: var(--s-9);
+        top: 24px;
     }
     .mobile-nav-toggle:checked ~ .mobile-nav-button .mobile-nav-icon {
         opacity: 0;
@@ -533,6 +536,10 @@ body.doc-page h1.tracked-wordmark {
         padding-right: var(--s-6);
     }
 
+    .mobile-nav-toggle:checked ~ .mobile-nav-button {
+        right: var(--s-6);
+    }
+
     .hero {
         grid-template-columns: 1fr;
         gap: var(--s-8);
@@ -584,6 +591,10 @@ body.doc-page h1.tracked-wordmark {
 @media (max-width: 640px) {
     .page {
         padding: 0 var(--s-5);
+    }
+
+    .mobile-nav-toggle:checked ~ .mobile-nav-button {
+        right: var(--s-5);
     }
 
     .hero {
