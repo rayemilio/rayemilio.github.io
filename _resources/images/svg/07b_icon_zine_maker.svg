@@ -3,5 +3,5 @@
     <path d="M14 9h36v46H14z" fill="#fffdf8" stroke="#181610" stroke-width="3"/>
     <path d="M32 9v46" fill="none" stroke="#181610" stroke-width="2"/>
     <path d="M18 16h10M18 22h10M18 28h8M36 16h10M36 22h10M36 28h8" stroke="#181610" stroke-width="2" stroke-linecap="square"/>
-    <path d="M18 36h10v10H18zM36 36h10v10H36z" fill="#d42a1f" stroke="#181610" stroke-width="2"/>
+    <path d="M18 36h10v10H18zM36 36h10v10H36z" fill="#8f8f8b" stroke="#181610" stroke-width="2"/>
 </svg>

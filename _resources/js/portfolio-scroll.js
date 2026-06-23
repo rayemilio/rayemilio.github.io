@@ -56,6 +56,26 @@
         });
     }
 
+    function isProjectDetailPage() {
+        return Boolean(document.querySelector(".back")) && !document.body.classList.contains("nav-page");
+    }
+
+    function forceProjectDetailPageTop() {
+        if (!isProjectDetailPage() || shouldRestore || window.location.hash) {
+            return;
+        }
+
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        window.scrollTo(0, 0);
+
+        requestAnimationFrame(function () {
+            window.scrollTo(0, 0);
+        });
+    }
+
     function initPortfolioScroll() {
         document.querySelectorAll(".proj-title a[href]").forEach(function (link) {
             link.addEventListener("click", storePortfolioScroll);
@@ -78,6 +98,7 @@
             }
         });
 
+        forceProjectDetailPageTop();
         restorePortfolioScroll();
     }
 
@@ -208,4 +229,8 @@
         initMobileNavLock();
         initBackLinkFade();
     }
+
+    window.addEventListener("pageshow", function () {
+        forceProjectDetailPageTop();
+    });
 })();
