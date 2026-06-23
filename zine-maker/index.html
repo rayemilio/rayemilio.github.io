@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zine Maker is a local-first browser tool for assembling printable eight-page zines from images, with booklet preview, imposition layout, and PDF export.">
+            content="Zine Maker is a local-first browser tool for assembling printable eight-page zines from images, with booklet preview, imposition layout, and PDF export."
+        />
         <title>Zine Maker — Objects on Purpose</title>
-        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css">
-        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css">
-        <link rel="stylesheet" href="../_resources/css/style.css">
+        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
+        <link rel="stylesheet" href="../_resources/css/style.css" />
         <script src="../_resources/js/code-highlight.js" defer></script>
         <script src="../_resources/js/portfolio-scroll.js"></script>
     </head>
@@ -17,141 +18,142 @@
         <a class="back" href="../">← Portfolio</a>
 
         <main>
-        <p class="doc-label">Technical Documentation</p>
-        <h1>Zine Maker</h1>
-        <p class="subtitle">
-            A local-first browser tool for making printable eight-page zines from images, with booklet preview,
-            imposition layout, and export-ready PDF output
-        </p>
+            <p class="doc-label">Technical Documentation</p>
+            <h1>Zine Maker</h1>
+            <p class="subtitle">
+                A local-first browser tool for making printable eight-page zines from images, with booklet preview,
+                imposition layout, and export-ready PDF output
+            </p>
 
-        <p class="meta tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">React</span>
-            <span class="tag">Vite</span>
-            <span class="tag">Canvas</span>
-            <span class="tag">IndexedDB</span>
-            <span class="tag">jsPDF</span>
-        </p>
+            <p class="meta tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Vite</span>
+                <span class="tag">Canvas</span>
+                <span class="tag">IndexedDB</span>
+                <span class="tag">jsPDF</span>
+            </p>
 
-        <div class="project-links">
-            <a href="https://zine.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
-        </div>
+            <div class="project-links">
+                <a href="https://zinemaker.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
+            </div>
 
-        <hr>
+            <hr />
 
-        <h2>The Idea</h2>
+            <h2>The Idea</h2>
 
-        <p>
-            Zine Maker is a focused publishing tool for turning a small image set into a printable folded zine. It keeps
-            the workflow in the browser: drop images in, assign them to pages, tune the frame, preview the booklet, and
-            export the sheet. The project is deliberately local-first. Images are kept in the browser, autosaved to
-            IndexedDB, and exported by the user as files rather than pushed through an account system.
-        </p>
+            <p>
+                Zine Maker is a focused publishing tool for turning a small image set into a printable folded zine. It
+                keeps the workflow in the browser: drop images in, assign them to pages, tune the frame, preview the
+                booklet, and export the sheet. The project is deliberately local-first. Images are kept in the browser,
+                autosaved to IndexedDB, and exported by the user as files rather than pushed through an account system.
+            </p>
 
-        <p>
-            The interface is built around the physical object. The app has eight fixed pages, paper presets, a full-sheet
-            imposition view, and export controls for the printable artifact. It is not a general design canvas. Its job
-            is to make the zine-making loop fast enough that layout decisions can stay visual and tactile.
-        </p>
+            <p>
+                The interface is built around the physical object. The app has eight fixed pages, paper presets, a
+                full-sheet imposition view, and export controls for the printable artifact. It is not a general design
+                canvas. Its job is to make the zine-making loop fast enough that layout decisions can stay visual and
+                tactile.
+            </p>
 
-        <div class="principle-note">
-            <p>Make the folded sheet the source of truth.</p>
-        </div>
+            <div class="principle-note">
+                <p>Make the folded sheet the source of truth.</p>
+            </div>
 
-        <hr class="thin">
+            <hr class="thin" />
 
-        <h2>Features</h2>
+            <h2>Features</h2>
 
-        <h3>Eight-page zine structure</h3>
-        <ul class="feature-list">
-            <li>Fixed eight-page project model with front cover, six interior pages, and back cover</li>
-            <li>Drag-and-drop page assignment from the image tray</li>
-            <li>Page swapping by dragging one page tile onto another</li>
-            <li>Spread pairing for valid interior page pairs</li>
-        </ul>
+            <h3>Eight-page zine structure</h3>
+            <ul class="feature-list">
+                <li>Fixed eight-page project model with front cover, six interior pages, and back cover</li>
+                <li>Drag-and-drop page assignment from the image tray</li>
+                <li>Page swapping by dragging one page tile onto another</li>
+                <li>Spread pairing for valid interior page pairs</li>
+            </ul>
 
-        <h3>Image placement</h3>
-        <ul class="feature-list">
-            <li>Fill and fit modes for fast page framing</li>
-            <li>Freeform mode for manual pan, zoom, and rotation</li>
-            <li>Per-page margin and image stroke controls with apply-to-all actions</li>
-            <li>Crop constraints keep locked placements inside the printable frame</li>
-        </ul>
+            <h3>Image placement</h3>
+            <ul class="feature-list">
+                <li>Fill and fit modes for fast page framing</li>
+                <li>Freeform mode for manual pan, zoom, and rotation</li>
+                <li>Per-page margin and image stroke controls with apply-to-all actions</li>
+                <li>Crop constraints keep locked placements inside the printable frame</li>
+            </ul>
 
-        <h3>Preview and export</h3>
-        <ul class="feature-list">
-            <li>Editor view for all eight pages</li>
-            <li>Booklet preview with front, spread, and back navigation</li>
-            <li>Full-sheet imposition preview using the print order required for folding</li>
-            <li>PDF export via jsPDF, PNG sheet export, and portable project JSON export/import</li>
-        </ul>
+            <h3>Preview and export</h3>
+            <ul class="feature-list">
+                <li>Editor view for all eight pages</li>
+                <li>Booklet preview with front, spread, and back navigation</li>
+                <li>Full-sheet imposition preview using the print order required for folding</li>
+                <li>PDF export via jsPDF, PNG sheet export, and portable project JSON export/import</li>
+            </ul>
 
-        <h3>Local persistence</h3>
-        <ul class="feature-list">
-            <li>Autosaves the working project to IndexedDB</li>
-            <li>Restores the saved project on reload</li>
-            <li>Stores uploaded image blobs locally with object URLs restored at runtime</li>
-            <li>New Zine clears local autosave and returns to a blank eight-page project</li>
-        </ul>
+            <h3>Local persistence</h3>
+            <ul class="feature-list">
+                <li>Autosaves the working project to IndexedDB</li>
+                <li>Restores the saved project on reload</li>
+                <li>Stores uploaded image blobs locally with object URLs restored at runtime</li>
+                <li>New Zine clears local autosave and returns to a blank eight-page project</li>
+            </ul>
 
-        <hr class="thin">
+            <hr class="thin" />
 
-        <h2>Tech Stack</h2>
+            <h2>Tech Stack</h2>
 
-        <table class="stack-table">
-            <tr>
-                <td>Framework</td>
-                <td>React 18 with Vite</td>
-            </tr>
-            <tr>
-                <td>Language</td>
-                <td>TypeScript</td>
-            </tr>
-            <tr>
-                <td>Rendering</td>
-                <td>HTML Canvas for page previews, booklet spreads, and imposition sheets</td>
-            </tr>
-            <tr>
-                <td>Persistence</td>
-                <td>IndexedDB local autosave</td>
-            </tr>
-            <tr>
-                <td>Export</td>
-                <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON for project archive/import</td>
-            </tr>
-            <tr>
-                <td>Image input</td>
-                <td>JPEG, PNG, and WebP uploads via file picker or drag-and-drop</td>
-            </tr>
-            <tr>
-                <td>Paper presets</td>
-                <td>US Letter, A4, and A3</td>
-            </tr>
-            <tr>
-                <td>Hosting</td>
-                <td>Static Vite build</td>
-            </tr>
-        </table>
+            <table class="stack-table">
+                <tr>
+                    <td>Framework</td>
+                    <td>React 18 with Vite</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>TypeScript</td>
+                </tr>
+                <tr>
+                    <td>Rendering</td>
+                    <td>HTML Canvas for page previews, booklet spreads, and imposition sheets</td>
+                </tr>
+                <tr>
+                    <td>Persistence</td>
+                    <td>IndexedDB local autosave</td>
+                </tr>
+                <tr>
+                    <td>Export</td>
+                    <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON for project archive/import</td>
+                </tr>
+                <tr>
+                    <td>Image input</td>
+                    <td>JPEG, PNG, and WebP uploads via file picker or drag-and-drop</td>
+                </tr>
+                <tr>
+                    <td>Paper presets</td>
+                    <td>US Letter, A4, and A3</td>
+                </tr>
+                <tr>
+                    <td>Hosting</td>
+                    <td>Static Vite build</td>
+                </tr>
+            </table>
 
-        <hr class="thin">
+            <hr class="thin" />
 
-        <h2>Architecture</h2>
+            <h2>Architecture</h2>
 
-        <h3>Source structure</h3>
+            <h3>Source structure</h3>
 
-        <div class="code-block">
-            <pre data-code-language="tree">
+            <div class="code-block">
+                <pre data-code-language="tree">
 src/
   App.tsx       project model, editor state, canvas rendering, export/import
   main.tsx      React root
   styles.css    app shell, tray, page grid, inspector, preview, print-sheet UI</pre
-            >
-        </div>
+                >
+            </div>
 
-        <h3>Core project model</h3>
+            <h3>Core project model</h3>
 
-        <div class="code-block">
-            <pre data-code-language="typescript">
+            <div class="code-block">
+                <pre data-code-language="typescript">
 type ZineProject = {
   version?: number;
   title: string;
@@ -172,30 +174,30 @@ type PageSlot = {
   spreadId?: string;
   spreadSide?: 'left' | 'right';
 };</pre
-            >
-        </div>
+                >
+            </div>
 
-        <p>
-            The data model is intentionally small. A project is a title, a local asset library, eight page slots, and
-            design settings. Runtime object URLs are stripped before autosave and export, then rebuilt when the project
-            is restored.
-        </p>
+            <p>
+                The data model is intentionally small. A project is a title, a local asset library, eight page slots,
+                and design settings. Runtime object URLs are stripped before autosave and export, then rebuilt when the
+                project is restored.
+            </p>
 
-        <h3>Imposition order</h3>
+            <h3>Imposition order</h3>
 
-        <div class="code-block">
-            <pre data-code-language="typescript">const IMPOSITION_PAGES = [7, 6, 5, 4, 8, 1, 2, 3];</pre>
-        </div>
+            <div class="code-block">
+                <pre data-code-language="typescript">const IMPOSITION_PAGES = [7, 6, 5, 4, 8, 1, 2, 3];</pre>
+            </div>
 
-        <p>
-            The full-sheet preview and PDF export use the same imposition order, so the visual preview matches the file
-            that is saved. Top-row pages are rotated during canvas drawing to match the physical fold.
-        </p>
+            <p>
+                The full-sheet preview and PDF export use the same imposition order, so the visual preview matches the
+                file that is saved. Top-row pages are rotated during canvas drawing to match the physical fold.
+            </p>
 
-        <h3>Export flow</h3>
+            <h3>Export flow</h3>
 
-        <div class="code-block">
-            <pre data-code-language="typescript">
+            <div class="code-block">
+                <pre data-code-language="typescript">
 async function exportPdf() {
   const paper = sheetSize(project.settings);
   const pdf = new jsPDF({
@@ -210,37 +212,39 @@ async function exportPdf() {
   pdf.addImage(image, 'JPEG', 0, 0, paper.width, paper.height);
   pdf.save(`${project.title || 'zine'}.pdf`);
 }</pre
-            >
-        </div>
+                >
+            </div>
 
-        <p>
-            Export is canvas-first. The app renders the printable sheet once, then routes that same rendering to PDF or
-            PNG. Project export is separate: it serializes the project state and embeds image blobs as data URLs so the
-            work can be moved between browsers.
-        </p>
+            <p>
+                Export is canvas-first. The app renders the printable sheet once, then routes that same rendering to PDF
+                or PNG. Project export is separate: it serializes the project state and embeds image blobs as data URLs
+                so the work can be moved between browsers.
+            </p>
 
-        <hr class="thin">
+            <hr class="thin" />
 
-        <h2>Design Notes</h2>
+            <h2>Design Notes</h2>
 
-        <p>
-            The UI uses a print-shop vocabulary: heavy rules, square controls, hard shadows, paper tones, and a narrow
-            red accent. The panels map to the workflow: image tray on the left, working sheet in the center, design
-            controls on the right. The app favors visible mechanics over hidden menus because the user is making a
-            physical object and needs to see the consequences of each change immediately.
-        </p>
+            <p>
+                The UI uses a print-shop vocabulary: heavy rules, square controls, hard shadows, paper tones, and a
+                narrow red accent. The panels map to the workflow: image tray on the left, working sheet in the center,
+                design controls on the right. The app favors visible mechanics over hidden menus because the user is
+                making a physical object and needs to see the consequences of each change immediately.
+            </p>
 
-        <p>
-            The most important view is the full sheet. Individual pages matter, but the final object is the folded
-            imposition. Keeping that view one click away makes mistakes visible before the user prints.
-        </p>
-
+            <p>
+                The most important view is the full sheet. Individual pages matter, but the final object is the folded
+                imposition. Keeping that view one click away makes mistakes visible before the user prints.
+            </p>
         </main>
 
         <footer>
             <p class="footer-links">
-                <span>← <a href="../">Return to portfolio</a></span>
-                <a href="https://zine.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
+                <span>
+                    ←
+                    <a href="../">Return to portfolio</a>
+                </span>
+                <a href="https://zinemaker.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
             </p>
         </footer>
     </body>
