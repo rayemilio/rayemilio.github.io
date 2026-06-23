@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zine Maker is a local-first browser tool for assembling printable eight-page zines from images, with booklet preview, imposition layout, and PDF export."
+            content="Zine Maker is a local-first browser tool for assembling printable eight-page zines from images, with auto-fill, page reordering, booklet preview, imposition layout, and PDF export."
         />
         <title>Zine Maker — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
@@ -21,8 +21,8 @@
             <p class="doc-label">Technical Documentation</p>
             <h1>Zine Maker</h1>
             <p class="subtitle">
-                A local-first browser tool for making printable eight-page zines from images, with booklet preview,
-                imposition layout, and export-ready PDF output
+                A local-first browser tool for making printable eight-page zines from images, with auto-fill, page and
+                spread reordering, booklet preview, imposition layout, and export-ready PDF output
             </p>
 
             <p class="meta tags">
@@ -44,9 +44,10 @@
 
             <p>
                 Zine Maker is a focused publishing tool for turning a small image set into a printable folded zine. It
-                keeps the workflow in the browser: drop images in, assign them to pages, tune the frame, preview the
-                booklet, and export the sheet. The project is deliberately local-first. Images are kept in the browser,
-                autosaved to IndexedDB, and exported by the user as files rather than pushed through an account system.
+                keeps the workflow in the browser: drop images in, auto-fill the editor, reorder pages or spreads, tune
+                the frame, preview the booklet, and export the sheet. The project is deliberately local-first. Images
+                are kept in the browser, autosaved to IndexedDB, and exported by the user as files rather than pushed
+                through an account system.
             </p>
 
             <p>
@@ -68,8 +69,9 @@
             <ul class="feature-list">
                 <li>Fixed eight-page project model with front cover, six interior pages, and back cover</li>
                 <li>Drag-and-drop page assignment from the image tray</li>
-                <li>Page swapping by dragging one page tile onto another</li>
-                <li>Spread pairing for valid interior page pairs</li>
+                <li>Auto-Distribute fills the editor from the sorted asset tray</li>
+                <li>Re-Order mode moves or swaps single pages and valid spreads</li>
+                <li>Spread pairing for valid interior page pairs, with reordering that preserves the pair</li>
             </ul>
 
             <h3>Image placement</h3>
@@ -77,7 +79,8 @@
                 <li>Fill and fit modes for fast page framing</li>
                 <li>Freeform mode for manual pan, zoom, and rotation</li>
                 <li>Per-page margin and image stroke controls with apply-to-all actions</li>
-                <li>Crop constraints keep locked placements inside the printable frame</li>
+                <li>Crop constraints keep aligned placements inside the printable frame</li>
+                <li>Freeform and aligned crop states are preserved when switching modes</li>
             </ul>
 
             <h3>Preview and export</h3>
@@ -86,14 +89,16 @@
                 <li>Booklet preview with front, spread, and back navigation</li>
                 <li>Full-sheet imposition preview using the print order required for folding</li>
                 <li>PDF export via jsPDF, PNG sheet export, and portable project JSON export/import</li>
+                <li>Lightweight preview images keep editing responsive while exports render from original uploads</li>
             </ul>
 
             <h3>Local persistence</h3>
             <ul class="feature-list">
-                <li>Autosaves the working project to IndexedDB</li>
+                <li>Autosaves the working project to IndexedDB with visible save status</li>
                 <li>Restores the saved project on reload</li>
-                <li>Stores uploaded image blobs locally with object URLs restored at runtime</li>
-                <li>New Zine clears local autosave and returns to a blank eight-page project</li>
+                <li>Stores original image blobs locally and regenerates runtime preview URLs when restored</li>
+                <li>New Zine confirms before clearing local autosave and returning to a blank project</li>
+                <li>Object URLs and image caches are cleaned up on reset, removal, and import</li>
             </ul>
 
             <hr class="thin" />
@@ -115,19 +120,31 @@
                 </tr>
                 <tr>
                     <td>Persistence</td>
-                    <td>IndexedDB local autosave</td>
+                    <td>IndexedDB local autosave with runtime URL rehydration</td>
                 </tr>
                 <tr>
                     <td>Export</td>
                     <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON for project archive/import</td>
                 </tr>
                 <tr>
+                    <td>Image pipeline</td>
+                    <td>Canvas-generated preview blobs for editing, original uploads for print export</td>
+                </tr>
+                <tr>
                     <td>Image input</td>
                     <td>JPEG, PNG, and WebP uploads via file picker or drag-and-drop</td>
                 </tr>
                 <tr>
+                    <td>Layout sizing</td>
+                    <td>ResizeObserver-driven editor frame sizing for stable page previews</td>
+                </tr>
+                <tr>
                     <td>Paper presets</td>
                     <td>US Letter, A4, and A3</td>
+                </tr>
+                <tr>
+                    <td>Typography</td>
+                    <td>Self-hosted Anton and Courier Prime web fonts</td>
                 </tr>
                 <tr>
                     <td>Hosting</td>
@@ -162,11 +179,24 @@ type ZineProject = {
   settings: DesignSettings;
 };
 
+type ZineAsset = {
+  id: string;
+  name: string;
+  type: string;
+  blob: Blob;
+  width: number;
+  height: number;
+  previewBlob?: Blob;
+  previewWidth?: number;
+  previewHeight?: number;
+};
+
 type PageSlot = {
   id: number;
   assetId?: string;
   fit: 'cover' | 'contain' | 'spread';
   crop: { x: number; y: number; zoom: number; rotation: number };
+  freeformCrop?: { x: number; y: number; zoom: number; rotation: number };
   freeform: boolean;
   margin: number;
   imageBorder?: number;
@@ -179,8 +209,28 @@ type PageSlot = {
 
             <p>
                 The data model is intentionally small. A project is a title, a local asset library, eight page slots,
-                and design settings. Runtime object URLs are stripped before autosave and export, then rebuilt when the
-                project is restored.
+                and design settings. Runtime object URLs are stripped before autosave and project export, then rebuilt
+                when the project is restored. Uploaded originals stay available for export while generated preview blobs
+                keep the editor responsive.
+            </p>
+
+            <h3>Preview asset pipeline</h3>
+
+            <div class="code-block">
+                <pre data-code-language="typescript">
+const PREVIEW_MAX_LONG_EDGE = 1200;
+
+function imageForAsset(asset: RuntimeAsset, source: 'preview' | 'original' = 'preview') {
+  const url = source === 'preview' ? asset.previewUrl ?? asset.url : asset.url;
+  return loadImageFromUrl(url, `Could not load ${asset.name}`);
+}</pre
+                >
+            </div>
+
+            <p>
+                The editor renders from preview-sized blobs when possible, but PDF and PNG export request the original
+                image source. That keeps drag, crop, and preview interactions light without lowering print output
+                quality.
             </p>
 
             <h3>Imposition order</h3>
@@ -192,6 +242,25 @@ type PageSlot = {
             <p>
                 The full-sheet preview and PDF export use the same imposition order, so the visual preview matches the
                 file that is saved. Top-row pages are rotated during canvas drawing to match the physical fold.
+            </p>
+
+            <h3>Reorder model</h3>
+
+            <div class="code-block">
+                <pre data-code-language="typescript">
+type ReorderDropPosition = 'before' | 'after' | 'on';
+type ReorderUnit = {
+  kind: 'single' | 'spread';
+  length: 1 | 2;
+  startIndex: number;
+};</pre
+                >
+            </div>
+
+            <p>
+                Reordering treats a spread as a two-page unit. Boundary drops move content before or after another
+                slot, while direct drops swap compatible blocks. Spread metadata is normalized after each move so paired
+                pages stay together.
             </p>
 
             <h3>Export flow</h3>
@@ -207,6 +276,7 @@ async function exportPdf() {
   });
   const sheet = await renderImpositionCanvas(project, Math.round(paper.width * 2), {
     showGuides: false,
+    imageSource: 'original',
   });
   const image = sheet.toDataURL('image/jpeg', 0.95);
   pdf.addImage(image, 'JPEG', 0, 0, paper.width, paper.height);
@@ -218,7 +288,7 @@ async function exportPdf() {
             <p>
                 Export is canvas-first. The app renders the printable sheet once, then routes that same rendering to PDF
                 or PNG. Project export is separate: it serializes the project state and embeds image blobs as data URLs
-                so the work can be moved between browsers.
+                so the work can be moved between browsers without carrying runtime preview blobs or object URLs.
             </p>
 
             <hr class="thin" />
