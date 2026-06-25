@@ -528,10 +528,6 @@ body.doc-page h1.tracked-wordmark {
         border-bottom-color: var(--ink);
         color: var(--ink);
     }
-    body.nav-page .mobile-nav a.active,
-    body.nav-page .mobile-nav span.active {
-        border-bottom-color: transparent;
-    }
     .mobile-nav-toggle:checked ~ .mobile-nav {
         display: flex;
     }
@@ -1351,6 +1347,9 @@ body.doc-page footer a:hover {
     }
     body.doc-page.nav-page main {
         padding-top: var(--s-9);
+    }
+    body.doc-page.nav-page .doc-label + hr {
+        border-top-color: transparent;
     }
     body.doc-page h1 {
         font-size: clamp(28px, 7vw, 40px);
