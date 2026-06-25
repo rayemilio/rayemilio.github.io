@@ -19,6 +19,22 @@
             ["flag", /^--?[a-zA-Z0-9-]+/],
             ["path", /^[.~\/]?[a-zA-Z0-9_./+@-]+/],
         ],
+        typescript: [
+            ["comment", /^\/\/[^\n]*/],
+            ["comment", /^\/\*[\s\S]*?\*\//],
+            ["string", /^`(?:\\[\s\S]|[^`\\])*`/],
+            ["string", /^"[^"\\\n]*(?:\\.[^"\\\n]*)*"|^'[^'\\\n]*(?:\\.[^'\\\n]*)*'/],
+            [
+                "keyword",
+                /^(async|await|break|case|class|const|continue|default|else|export|extends|false|for|from|function|if|import|interface|let|new|null|return|switch|true|type|undefined|var|while)(?![a-zA-Z0-9_$])/,
+            ],
+            ["property", /^(Array|Blob|Promise|Record|boolean|never|number|string|unknown|void)(?![a-zA-Z0-9_$])/],
+            ["function", /^[a-zA-Z_$][a-zA-Z0-9_$]*(?=\()/],
+            ["path", /^[A-Z][a-zA-Z0-9_$]*/],
+            ["number", /^\d+(?:\.\d+)?/],
+            ["operator", /^(=>|===|!==|==|!=|<=|>=|\?\?|\|\||&&|[=+\-*/%<>!?:|&.]+)/],
+            ["punctuation", /^[{}()[\],;]/],
+        ],
         tree: [
             ["tree", /^[├└│─]+/],
             ["path", /^[a-zA-Z0-9_./()[\]-]+/],
@@ -59,12 +75,33 @@
         return "";
     }
 
+    function hasLineContentBefore(code, index) {
+        const lineStart = code.lastIndexOf("\n", index - 1) + 1;
+
+        return /\S/.test(code.slice(lineStart, index));
+    }
+
     function highlight(code, language) {
         const patterns = patternsByLanguage[language] || [];
         let highlighted = "";
         let index = 0;
 
         while (index < code.length) {
+            if ((language === "tree" || language === "diagram") && hasLineContentBefore(code, index)) {
+                const description = code.slice(index).match(/^ {2,}([^\n]+)/);
+
+                if (description) {
+                    highlighted += description[0]
+                        .slice(0, description[0].length - description[1].length)
+                        .split("")
+                        .map(highlightInvisibleCharacter)
+                        .join("");
+                    highlighted += highlightToken("comment", description[1]);
+                    index += description[0].length;
+                    continue;
+                }
+            }
+
             if (code[index] === " " || code[index] === "\t" || code[index] === "\n") {
                 highlighted += highlightInvisibleCharacter(code[index]);
                 index += 1;

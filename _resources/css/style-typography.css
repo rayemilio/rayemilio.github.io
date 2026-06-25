@@ -486,7 +486,10 @@ body.typography-page .code-invisible {
 }
 
 body.typography-page .code-space {
-    padding: 0 0.02em;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    width: 1ch;
 }
 
 body.typography-page .code-return {
