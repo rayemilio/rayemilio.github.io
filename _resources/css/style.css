@@ -528,6 +528,10 @@ body.doc-page h1.tracked-wordmark {
         border-bottom-color: var(--ink);
         color: var(--ink);
     }
+    body.nav-page .mobile-nav a.active,
+    body.nav-page .mobile-nav span.active {
+        border-bottom-color: transparent;
+    }
     .mobile-nav-toggle:checked ~ .mobile-nav {
         display: flex;
     }
