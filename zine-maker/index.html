@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zine Maker is a local-first browser tool for assembling printable eight-page zines from images, with auto-fill, page reordering, booklet preview, imposition layout, and PDF export."
+            content="Zine Maker is a local-first browser tool for assembling printable foldable zines and trifold brochures from images, with text overlays, page and spread reordering, imposition preview, PDF, PNG, ZIP, and project export."
         />
         <title>Zine Maker — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
@@ -21,8 +21,9 @@
             <p class="doc-label">Technical Documentation</p>
             <h1>Zine Maker</h1>
             <p class="subtitle">
-                A local-first browser based React tool for making printable eight-page zines from images, with
-                auto-fill, page and spread reordering, booklet preview, imposition layout, and export-ready PDF output
+                A local-first browser based React tool for making printable foldable zines and trifold brochures from
+                images, with auto-fill, text overlays, page and spread reordering, booklet preview, imposition layout,
+                and export-ready PDF, PNG, ZIP, and project output
             </p>
 
             <p class="meta tags">
@@ -43,18 +44,18 @@
             <h2>The Idea</h2>
 
             <p>
-                Zine Maker is a focused publishing tool for turning a small image set into a printable folded zine. It
-                keeps the workflow in the browser: drop images in, auto-fill the editor, reorder pages or spreads, tune
-                the frame, preview the booklet, and export the sheet. The project is deliberately local-first. Images
-                are kept in the browser, autosaved to IndexedDB, and exported by the user as files rather than pushed
-                through an account system.
+                Zine Maker is a focused publishing tool for turning a small image set into a printable folded object.
+                It keeps the workflow in the browser: drop images in, choose a folded zine or trifold brochure format,
+                auto-fill the editor, add text, reorder pages or spreads, tune the frame, preview the booklet or sheet,
+                and export the files. The project is deliberately local-first. Images are kept in the browser,
+                autosaved to IndexedDB, and exported by the user as files rather than pushed through an account system.
             </p>
 
             <p>
-                The interface is built around the physical object. The app has eight fixed pages, paper presets, a
-                full-sheet imposition view, and export controls for the printable artifact. It is not a general design
-                canvas. Its job is to make the zine-making loop fast enough that layout decisions can stay visual and
-                tactile.
+                The interface is built around the physical object. The app has fixed page maps, paper presets,
+                format-aware spread controls, full-sheet imposition views, and export controls for the printable
+                artifact. It is not a general design canvas. Its job is to make the zine-making loop fast enough that
+                layout decisions can stay visual and tactile.
             </p>
 
             <div class="principle-note">
@@ -65,30 +66,43 @@
 
             <h2>Features</h2>
 
-            <h3>Eight-page zine structure</h3>
+            <h3>Folded formats</h3>
             <ul class="feature-list">
-                <li>Fixed eight-page project model with front cover, six interior pages, and back cover</li>
+                <li>Eight-page foldable zine format with front cover, six interior pages, and back cover</li>
+                <li>Trifold brochure format with outside and inside sheet sides</li>
+                <li>Format switching updates page labels, editor grid, preview views, valid spreads, and export sides</li>
                 <li>Drag-and-drop page assignment from the image tray</li>
                 <li>Auto-Distribute fills the editor from the sorted asset tray</li>
-                <li>Re-Order mode moves or swaps single pages and valid spreads</li>
-                <li>Spread pairing for valid interior page pairs, with reordering that preserves the pair</li>
+                <li>Re-Order mode moves or swaps single pages, two-page spreads, and valid trifold spread groups</li>
             </ul>
 
             <h3>Image placement</h3>
             <ul class="feature-list">
                 <li>Fill and fit modes for fast page framing</li>
                 <li>Freeform mode for manual pan, zoom, and rotation</li>
+                <li>Rotation-aware freeform crop constraints and snap guides keep images inside the printable frame</li>
                 <li>Per-page margin and image stroke controls with apply-to-all actions</li>
-                <li>Crop constraints keep aligned placements inside the printable frame</li>
+                <li>Image overlay colors can tint the whole page or only the placed photo</li>
                 <li>Freeform and aligned crop states are preserved when switching modes</li>
+            </ul>
+
+            <h3>Text and color layers</h3>
+            <ul class="feature-list">
+                <li>Non-destructive text overlays stored with each page or spread</li>
+                <li>Fullscreen text editor with direct dragging over the image</li>
+                <li>Font, color, highlight, size, tracking, line-height, padding, alignment, and rotation controls</li>
+                <li>Self-hosted display, serif, mono, script, and typewriter font options</li>
+                <li>Text overlays render through the same canvas path as previews, PDF, and PNG output</li>
             </ul>
 
             <h3>Preview and export</h3>
             <ul class="feature-list">
-                <li>Editor view for all eight pages</li>
-                <li>Booklet preview with front, spread, and back navigation</li>
-                <li>Full-sheet imposition preview using the print order required for folding</li>
-                <li>PDF export via jsPDF, PNG sheet export, and portable project JSON export/import</li>
+                <li>Editor view for the active format's complete page set</li>
+                <li>Booklet and brochure preview modes with format-specific navigation</li>
+                <li>Full-sheet imposition preview using the print order required for folding or double-sided trifold printing</li>
+                <li>PDF export via jsPDF, single-sheet PNG export, and zipped trifold PNG side export</li>
+                <li>Optional ZIP export bundles the rendered PDF or PNG files with a portable project JSON archive</li>
+                <li>Download-complete dialog shows zine folding instructions or trifold print settings</li>
                 <li>Lightweight preview images keep editing responsive while exports render from original uploads</li>
             </ul>
 
@@ -124,7 +138,7 @@
                 </tr>
                 <tr>
                     <td>Export</td>
-                    <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON for project archive/import</td>
+                    <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON archive/import, and a small in-app ZIP writer for bundled exports</td>
                 </tr>
                 <tr>
                     <td>Image pipeline</td>
@@ -143,8 +157,12 @@
                     <td>US Letter, A4, and A3</td>
                 </tr>
                 <tr>
+                    <td>Formats</td>
+                    <td>Eight-page foldable zine and two-sided trifold brochure layouts</td>
+                </tr>
+                <tr>
                     <td>Typography</td>
-                    <td>Self-hosted Anton and Courier Prime web fonts</td>
+                    <td>Self-hosted Anton, Bebas Neue, Bungee, Playfair Display, EB Garamond, Space Grotesk, Courier Prime, Special Elite, and Caveat web fonts</td>
                 </tr>
                 <tr>
                     <td>Hosting</td>
@@ -161,9 +179,12 @@
             <div class="code-block">
                 <pre data-code-language="tree">
 src/
-  App.tsx       project model, editor state, canvas rendering, export/import
-  main.tsx      React root
-  styles.css    app shell, tray, page grid, inspector, preview, print-sheet UI</pre
+  App.tsx        application state, format switching, editor actions, export orchestration
+  canvas/        shared preview, booklet, imposition, and export rendering
+  components/    asset tray, page grid, inspector, previews, text editor, export modal
+  domain/        project model, format definitions, spread and crop rules
+  services/      assets, IndexedDB storage, project JSON, ZIP, and download helpers
+  styles/        app shell, tray, page grid, inspector, text tools, preview, export UI</pre
                 >
             </div>
 
@@ -173,10 +194,27 @@ src/
                 <pre data-code-language="typescript">
 type ZineProject = {
   version?: number;
+  format?: 'zine' | 'trifold';
   title: string;
   assets: ZineAsset[];
   pages: PageSlot[];
   settings: DesignSettings;
+};
+
+type TextOverlay = {
+  id: string;
+  text: string;
+  fontFamily: string;
+  fontSize: number;
+  color: string;
+  backgroundColor?: string;
+  tracking: number;
+  lineHeight: number;
+  padding: number;
+  x: number;
+  y: number;
+  rotation: number;
+  align: 'left' | 'center' | 'right';
 };
 
 type ZineAsset = {
@@ -201,17 +239,25 @@ type PageSlot = {
   margin: number;
   imageBorder?: number;
   imageStroke?: string;
+  overlayColor?: string;
+  overlayOpacity: number;
+  overlayPhotoOnly?: boolean;
+  textOverlays?: TextOverlay[];
   spreadId?: string;
-  spreadSide?: 'left' | 'right';
+  spreadSide?: 'left' | 'center' | 'right';
+  spreadPageIds?: number[];
+  spreadIndex?: number;
+  spreadLength?: number;
 };</pre
                 >
             </div>
 
             <p>
-                The data model is intentionally small. A project is a title, a local asset library, eight page slots,
-                and design settings. Runtime object URLs are stripped before autosave and project export, then rebuilt
-                when the project is restored. Uploaded originals stay available for export while generated preview blobs
-                keep the editor responsive.
+                The data model is intentionally small. A project is a title, a format, a local asset library, page
+                slots, and design settings. Page slots own their image placement, overlay color, text layers, and
+                spread metadata. Runtime object URLs are stripped before autosave and project export, then rebuilt when
+                the project is restored. Uploaded originals stay available for export while generated preview blobs keep
+                the editor responsive.
             </p>
 
             <h3>Preview asset pipeline</h3>
@@ -233,15 +279,20 @@ function imageForAsset(asset: RuntimeAsset, source: 'preview' | 'original' = 'pr
                 quality.
             </p>
 
-            <h3>Imposition order</h3>
+            <h3>Format-aware sheets</h3>
 
             <div class="code-block">
-                <pre data-code-language="typescript">const IMPOSITION_PAGES = [7, 6, 5, 4, 8, 1, 2, 3];</pre>
+                <pre data-code-language="typescript">
+const IMPOSITION_PAGES = [7, 6, 5, 4, 8, 1, 2, 3];
+const TRIFOLD_OUTSIDE_PAGES = [2, 6, 1];
+const TRIFOLD_INSIDE_PAGES = [3, 4, 5];</pre
+                >
             </div>
 
             <p>
-                The full-sheet preview and PDF export use the same imposition order, so the visual preview matches the
-                file that is saved. Top-row pages are rotated during canvas drawing to match the physical fold.
+                The full-sheet preview and PDF export use the same format definitions, so the visual preview matches
+                the file that is saved. Foldable zines render one imposed sheet with the top row rotated for folding.
+                Trifolds render separate outside and inside sides for double-sided printing.
             </p>
 
             <h3>Reorder model</h3>
@@ -251,44 +302,50 @@ function imageForAsset(asset: RuntimeAsset, source: 'preview' | 'original' = 'pr
 type ReorderDropPosition = 'before' | 'after' | 'on';
 type ReorderUnit = {
   kind: 'single' | 'spread';
-  length: 1 | 2;
+  length: 1 | 2 | 3;
   startIndex: number;
 };</pre
                 >
             </div>
 
             <p>
-                Reordering treats a spread as a two-page unit. Boundary drops move content before or after another slot,
-                while direct drops swap compatible blocks. Spread metadata is normalized after each move so paired pages
-                stay together.
+                Reordering treats a spread as one unit, whether it spans two pages or a full three-panel trifold side.
+                Boundary drops move content before or after another slot, while direct drops swap compatible blocks.
+                Spread metadata is normalized after each move so paired and grouped pages stay together.
             </p>
 
             <h3>Export flow</h3>
 
             <div class="code-block">
                 <pre data-code-language="typescript">
-async function exportPdf() {
+async function renderPdfBlob() {
   const paper = sheetSize(project.settings);
   const pdf = new jsPDF({
     orientation: 'landscape',
     unit: 'pt',
     format: [paper.width, paper.height],
   });
-  const sheet = await renderImpositionCanvas(project, Math.round(paper.width * 2), {
-    showGuides: false,
-    imageSource: 'original',
-  });
-  const image = sheet.toDataURL('image/jpeg', 0.95);
-  pdf.addImage(image, 'JPEG', 0, 0, paper.width, paper.height);
-  pdf.save(`${project.title || 'zine'}.pdf`);
+
+  for (const [index, side] of sheetSidesForFormat(projectFormat(project)).entries()) {
+    if (index > 0) pdf.addPage([paper.width, paper.height], 'landscape');
+    const sheet = await renderImpositionCanvas(project, Math.round(paper.width * 2), {
+      showGuides: false,
+      imageSource: 'original',
+      sideId: side.id,
+    });
+    pdf.addImage(sheet.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, paper.width, paper.height);
+  }
+
+  return pdf.output('blob');
 }</pre
                 >
             </div>
 
             <p>
-                Export is canvas-first. The app renders the printable sheet once, then routes that same rendering to PDF
-                or PNG. Project export is separate: it serializes the project state and embeds image blobs as data URLs
-                so the work can be moved between browsers without carrying runtime preview blobs or object URLs.
+                Export is canvas-first. The app renders the printable side or sides, then routes that same rendering to
+                PDF, PNG, or ZIP. Project export is separate but can be bundled with the rendered artifact: it serializes
+                the project state and embeds original image blobs as data URLs so the work can be moved between browsers
+                without carrying runtime preview blobs or object URLs.
             </p>
 
             <hr class="thin" />
