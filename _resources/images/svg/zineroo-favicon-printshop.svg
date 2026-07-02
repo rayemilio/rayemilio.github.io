@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="78 -50 114 218" width="114" height="218" role="img" aria-label="Zineroo favicon">
+  <g class="k-body" stroke="#1A1613" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <g class="k-ears">
+      <g transform="rotate(-15 110 60)">
+        <path d="M110,-44 C120,-38 123,4 120,36 C118,54 114,64 110,66 C106,64 102,54 100,36 C97,4 100,-38 110,-44 Z" fill="#E4553B"></path>
+        <path d="M110,-32 C117,-26 119,2 116,34 C114,50 112,58 110,58 C108,58 106,50 104,34 C101,2 103,-26 110,-32 Z" fill="#F2B8A6" stroke="none"></path>
+      </g>
+      <g transform="rotate(15 160 60)">
+        <path d="M160,-44 C170,-38 173,4 170,36 C168,54 164,64 160,66 C156,64 152,54 150,36 C147,4 150,-38 160,-44 Z" fill="#E4553B"></path>
+        <path d="M160,-32 C167,-26 169,2 166,34 C164,50 162,58 160,58 C158,58 156,50 154,34 C151,2 153,-26 160,-32 Z" fill="#F2B8A6" stroke="none"></path>
+      </g>
+    </g>
+    <path d="M135,34 C173,34 186,66 183,96 C180,124 164,150 135,158 C106,150 90,124 87,96 C84,66 97,34 135,34 Z" fill="#E4553B"></path>
+    <path d="M135,158 C117,152 106,132 105,112 C121,101 149,101 165,112 C164,132 153,152 135,158 Z" fill="#F4EDDD" stroke="none"></path>
+    <path d="M135,124 q15,2 13,12 q-2,8 -13,8 q-13,0 -13,-8 q-2,-10 13,-12 Z" fill="#1A1613"></path>
+    <path d="M123,146 q12,10 24,0" fill="none" stroke="#1A1613" stroke-width="4.5"></path>
+    <g class="k-eyes">
+      <ellipse cx="116" cy="86" rx="15" ry="16" fill="#ffffff"></ellipse>
+      <ellipse cx="154" cy="86" rx="15" ry="16" fill="#ffffff"></ellipse>
+      <circle cx="119" cy="88" r="7.5" fill="#1A1613" stroke="none"></circle>
+      <circle cx="151" cy="88" r="7.5" fill="#1A1613" stroke="none"></circle>
+      <circle cx="122" cy="82" r="3.2" fill="#ffffff" stroke="none"></circle>
+      <circle cx="154" cy="82" r="3.2" fill="#ffffff" stroke="none"></circle>
+    </g>
+  </g>
+</svg>

@@ -703,6 +703,24 @@ body.doc-page h1 {
     color: var(--ink);
 }
 
+.doc-title-row {
+    position: relative;
+    margin: 0 0 var(--s-4);
+}
+
+.doc-title-row h1 {
+    margin-bottom: 0;
+}
+
+.doc-title-logo {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: clamp(44px, 6vw, 58px);
+}
+
 body.doc-page h2 {
     font-family: var(--serif);
     font-weight: 400;

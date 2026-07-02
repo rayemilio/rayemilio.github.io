@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zine Maker is a local-first browser tool for assembling printable foldable zines and trifold brochures from images, with text overlays, page and spread reordering, imposition preview, PDF, PNG, ZIP, and project export."
+            content="Zineroo is a local-first browser print shop for assembling printable zines, bifold booklets, and trifold brochures with layered photos, text overlays, undo/redo, imposition preview, and standard or print-shop PDF export."
         />
-        <title>Zine Maker — Objects on Purpose</title>
+        <title>Zineroo — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
         <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
         <link rel="stylesheet" href="../_resources/css/style.css" />
@@ -19,11 +19,18 @@
 
         <main>
             <p class="doc-label">Technical Documentation</p>
-            <h1>Zine Maker</h1>
+            <div class="doc-title-row">
+                <h1>Zineroo</h1>
+                <img
+                    class="doc-title-logo"
+                    src="../_resources/images/svg/zineroo-favicon-printshop.svg"
+                    alt="Zineroo kangaroo logo"
+                />
+            </div>
             <p class="subtitle">
-                A local-first browser based React tool for making printable foldable zines and trifold brochures from
-                images, with auto-fill, text overlays, page and spread reordering, booklet preview, imposition layout,
-                and export-ready PDF, PNG, ZIP, and project output
+                A local-first browser based React tool for making printable foldable zines, bifold booklets, and
+                trifold brochures from images, with auto-fill, layered photo placement, curved text overlays, undo/redo,
+                booklet preview, imposition layout, and export-ready PDF, PNG, ZIP, and project output
             </p>
 
             <p class="meta tags">
@@ -36,7 +43,7 @@
             </p>
 
             <div class="project-links">
-                <a href="https://zinemaker.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
+                <a href="https://zineroo.com/" target="_blank">Open Zineroo →</a>
             </div>
 
             <hr />
@@ -44,11 +51,12 @@
             <h2>The Idea</h2>
 
             <p>
-                Zine Maker is a focused publishing tool for turning a small image set into a printable folded object.
-                It keeps the workflow in the browser: drop images in, choose a folded zine or trifold brochure format,
-                auto-fill the editor, add text, reorder pages or spreads, tune the frame, preview the booklet or sheet,
-                and export the files. The project is deliberately local-first. Images are kept in the browser,
-                autosaved to IndexedDB, and exported by the user as files rather than pushed through an account system.
+                Zineroo is a focused publishing tool for turning a small image set into a printable folded object.
+                It keeps the workflow in the browser: drop images in, choose a folded zine, bifold booklet, or trifold
+                brochure format, auto-fill the editor, add photo and text layers, reorder pages or spreads, tune the
+                frame, preview the booklet or sheet, and export the files. The project is deliberately local-first.
+                Images are kept in the browser, autosaved to IndexedDB, and exported by the user as files rather than
+                pushed through an account system.
             </p>
 
             <p>
@@ -69,17 +77,20 @@
             <h3>Folded formats</h3>
             <ul class="feature-list">
                 <li>Eight-page foldable zine format with front cover, six interior pages, and back cover</li>
+                <li>Bifold booklet format with page counts from 4 to 100 pages in four-page increments</li>
                 <li>Trifold brochure format with outside and inside sheet sides</li>
                 <li>Format switching updates page labels, editor grid, preview views, valid spreads, and export sides</li>
                 <li>Drag-and-drop page assignment from the image tray</li>
                 <li>Auto-Distribute fills the editor from the sorted asset tray</li>
                 <li>Re-Order mode moves or swaps single pages, two-page spreads, and valid trifold spread groups</li>
+                <li>Undo and redo controls cover layout edits, placement changes, text edits, imports, and reordering</li>
             </ul>
 
             <h3>Image placement</h3>
             <ul class="feature-list">
                 <li>Fill and fit modes for fast page framing</li>
                 <li>Freeform mode for manual pan, zoom, and rotation</li>
+                <li>Layered photo placement supports a background image plus additional foreground photo layers</li>
                 <li>Rotation-aware freeform crop constraints and snap guides keep images inside the printable frame</li>
                 <li>Per-page margin and image stroke controls with apply-to-all actions</li>
                 <li>Image overlay colors can tint the whole page or only the placed photo</li>
@@ -90,7 +101,7 @@
             <ul class="feature-list">
                 <li>Non-destructive text overlays stored with each page or spread</li>
                 <li>Fullscreen text editor with direct dragging over the image</li>
-                <li>Font, color, highlight, size, tracking, line-height, padding, alignment, and rotation controls</li>
+                <li>Font, color, highlight, size, tracking, line-height, padding, alignment, rotation, and curve controls</li>
                 <li>Self-hosted display, serif, mono, script, and typewriter font options</li>
                 <li>Text overlays render through the same canvas path as previews, PDF, and PNG output</li>
             </ul>
@@ -100,9 +111,12 @@
                 <li>Editor view for the active format's complete page set</li>
                 <li>Booklet and brochure preview modes with format-specific navigation</li>
                 <li>Full-sheet imposition preview using the print order required for folding or double-sided trifold printing</li>
-                <li>PDF export via jsPDF, single-sheet PNG export, and zipped trifold PNG side export</li>
+                <li>Standard 144 PPI PDF export via jsPDF for sharing and simple printing</li>
+                <li>Print shop PDF export at 300 PPI with optional bleed, crop marks, and local CMYK conversion through uploaded ICC or ICM profiles</li>
+                <li>Single-sheet PNG export and zipped multi-sheet PDF or PNG export for booklet and brochure output</li>
                 <li>Optional ZIP export bundles the rendered PDF or PNG files with a portable project JSON archive</li>
-                <li>Download-complete dialog shows zine folding instructions or trifold print settings</li>
+                <li>Print guidance explains direct printing, PDF printing, and print-shop export paths before download</li>
+                <li>Download-complete dialog shows zine folding instructions, trifold settings, or print-shop PDF notes</li>
                 <li>Lightweight preview images keep editing responsive while exports render from original uploads</li>
             </ul>
 
@@ -113,6 +127,7 @@
                 <li>Stores original image blobs locally and regenerates runtime preview URLs when restored</li>
                 <li>New Zine confirms before clearing local autosave and returning to a blank project</li>
                 <li>Object URLs and image caches are cleaned up on reset, removal, and import</li>
+                <li>Desktop beta gate protects the current editor from unsupported mobile and short viewport layouts</li>
             </ul>
 
             <hr class="thin" />
@@ -138,7 +153,7 @@
                 </tr>
                 <tr>
                     <td>Export</td>
-                    <td>jsPDF for PDF output, Canvas blob export for PNG sheets, JSON archive/import, and a small in-app ZIP writer for bundled exports</td>
+                    <td>jsPDF for standard PDF output, Canvas blob export for PNG sheets, local CMYK PDF generation with ICC output intents, JSON archive/import, and a small in-app ZIP writer for bundled exports</td>
                 </tr>
                 <tr>
                     <td>Image pipeline</td>
@@ -154,11 +169,11 @@
                 </tr>
                 <tr>
                     <td>Paper presets</td>
-                    <td>US Letter, A4, and A3</td>
+                    <td>US Letter, US Legal, US Tabloid, A5, A4, and A3</td>
                 </tr>
                 <tr>
                     <td>Formats</td>
-                    <td>Eight-page foldable zine and two-sided trifold brochure layouts</td>
+                    <td>Eight-page foldable zine, multi-page bifold booklet, and two-sided trifold brochure layouts</td>
                 </tr>
                 <tr>
                     <td>Typography</td>
@@ -182,8 +197,10 @@ src/
   App.tsx        application state, format switching, editor actions, export orchestration
   canvas/        shared preview, booklet, imposition, and export rendering
   components/    asset tray, page grid, inspector, previews, text editor, export modal
+  dom/           drag targets and text-overlay geometry shared by DOM and canvas rendering
   domain/        project model, format definitions, spread and crop rules
-  services/      assets, IndexedDB storage, project JSON, ZIP, and download helpers
+  hooks/         viewport gating and confirmation helpers
+  services/      assets, IndexedDB storage, project JSON, ZIP, PDF, ICC, and download helpers
   styles/        app shell, tray, page grid, inspector, text tools, preview, export UI</pre
                 >
             </div>
@@ -194,7 +211,8 @@ src/
                 <pre data-code-language="typescript">
 type ZineProject = {
   version?: number;
-  format?: 'zine' | 'trifold';
+  format?: 'zine' | 'trifold' | 'bifold';
+  pageCount?: number;
   title: string;
   assets: ZineAsset[];
   pages: PageSlot[];
@@ -214,7 +232,23 @@ type TextOverlay = {
   x: number;
   y: number;
   rotation: number;
+  curve: number;
   align: 'left' | 'center' | 'right';
+};
+
+type PhotoLayer = {
+  id: string;
+  assetId?: string;
+  fit: 'cover' | 'contain' | 'spread';
+  crop: { x: number; y: number; zoom: number; rotation: number };
+  freeformCrop?: { x: number; y: number; zoom: number; rotation: number };
+  freeform: boolean;
+  margin: number;
+  imageBorder?: number;
+  imageStroke?: string;
+  overlayColor?: string;
+  overlayOpacity: number;
+  overlayPhotoOnly?: boolean;
 };
 
 type ZineAsset = {
@@ -242,6 +276,7 @@ type PageSlot = {
   overlayColor?: string;
   overlayOpacity: number;
   overlayPhotoOnly?: boolean;
+  photoLayers?: PhotoLayer[];
   textOverlays?: TextOverlay[];
   spreadId?: string;
   spreadSide?: 'left' | 'center' | 'right';
@@ -254,10 +289,19 @@ type PageSlot = {
 
             <p>
                 The data model is intentionally small. A project is a title, a format, a local asset library, page
-                slots, and design settings. Page slots own their image placement, overlay color, text layers, and
-                spread metadata. Runtime object URLs are stripped before autosave and project export, then rebuilt when
-                the project is restored. Uploaded originals stay available for export while generated preview blobs keep
-                the editor responsive.
+                slots, and design settings. Page slots own their background image placement, additional photo layers,
+                overlay color, text layers, and spread metadata. Runtime object URLs are stripped before autosave and
+                project export, then rebuilt when the project is restored. Uploaded originals stay available for export
+                while generated preview blobs keep the editor responsive.
+            </p>
+
+            <h3>Layer model</h3>
+
+            <p>
+                The original single-photo page slot now behaves as the background layer, while foreground photo layers
+                use the same crop, fit, freeform, stroke, margin, and overlay controls. That lets the editor add richer
+                collage-style pages without forking the rendering path. Canvas preview, full-sheet export, print PDF
+                output, and project save/load all consume the normalized layer model.
             </p>
 
             <h3>Preview asset pipeline</h3>
@@ -292,7 +336,8 @@ const TRIFOLD_INSIDE_PAGES = [3, 4, 5];</pre
             <p>
                 The full-sheet preview and PDF export use the same format definitions, so the visual preview matches
                 the file that is saved. Foldable zines render one imposed sheet with the top row rotated for folding.
-                Trifolds render separate outside and inside sides for double-sided printing.
+                Trifolds render separate outside and inside sides for double-sided printing. Bifold booklets render the
+                required imposed sheet sequence so longer booklets can be exported as a set of printable PDF sheets.
             </p>
 
             <h3>Reorder model</h3>
@@ -312,6 +357,15 @@ type ReorderUnit = {
                 Reordering treats a spread as one unit, whether it spans two pages or a full three-panel trifold side.
                 Boundary drops move content before or after another slot, while direct drops swap compatible blocks.
                 Spread metadata is normalized after each move so paired and grouped pages stay together.
+            </p>
+
+            <h3>History model</h3>
+
+            <p>
+                The editor keeps an undo/redo stack around complete project snapshots, with grouping for continuous
+                text and control edits so sliders and typing do not flood history. The text editor has its own temporary
+                draft history while open, then commits the finished overlay state back into the project history when the
+                modal closes.
             </p>
 
             <h3>Export flow</h3>
@@ -343,9 +397,11 @@ async function renderPdfBlob() {
 
             <p>
                 Export is canvas-first. The app renders the printable side or sides, then routes that same rendering to
-                PDF, PNG, or ZIP. Project export is separate but can be bundled with the rendered artifact: it serializes
-                the project state and embeds original image blobs as data URLs so the work can be moved between browsers
-                without carrying runtime preview blobs or object URLs.
+                PDF, PNG, or ZIP. Standard PDFs prioritize quick sharing and home printing. Print shop PDFs render at
+                300 PPI, can add bleed and crop marks, and can flatten through a local CMYK conversion path when the
+                user supplies a printer profile. Project export is separate but can be bundled with the rendered
+                artifact: it serializes the project state and embeds original image blobs as data URLs so the work can
+                be moved between browsers without carrying runtime preview blobs or object URLs.
             </p>
 
             <hr class="thin" />
@@ -361,7 +417,9 @@ async function renderPdfBlob() {
 
             <p>
                 The most important view is the full sheet. Individual pages matter, but the final object is the folded
-                imposition. Keeping that view one click away makes mistakes visible before the user prints.
+                imposition. Keeping that view one click away makes mistakes visible before the user prints. A beta
+                desktop gate is also part of that design decision: until the mobile editor is ready, the app explicitly
+                asks people on small screens to continue on a computer instead of offering a cramped, unreliable canvas.
             </p>
         </main>
 
@@ -371,7 +429,7 @@ async function renderPdfBlob() {
                     ←
                     <a href="../">Return to portfolio</a>
                 </span>
-                <a href="https://zinemaker.objectsonpurpose.com/" target="_blank">Open the zine maker →</a>
+                <a href="https://zineroo.com/" target="_blank">Open Zineroo →</a>
             </p>
         </footer>
     </body>
