@@ -29,7 +29,7 @@
             </div>
             <p class="subtitle">
                 A local-first browser based React tool for making printable foldable zines, bifold booklets, and
-                trifold brochures from images, with auto-fill, layered photo placement, curved text overlays, undo/redo,
+                trifold brochures from images, with auto-fill, layered photo and text placement, curved text overlays, undo/redo,
                 booklet preview, imposition layout, and export-ready PDF, PNG, ZIP, and project output
             </p>
 
@@ -104,6 +104,14 @@
                 <li>Font, color, highlight, size, tracking, line-height, padding, alignment, rotation, and curve controls</li>
                 <li>Self-hosted display, serif, mono, script, and typewriter font options</li>
                 <li>Text overlays render through the same canvas path as previews, PDF, and PNG output</li>
+            </ul>
+
+            <h3>Layer stacking</h3>
+            <ul class="feature-list">
+                <li>Layers panel lists every photo and text element on the active page or spread in a single stacking order</li>
+                <li>Drag-and-drop reordering moves any layer above or below another, freely interleaving photos and text instead of a fixed photos-then-text stack</li>
+                <li>A canonical bottom-to-top layer order per page slot drives canvas rendering, hit-testing, and PDF/PNG export from the same stack</li>
+                <li>Text-only pages support overlay color, text layers, and reordering without requiring a background photo</li>
             </ul>
 
             <h3>Preview and export</h3>
@@ -278,6 +286,7 @@ type PageSlot = {
   overlayPhotoOnly?: boolean;
   photoLayers?: PhotoLayer[];
   textOverlays?: TextOverlay[];
+  layerOrder?: string[];
   spreadId?: string;
   spreadSide?: 'left' | 'center' | 'right';
   spreadPageIds?: number[];
@@ -297,11 +306,25 @@ type PageSlot = {
 
             <h3>Layer model</h3>
 
+            <div class="code-block">
+                <pre data-code-language="typescript">
+type SlotLayer =
+  | { id: string; kind: 'photo'; placement: PhotoPlacement }
+  | { id: string; kind: 'text'; overlay: TextOverlay };
+
+function allLayersForSlot(slot: PageSlot): SlotLayer[];
+function reorderLayer(slot: PageSlot, id: string, beforeId: string | null): PageSlot;</pre
+                >
+            </div>
+
             <p>
-                The original single-photo page slot now behaves as the background layer, while foreground photo layers
-                use the same crop, fit, freeform, stroke, margin, and overlay controls. That lets the editor add richer
-                collage-style pages without forking the rendering path. Canvas preview, full-sheet export, print PDF
-                output, and project save/load all consume the normalized layer model.
+                Each page slot keeps a single bottom-to-top layerOrder list of element ids spanning both its photo
+                layers and its text overlays. allLayersForSlot resolves that order into a typed stack that canvas
+                rendering, hit-testing, and the Layers panel all read from instead of walking photos and text
+                separately, so dragging a layer in the panel changes the same order the page actually renders in.
+                normalizeLayerOrder reconciles the stored order against each slot's current layer ids on every edit,
+                so projects saved before layer ordering existed, and pages missing a stored order, still resolve to
+                a sensible default stack.
             </p>
 
             <h3>Preview asset pipeline</h3>
