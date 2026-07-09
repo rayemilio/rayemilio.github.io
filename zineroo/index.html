@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zineroo is a local-first browser print shop for assembling printable zines, bifold booklets, and trifold brochures with layered photos, text overlays, undo/redo, imposition preview, and standard or print-shop PDF export."
+            content="Zineroo is a browser print shop for assembling printable zines, square zines, saddle stitch booklets, trifold brochures, and Unigrid folded maps with layered photos, text overlays, local autosave, optional Pro cloud projects, imposition preview, and PDF, PNG, ZIP, or editable project export."
         />
         <title>Zineroo — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
@@ -28,9 +28,10 @@
                 />
             </div>
             <p class="subtitle">
-                A local-first browser based React tool for making printable foldable zines, bifold booklets, and
-                trifold brochures from images, with auto-fill, layered photo and text placement, curved text overlays, undo/redo,
-                booklet preview, imposition layout, and export-ready PDF, PNG, ZIP, and project output
+                A browser-based React print shop for making printable foldy zines, square zines, saddle stitch
+                booklets, trifold brochures, and Unigrid folded maps from images, with auto-fill, layered photo and
+                text placement, curved text overlays, undo/redo, cloud projects, booklet preview, imposition layout,
+                and export-ready PDF, PNG, ZIP, and editable project output
             </p>
 
             <p class="meta tags">
@@ -52,18 +53,21 @@
 
             <p>
                 Zineroo is a focused publishing tool for turning a small image set into a printable folded object.
-                It keeps the workflow in the browser: drop images in, choose a folded zine, bifold booklet, or trifold
-                brochure format, auto-fill the editor, add photo and text layers, reorder pages or spreads, tune the
-                frame, preview the booklet or sheet, and export the files. The project is deliberately local-first.
-                Images are kept in the browser, autosaved to IndexedDB, and exported by the user as files rather than
-                pushed through an account system.
+                It keeps the core workflow in the browser: drop images in, choose a foldy zine, square zine, saddle
+                stitch booklet, trifold brochure, or Unigrid map format, auto-fill the editor, add photo and text
+                layers, reorder pages or spreads where the format supports it, tune the frame, preview the booklet or
+                sheet, and export the files. The editor remains local-first by default. Images are kept in the browser,
+                autosaved to IndexedDB, and exported by the user as files unless the user signs in for optional Pro
+                cloud projects.
             </p>
 
             <p>
                 The interface is built around the physical object. The app has fixed page maps, paper presets,
                 format-aware spread controls, full-sheet imposition views, and export controls for the printable
-                artifact. It is not a general design canvas. Its job is to make the zine-making loop fast enough that
-                layout decisions can stay visual and tactile.
+                artifact. The newer workspace separates the loop into Grid, Editor, and Preview modes, with a separate
+                public homepage, project manager, account menu, and admin surface around the editor. It is not a
+                general design canvas. Its job is to make the zine-making loop fast enough that layout decisions can
+                stay visual and tactile.
             </p>
 
             <div class="principle-note">
@@ -76,9 +80,11 @@
 
             <h3>Folded formats</h3>
             <ul class="feature-list">
-                <li>Eight-page foldable zine format with front cover, six interior pages, and back cover</li>
-                <li>Bifold booklet format with page counts from 4 to 100 pages in four-page increments</li>
-                <li>Trifold brochure format with outside and inside sheet sides</li>
+                <li>Eight-page Foldy Zine format with front cover, six interior pages, and back cover</li>
+                <li>Square Foldy Zine format using the same folded page map with square page geometry</li>
+                <li>Saddle Stitch Booklet format with page counts from 4 to 100 pages in four-page increments</li>
+                <li>Trifold Brochure format with outside and inside sheet sides</li>
+                <li>Unigrid (NPS Map) format with two 6-by-2 sides, side switching, large-format paper presets, and title band support</li>
                 <li>Format switching updates page labels, editor grid, preview views, valid spreads, and export sides</li>
                 <li>Drag-and-drop page assignment from the image tray</li>
                 <li>Auto-Distribute fills the editor from the sorted asset tray</li>
@@ -100,8 +106,8 @@
             <h3>Text and color layers</h3>
             <ul class="feature-list">
                 <li>Non-destructive text overlays stored with each page or spread</li>
-                <li>Fullscreen text editor with direct dragging over the image</li>
-                <li>Font, color, highlight, size, tracking, line-height, padding, alignment, rotation, and curve controls</li>
+                <li>Full-frame editor with direct dragging over the image and separate design/text panes</li>
+                <li>Font, color, opacity, highlight, size, tracking, line-height, padding, alignment, rotation, and curve controls</li>
                 <li>Self-hosted display, serif, mono, script, and typewriter font options</li>
                 <li>Text overlays render through the same canvas path as previews, PDF, and PNG output</li>
             </ul>
@@ -118,24 +124,35 @@
             <ul class="feature-list">
                 <li>Editor view for the active format's complete page set</li>
                 <li>Booklet and brochure preview modes with format-specific navigation</li>
-                <li>Full-sheet imposition preview using the print order required for folding or double-sided trifold printing</li>
+                <li>Full-sheet imposition preview using the print order required for folding, booklets, double-sided trifold printing, or Unigrid sides</li>
                 <li>Standard 144 PPI PDF export via jsPDF for sharing and simple printing</li>
                 <li>Print shop PDF export at 300 PPI with optional bleed, crop marks, and local CMYK conversion through uploaded ICC or ICM profiles</li>
-                <li>Single-sheet PNG export and zipped multi-sheet PDF or PNG export for booklet and brochure output</li>
+                <li>Single-sheet PNG export and zipped multi-sheet PDF or PNG export for booklet, brochure, and Unigrid output</li>
                 <li>Optional ZIP export bundles the rendered PDF or PNG files with a portable project JSON archive</li>
                 <li>Print guidance explains direct printing, PDF printing, and print-shop export paths before download</li>
                 <li>Download-complete dialog shows zine folding instructions, trifold settings, or print-shop PDF notes</li>
                 <li>Lightweight preview images keep editing responsive while exports render from original uploads</li>
             </ul>
 
-            <h3>Local persistence</h3>
+            <h3>Local and cloud persistence</h3>
             <ul class="feature-list">
                 <li>Autosaves the working project to IndexedDB with visible save status</li>
                 <li>Restores the saved project on reload</li>
                 <li>Stores original image blobs locally and regenerates runtime preview URLs when restored</li>
                 <li>New Zine confirms before clearing local autosave and returning to a blank project</li>
                 <li>Object URLs and image caches are cleaned up on reset, removal, and import</li>
-                <li>Desktop beta gate protects the current editor from unsupported mobile and short viewport layouts</li>
+                <li>Optional Pro cloud projects store project state, original and preview assets, thumbnails, soft deletes, and version history in Supabase</li>
+                <li>Projects page supports saving the current zine to the cloud, opening, renaming, duplicating, deleting, saving manual versions, and restoring history</li>
+                <li>Desktop beta gate blocks phones and too-small windows while desktop-responsive scaling keeps the editor usable across larger viewports</li>
+            </ul>
+
+            <h3>Account and Pro workflows</h3>
+            <ul class="feature-list">
+                <li>Supabase Auth powers sign in, sign up, password reset, subscriptions, entitlement grants, and admin role checks</li>
+                <li>Stripe checkout and billing portal routes support monthly and yearly Pro plans</li>
+                <li>Access code redemption grants Pro without changing account roles</li>
+                <li>Admin APIs manage users, manual Pro grants, revocation, access codes, and audit events server-side</li>
+                <li>Version checks detect a newer deployed build and show a full-screen reload modal without risking local project data</li>
             </ul>
 
             <hr class="thin" />
@@ -157,7 +174,7 @@
                 </tr>
                 <tr>
                     <td>Persistence</td>
-                    <td>IndexedDB local autosave with runtime URL rehydration</td>
+                    <td>IndexedDB local autosave with runtime URL rehydration, plus optional Supabase cloud projects and version history for Pro users</td>
                 </tr>
                 <tr>
                     <td>Export</td>
@@ -177,11 +194,11 @@
                 </tr>
                 <tr>
                     <td>Paper presets</td>
-                    <td>US Letter, US Legal, US Tabloid, A5, A4, and A3</td>
+                    <td>US Letter, US Legal, US Tabloid, A5, A4, A3, and Unigrid-specific 18" x 24", 21" x 35", 24" x 36", 30" x 42", and 420 x 594 mm presets</td>
                 </tr>
                 <tr>
                     <td>Formats</td>
-                    <td>Eight-page foldable zine, multi-page bifold booklet, and two-sided trifold brochure layouts</td>
+                    <td>Foldy Zine, Foldy Zine (Square), Saddle Stitch Booklet, Trifold Brochure, and Unigrid (NPS Map)</td>
                 </tr>
                 <tr>
                     <td>Typography</td>
@@ -189,7 +206,11 @@
                 </tr>
                 <tr>
                     <td>Hosting</td>
-                    <td>Static Vite build</td>
+                    <td>Vercel-hosted Vite build with serverless API routes</td>
+                </tr>
+                <tr>
+                    <td>Auth and billing</td>
+                    <td>Supabase Auth, Supabase Postgres, Supabase Storage, Stripe Checkout, Stripe webhooks, and access-code entitlements</td>
                 </tr>
             </table>
 
@@ -201,15 +222,19 @@
 
             <div class="code-block">
                 <pre data-code-language="tree">
+api/             Vercel API routes for auth-protected admin, billing, webhooks, and access codes
 src/
-  App.tsx        application state, format switching, editor actions, export orchestration
+  main.tsx       React Router shell for homepage, editor, projects, and admin routes
+  App.tsx        editor state, format switching, workspace modes, project history, and export orchestration
   canvas/        shared preview, booklet, imposition, and export rendering
-  components/    asset tray, page grid, inspector, previews, text editor, export modal
+  components/    asset tray, page grid, frame editor, inspector, previews, account menu, and export modals
+  context/       auth state and the active cloud-project workspace bridge
   dom/           drag targets and text-overlay geometry shared by DOM and canvas rendering
   domain/        project model, format definitions, spread and crop rules
-  hooks/         viewport gating and confirmation helpers
-  services/      assets, IndexedDB storage, project JSON, ZIP, PDF, ICC, and download helpers
-  styles/        app shell, tray, page grid, inspector, text tools, preview, export UI</pre
+  hooks/         viewport gating, update checks, and confirmation helpers
+  pages/         public homepage, Projects manager, and admin console
+  services/      assets, IndexedDB storage, cloud projects, entitlements, project JSON, ZIP, PDF, ICC, and downloads
+  styles/        app shell, homepage, tray, page grid, frame editor, inspector, preview, account, and export UI</pre
                 >
             </div>
 
@@ -219,8 +244,12 @@ src/
                 <pre data-code-language="typescript">
 type ZineProject = {
   version?: number;
-  format?: 'zine' | 'trifold' | 'bifold';
+  format?: 'zine' | 'square-zine' | 'trifold' | 'bifold' | 'unigrid';
   pageCount?: number;
+  unigridTitleBand?: {
+    enabled: boolean;
+    text: string;
+  };
   title: string;
   assets: ZineAsset[];
   pages: PageSlot[];
@@ -233,7 +262,9 @@ type TextOverlay = {
   fontFamily: string;
   fontSize: number;
   color: string;
+  opacity: number;
   backgroundColor?: string;
+  backgroundOpacity: number;
   tracking: number;
   lineHeight: number;
   padding: number;
@@ -292,16 +323,21 @@ type PageSlot = {
   spreadPageIds?: number[];
   spreadIndex?: number;
   spreadLength?: number;
+  spreadColumns?: number;
+  spreadRows?: number;
+  spreadColumnIndex?: number;
+  spreadRowIndex?: number;
 };</pre
                 >
             </div>
 
             <p>
                 The data model is intentionally small. A project is a title, a format, a local asset library, page
-                slots, and design settings. Page slots own their background image placement, additional photo layers,
-                overlay color, text layers, and spread metadata. Runtime object URLs are stripped before autosave and
-                project export, then rebuilt when the project is restored. Uploaded originals stay available for export
-                while generated preview blobs keep the editor responsive.
+                slots, optional Unigrid title-band state, and design settings. Page slots own their background image
+                placement, additional photo layers, overlay color, text layers, and spread metadata, including the
+                row/column geometry needed for Unigrid spreads. Runtime object URLs are stripped before autosave,
+                project export, and cloud persistence, then rebuilt when the project is restored. Uploaded originals
+                stay available for export while generated preview blobs keep the editor responsive.
             </p>
 
             <h3>Layer model</h3>
@@ -352,7 +388,10 @@ function imageForAsset(asset: RuntimeAsset, source: 'preview' | 'original' = 'pr
                 <pre data-code-language="typescript">
 const IMPOSITION_PAGES = [7, 6, 5, 4, 8, 1, 2, 3];
 const TRIFOLD_OUTSIDE_PAGES = [2, 6, 1];
-const TRIFOLD_INSIDE_PAGES = [3, 4, 5];</pre
+const TRIFOLD_INSIDE_PAGES = [3, 4, 5];
+const UNIGRID_COLUMNS = 6;
+const UNIGRID_ROWS = 2;
+const UNIGRID_SIDE_PAGE_COUNT = 12;</pre
                 >
             </div>
 
@@ -361,6 +400,8 @@ const TRIFOLD_INSIDE_PAGES = [3, 4, 5];</pre
                 the file that is saved. Foldable zines render one imposed sheet with the top row rotated for folding.
                 Trifolds render separate outside and inside sides for double-sided printing. Bifold booklets render the
                 required imposed sheet sequence so longer booklets can be exported as a set of printable PDF sheets.
+                Unigrid projects render two large-format sides with explicit 6-by-2 cell geometry and format-specific
+                paper choices.
             </p>
 
             <h3>Reorder model</h3>
@@ -370,7 +411,7 @@ const TRIFOLD_INSIDE_PAGES = [3, 4, 5];</pre
 type ReorderDropPosition = 'before' | 'after' | 'on';
 type ReorderUnit = {
   kind: 'single' | 'spread';
-  length: 1 | 2 | 3;
+  length: number;
   startIndex: number;
 };</pre
                 >
@@ -379,16 +420,18 @@ type ReorderUnit = {
             <p>
                 Reordering treats a spread as one unit, whether it spans two pages or a full three-panel trifold side.
                 Boundary drops move content before or after another slot, while direct drops swap compatible blocks.
-                Spread metadata is normalized after each move so paired and grouped pages stay together.
+                Spread metadata is normalized after each move so paired and grouped pages stay together. Unigrid uses
+                side-aware spread controls instead of free reordering, because its cells are tied to a fixed folded-map
+                grid.
             </p>
 
             <h3>History model</h3>
 
             <p>
                 The editor keeps an undo/redo stack around complete project snapshots, with grouping for continuous
-                text and control edits so sliders and typing do not flood history. The text editor has its own temporary
-                draft history while open, then commits the finished overlay state back into the project history when the
-                modal closes.
+                text and control edits so sliders and typing do not flood history. The frame editor keeps temporary
+                draft state while open, then commits the finished overlay state back into the project history when it
+                closes.
             </p>
 
             <h3>Export flow</h3>
@@ -424,7 +467,9 @@ async function renderPdfBlob() {
                 300 PPI, can add bleed and crop marks, and can flatten through a local CMYK conversion path when the
                 user supplies a printer profile. Project export is separate but can be bundled with the rendered
                 artifact: it serializes the project state and embeds original image blobs as data URLs so the work can
-                be moved between browsers without carrying runtime preview blobs or object URLs.
+                be moved between browsers without carrying runtime preview blobs or object URLs. Pro-only cloud save
+                uses the same stripped project state but stores original and preview assets separately, then hydrates
+                them back into browser blobs when the project or a saved version is opened.
             </p>
 
             <hr class="thin" />
@@ -433,16 +478,18 @@ async function renderPdfBlob() {
 
             <p>
                 The UI uses a print-shop vocabulary: heavy rules, square controls, hard shadows, paper tones, and a
-                narrow red accent. The panels map to the workflow: image tray on the left, working sheet in the center,
-                design controls on the right. The app favors visible mechanics over hidden menus because the user is
-                making a physical object and needs to see the consequences of each change immediately.
+                narrow red accent. The panels map to the workflow: image tray on the left, working sheet or frame
+                editor in the center, design controls on the right, and a compact top bar for Grid, Editor, Preview,
+                account, print, import, and export actions. The app favors visible mechanics over hidden menus because
+                the user is making a physical object and needs to see the consequences of each change immediately.
             </p>
 
             <p>
                 The most important view is the full sheet. Individual pages matter, but the final object is the folded
                 imposition. Keeping that view one click away makes mistakes visible before the user prints. A beta
-                desktop gate is also part of that design decision: until the mobile editor is ready, the app explicitly
-                asks people on small screens to continue on a computer instead of offering a cramped, unreliable canvas.
+                desktop gate and responsive editor scaling are also part of that design decision: until the mobile
+                editor is ready, the app explicitly blocks phones and windows below the editor's minimum scale instead
+                of offering a cramped, unreliable canvas.
             </p>
         </main>
 
