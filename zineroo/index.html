@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Zineroo is a browser print shop for assembling printable zines, square zines, saddle stitch booklets, trifold brochures, and Unigrid folded maps with layered photos, text overlays, local autosave, optional Pro cloud projects, imposition preview, and PDF, PNG, ZIP, or editable project export."
+            content="Zineroo is a browser print shop for assembling printable zines, square zines, saddle stitch booklets, trifold brochures, and Unigrid folded maps with layered photos, text overlays, local autosave, end-to-end encrypted cloud projects, recoverable sync, imposition preview, and PDF, PNG, ZIP, or editable project export."
         />
         <title>Zineroo — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
@@ -30,8 +30,8 @@
             <p class="subtitle">
                 A browser-based React print shop for making printable foldy zines, square zines, saddle stitch
                 booklets, trifold brochures, and Unigrid folded maps from images, with auto-fill, layered photo and
-                text placement, curved text overlays, undo/redo, cloud projects, booklet preview, imposition layout,
-                and export-ready PDF, PNG, ZIP, and editable project output
+                text placement, curved text overlays, undo/redo, end-to-end encrypted cloud projects with recoverable
+                sync, booklet preview, imposition layout, and export-ready PDF, PNG, ZIP, and editable project output
             </p>
 
             <p class="meta tags">
@@ -57,7 +57,7 @@
                 stitch booklet, trifold brochure, or Unigrid map format, auto-fill the editor, add photo and text
                 layers, reorder pages or spreads where the format supports it, tune the frame, preview the booklet or
                 sheet, and export the files. The editor remains local-first by default. Images are kept in the browser,
-                autosaved to IndexedDB, and exported by the user as files unless the user signs in for optional Pro
+                autosaved to IndexedDB, and exported by the user as files unless the user signs in for optional Plus
                 cloud projects.
             </p>
 
@@ -67,7 +67,8 @@
                 artifact. The newer workspace separates the loop into Grid, Editor, and Preview modes, with a separate
                 public homepage, project manager, account menu, and admin surface around the editor. It is not a
                 general design canvas. Its job is to make the zine-making loop fast enough that layout decisions can
-                stay visual and tactile.
+                stay visual and tactile. Cloud persistence follows that same principle: a project keeps working in
+                the browser while an encrypted, resumable sync job moves it to the user's private workspace.
             </p>
 
             <div class="principle-note">
@@ -139,19 +140,23 @@
                 <li>Autosaves the working project to IndexedDB with visible save status</li>
                 <li>Restores the saved project on reload</li>
                 <li>Stores original image blobs locally and regenerates runtime preview URLs when restored</li>
-                <li>New Zine confirms before clearing local autosave and returning to a blank project</li>
+                <li>New Zine and project import preserve cloud projects in Projects while warning before a browser-only draft is replaced</li>
                 <li>Object URLs and image caches are cleaned up on reset, removal, and import</li>
-                <li>Optional Pro cloud projects store project state, original and preview assets, thumbnails, soft deletes, and version history in Supabase</li>
-                <li>Projects page supports saving the current zine to the cloud, opening, renaming, duplicating, deleting, saving manual versions, and restoring history</li>
+                <li>Project import reports progress and leaves an actionable recovery path when an asset cannot be restored</li>
+                <li>Optional Plus cloud projects encrypt project state, originals, previews, thumbnails, titles, and text in the browser before upload; Zineroo and its storage providers cannot read the project contents</li>
+                <li>A private cloud key, recovery key, and optional trusted-device unlock keep encrypted projects available across devices without a server-side content key</li>
+                <li>Cloud autosave persists a local sync queue with byte-level progress, resumable upload plans, bounded retry backoff, offline resume, and generation-conflict handling</li>
+                <li>The Projects library separates regular work from interrupted uploads, so failed or conflicted syncs can be retried, resolved in the editor, checked again, or removed without cluttering the library</li>
+                <li>Projects supports search, recent and favorite views, grid or list layouts, opening, renaming, duplicating, manual versions, version restore, and a 30-day Trash before permanent deletion</li>
                 <li>Desktop beta gate blocks phones and too-small windows while desktop-responsive scaling keeps the editor usable across larger viewports</li>
             </ul>
 
             <h3>Account and Pro workflows</h3>
             <ul class="feature-list">
-                <li>Supabase Auth powers sign in, sign up, password reset, subscriptions, entitlement grants, and admin role checks</li>
-                <li>Stripe checkout and billing portal routes support monthly and yearly Pro plans</li>
+                <li>Supabase Auth powers sign in, sign up, password reset, session revocation after a password change, subscriptions, entitlement grants, and admin role checks</li>
+                <li>Stripe checkout and billing portal routes support monthly and yearly Plus and Pro plans</li>
                 <li>Access code redemption grants Pro without changing account roles</li>
-                <li>Admin APIs manage users, manual Pro grants, revocation, access codes, and audit events server-side</li>
+                <li>Admin APIs manage users, manual Pro grants, revocation, access codes, and audit events server-side; hardened request paths keep implementation details out of client-facing errors</li>
                 <li>Version checks detect a newer deployed build and show a full-screen reload modal without risking local project data</li>
             </ul>
 
@@ -174,7 +179,7 @@
                 </tr>
                 <tr>
                     <td>Persistence</td>
-                    <td>IndexedDB local autosave with runtime URL rehydration, plus optional Supabase cloud projects and version history for Pro users</td>
+                    <td>IndexedDB local autosave, resumable sync jobs, and workspace bindings with runtime URL rehydration; optional end-to-end encrypted Supabase cloud projects, versions, and 30-day trash for Plus users</td>
                 </tr>
                 <tr>
                     <td>Export</td>
@@ -210,7 +215,7 @@
                 </tr>
                 <tr>
                     <td>Auth and billing</td>
-                    <td>Supabase Auth, Supabase Postgres, Supabase Storage, Stripe Checkout, Stripe webhooks, and access-code entitlements</td>
+                    <td>Supabase Auth, Postgres, and Storage; browser-side Web Crypto vault and recovery keys; Stripe Checkout, webhooks, and access-code entitlements</td>
                 </tr>
             </table>
 
@@ -228,12 +233,13 @@ src/
   App.tsx        editor state, format switching, workspace modes, project history, and export orchestration
   canvas/        shared preview, booklet, imposition, and export rendering
   components/    asset tray, page grid, frame editor, inspector, previews, account menu, and export modals
-  context/       auth state and the active cloud-project workspace bridge
+  context/       auth, private cloud vault, update state, and the active cloud-project workspace/sync bridge
   dom/           drag targets and text-overlay geometry shared by DOM and canvas rendering
   domain/        project model, format definitions, spread and crop rules
   hooks/         viewport gating, update checks, and confirmation helpers
   pages/         public homepage, Projects manager, and admin console
-  services/      assets, IndexedDB storage, cloud projects, entitlements, project JSON, ZIP, PDF, ICC, and downloads
+  crypto/        browser-worker encryption format, key hierarchy, recovery keys, and authenticated cloud objects
+  services/      assets, IndexedDB storage and sync journal, encrypted cloud projects, entitlements, project JSON, ZIP, PDF, ICC, and downloads
   styles/        app shell, homepage, tray, page grid, frame editor, inspector, preview, account, and export UI</pre
                 >
             </div>
@@ -467,9 +473,42 @@ async function renderPdfBlob() {
                 300 PPI, can add bleed and crop marks, and can flatten through a local CMYK conversion path when the
                 user supplies a printer profile. Project export is separate but can be bundled with the rendered
                 artifact: it serializes the project state and embeds original image blobs as data URLs so the work can
-                be moved between browsers without carrying runtime preview blobs or object URLs. Pro-only cloud save
-                uses the same stripped project state but stores original and preview assets separately, then hydrates
-                them back into browser blobs when the project or a saved version is opened.
+                be moved between browsers without carrying runtime preview blobs or object URLs. Plus cloud save uses
+                a separately encrypted manifest and authenticated objects for originals, previews, and thumbnails;
+                the browser hydrates them back into blobs only after the private vault is unlocked.
+            </p>
+
+            <h3>Private cloud sync model</h3>
+
+            <div class="code-block">
+                <pre data-code-language="typescript">
+type CloudSyncJob = {
+  projectId: string;
+  expectedGeneration: number;
+  revision: number;
+  state: 'pending' | 'syncing' | 'error' | 'conflict';
+  retryCount: number;
+  retryAt: number;
+  project: ZineProject;
+};
+
+type CloudSyncStatus =
+  | 'Saved in browser'
+  | 'Syncing to cloud…'
+  | 'Saved in cloud'
+  | 'Offline — will resume'
+  | 'Cloud sync needs attention';</pre
+                >
+            </div>
+
+            <p>
+                The cloud workspace is deliberately queue-based instead of treating a save as a one-shot request.
+                After a short idle delay, a meaningful edit is serialized into IndexedDB with its expected cloud
+                generation and an upload plan. The app reports preparation, upload, and commit progress; retries
+                transient failures with a capped exponential delay; wakes again when the browser comes back online;
+                and restores the active cloud-workspace binding after a reload. A generation mismatch becomes an
+                explicit conflict rather than an overwrite, with an editor path to open the newer version or retain
+                the local work as a separate copy.
             </p>
 
             <hr class="thin" />
