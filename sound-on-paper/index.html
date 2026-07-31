@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta
             name="description"
-            content="Sound on Paper is a privacy-first QR audio sharing system for turning music into physical, giftable printed objects.">
+            content="Sound on Paper is a privacy-first QR audio sharing system, now in private beta, for turning music into physical, giftable printed objects.">
         <title>Sound on Paper — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css">
         <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css">
@@ -31,11 +31,12 @@
             <span class="tag">Prisma</span>
             <span class="tag">Web Crypto API</span>
             <span class="tag">MinIO/R2</span>
-            <span class="tag">Stripe</span>
+            <span class="tag">Resend</span>
+            <span class="tag">TOTP MFA</span>
         </p>
         <p class="status-line">
-            Pre-launch &nbsp;·&nbsp;
-            <span>All 10 milestones code-complete · 86 unit tests · 32/32 Playwright tests</span>
+            Private beta live &nbsp;·&nbsp;
+            <span>All 10 milestones implemented · 125 unit tests passing · 12 focused Playwright scenarios</span>
         </p>
 
         <div class="project-links">
@@ -180,6 +181,25 @@
 
         <hr class="thin">
 
+        <h2>The Creator Experience</h2>
+
+        <p>
+            The creator side now opens with a derived three-step path: add audio, make a Piece, then print and test the
+            QR. Each step links directly to the relevant tool and updates from the creator's actual library state,
+            replacing a dashboard that previously showed counts without helping someone decide what to do next.
+        </p>
+
+        <ul class="feature-list">
+            <li>Upload MP3 or M4A files up to 50 MB and three minutes, with storage quotas enforced separately</li>
+            <li>Record in the browser, trim against a simple waveform, encode to MP3, rename, and save encrypted audio</li>
+            <li>Choose Fixed Pieces for permanent paper objects or Dynamic Pieces for changeable, controlled playback</li>
+            <li>Schedule multiple encrypted recordings in a Dynamic Queue without changing the printed QR</li>
+            <li>Use actionable empty, loading, error, retry, and success states across Audio, Pieces, and Print</li>
+            <li>Work from responsive creator views with semantic alerts and keyboard-capable recording trim controls</li>
+        </ul>
+
+        <hr class="thin">
+
         <h2>Build Status</h2>
 
         <p>
@@ -205,7 +225,7 @@
                 <td>2</td>
                 <td>Encrypted Audio Upload</td>
                 <td class="accepted">Playwright accepted</td>
-                <td>AES-GCM browser encryption, presigned S3 upload, MP3/M4A validation, 3 min/10 MB limits</td>
+                <td>AES-GCM browser encryption, presigned S3 upload, browser recording, MP3/M4A validation, 3 min/50 MB limits</td>
             </tr>
             <tr>
                 <td>3</td>
@@ -234,11 +254,8 @@
             <tr>
                 <td>7</td>
                 <td>Reporting, Copyright, Enforcement</td>
-                <td class="pending">Code complete</td>
-                <td>
-                    Abuse reports, DMCA/counter-notice intake, admin moderation UI, enforcement logging — acceptance
-                    pending admin account setup
-                </td>
+                <td class="accepted">Playwright accepted</td>
+                <td>Abuse reports, DMCA/counter-notice intake, searchable admin queues, linked records, enforcement logging</td>
             </tr>
             <tr>
                 <td>8</td>
@@ -249,10 +266,10 @@
             <tr>
                 <td>9</td>
                 <td>Billing and Entitlements</td>
-                <td class="pending">Code complete</td>
+                <td class="accepted">Implemented</td>
                 <td>
-                    Stripe checkout/portal/webhook, plan-limit enforcement on Pieces and storage — acceptance pending
-                    Stripe test credentials
+                    Stripe integration and plan enforcement are complete; checkout is intentionally disabled during the
+                    free private beta
                 </td>
             </tr>
             <tr>
@@ -267,18 +284,44 @@
         </table>
 
         <p>
-            86 unit tests pass. 32 of 32 Playwright acceptance tests pass against local MinIO. Remaining: M7 admin
-            acceptance, M9 Stripe billing acceptance, mobile QR LAN testing.
+            The current verification set contains 125 passing Vitest unit tests and 12 focused Playwright browser
+            scenarios across setup, encrypted audio, browser recording, Pieces, listener playback, administration,
+            access controls, printing, and private-beta security. GitHub Actions runs Node 22 installation, Prisma
+            generation, lint, type checking, unit tests, and a production build. Stripe checkout remains outside the
+            beta acceptance path because production billing is deliberately disabled.
         </p>
 
         <p>
             In summary: Auth.js v5 with PBKDF2 key derivation and IndexedDB non-extractable trusted-device keys;
-            encrypted audio upload to S3-compatible object storage; dynamic QR generation with stable fragment share
-            keys; browser-side decryption with one-tap playback; six listener themes; privacy-friendly analytics with no
-            raw IP retention; abuse reporting and DMCA intake with admin moderation UI; expiration, play limits, and
-            Pass-gated listening; Stripe billing and plan enforcement; and printable PDF, card, and sticker layouts for
-            physical QR artifacts.
+            encrypted upload and recording to S3-compatible object storage; dynamic QR generation with stable fragment
+            share keys; browser-side decryption with one-tap playback; six listener themes; privacy-friendly analytics;
+            abuse reporting and linked admin moderation queues; expiration, play limits, and Pass-gated listening;
+            optional billing and plan enforcement; and printable PDF, card, and sticker layouts for physical QR artifacts.
         </p>
+
+        <hr class="thin">
+
+        <h2>Private Beta Readiness</h2>
+
+        <p>
+            Sound on Paper is now running as a free, invitation-only concierge beta. New creators request access, receive
+            a 24-hour single-use invitation by email, and begin on the Free plan. Artist access is granted manually so
+            the beta can focus on whether people can make and physically scan a Piece without turning onboarding into a
+            checkout funnel.
+        </p>
+
+        <ul class="feature-list">
+            <li>Resend-powered invitations with hashed, expiring, single-use tokens and an administrative resend flow</li>
+            <li>Password recovery with hashed 60-minute tokens and immediate invalidation of existing sessions</li>
+            <li>Clear separation between account recovery and the recovery words needed to unlock encrypted work on a new device</li>
+            <li>Database-backed active-user checks so suspending an account also rejects sessions that were already signed in</li>
+            <li>Durable Postgres rate limits keyed by HMAC-digested identifiers rather than stored raw IP addresses</li>
+            <li>Five-minute signed listening grants after Pass redemption, preventing reloads from consuming multiple uses</li>
+            <li>Object-storage verification before database records are created, plus bounded public request schemas</li>
+            <li>Production CSP, HSTS, frame denial, MIME protection, privacy policies, and redacted errors with request IDs</li>
+            <li>Transactional user and enforcement changes with self-protection, last-admin protection, and audit records</li>
+            <li>Rotating authenticator-app codes and single-use recovery codes protecting every administrator session</li>
+        </ul>
 
         <hr class="thin">
 
@@ -315,11 +358,15 @@
             </tr>
             <tr>
                 <td>Auth</td>
-                <td>Auth.js v5 credentials</td>
+                <td>Auth.js v5 credentials · invite-only signup · administrator TOTP MFA</td>
             </tr>
             <tr>
                 <td>Billing</td>
-                <td>Stripe checkout, portal, and webhook</td>
+                <td>Stripe checkout, portal, and webhook · disabled mode for complimentary beta access</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>Resend · verified sender · server-only invitation and password recovery adapter</td>
             </tr>
             <tr>
                 <td>QR generation</td>
@@ -327,11 +374,11 @@
             </tr>
             <tr>
                 <td>Unit tests</td>
-                <td>Vitest · 86 passing</td>
+                <td>Vitest · 125 passing</td>
             </tr>
             <tr>
                 <td>Acceptance tests</td>
-                <td>Playwright · 32/32 passing against local MinIO</td>
+                <td>Playwright · 12 focused browser scenarios against local Postgres and MinIO</td>
             </tr>
             <tr>
                 <td>Runtime target</td>
@@ -348,11 +395,12 @@
         <div class="code-block">
             <pre data-code-language="tree">
 app/
-  (auth)/         signup, login, setup, unlock
+  (auth)/         signup, login, forgot/reset password, setup, unlock
   (creator)/      dashboard, audio, pieces, print, settings
   (listener)/p/   [slug] — public listener route
   (legal)/        copyright, privacy, terms, DMCA, counter-notice
-  admin/          reports, copyright, enforcement
+  admin/          users, beta, reports, copyright, enforcement
+  admin-mfa/      authenticator enrollment
   api/            auth, key-vault, audio, pieces, public, admin, legal</pre
             >
         </div>
@@ -374,11 +422,15 @@ src/
     entitlements.ts        plan limits and enforcement
     events.ts              privacy-friendly event ingestion
     pass-code.ts           WORD-NN pass code generation
+    pass-grant.ts          short-lived signed grant after Pass redemption
+    email.ts               server-only invitation and password recovery email
+    rate-limit.ts          durable HMAC-keyed Postgres rate limiting
+    admin-mfa.ts           encrypted TOTP enrollment and recovery-code handling
     qr.ts                  QR SVG generation for listener URLs and print
     slug.ts                word-word-NN slug generation
     storage.ts             S3-compatible object storage abstraction
     themes.ts              listener theme token definitions
-    validation.ts          locked audio constraints (MP3/M4A, 10 MB, 3 min)</pre
+    validation.ts          locked audio constraints (MP3/M4A, 50 MB, 3 min)</pre
             >
         </div>
 
@@ -391,6 +443,8 @@ src/
             <li>PieceEvent — scan, play, play_complete, download; no raw IP stored</li>
             <li>AbuseReport · CopyrightNotice · EnforcementAction</li>
             <li>Subscription — plan, status, Stripe provider fields</li>
+            <li>BetaAccessRequest · PasswordResetToken · RateLimitBucket</li>
+            <li>AdminMfaConfiguration · AdminMfaRecoveryCode</li>
         </ul>
 
         <hr class="thin">
@@ -410,13 +464,16 @@ src/
                 Two-phase setup flow — local trusted-device key is verified before the server vault is written,
                 preventing an unrecoverable first-run state
             </li>
-            <li>Pass consumption uses conditional atomic increment — concurrent requests cannot exceed maxUses</li>
+            <li>Pass consumption uses an atomic increment, then a signed HttpOnly grant allows safe playback retries</li>
             <li>
                 <code>importShareKey</code>
                 validates decoded key is exactly 32 bytes before passing to Web Crypto — deterministic error for
                 malformed keys
             </li>
-            <li>Suspended users cannot sign in</li>
+            <li>Every creator page and API checks current database status, so suspended existing sessions are rejected</li>
+            <li>Administrator access requires a separate rotating authenticator step after email and password</li>
+            <li>Password reset increments session version, invalidating existing sessions without emailing encryption material</li>
+            <li>Rate-limit identifiers are HMAC digests; raw IP addresses are not stored in rate-limit records</li>
             <li>Non-active Piece IDs injected into print preview query string are rejected server-side</li>
         </ul>
 
