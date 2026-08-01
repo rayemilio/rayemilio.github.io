@@ -1096,6 +1096,30 @@ body.doc-page .instrument-card li {
 }
 
 /* Code blocks */
+body.project-cms {
+    --code-block-width: 640px;
+}
+
+body.project-edutonebox {
+    --code-block-width: 560px;
+}
+
+body.project-field-sound-visualizer {
+    --code-block-width: 700px;
+}
+
+body.project-moondial {
+    --code-block-width: 680px;
+}
+
+body.project-sound-on-paper {
+    --code-block-width: 640px;
+}
+
+body.project-zineroo {
+    --code-block-width: 840px;
+}
+
 .code-block {
     background: #20231d;
     border-left: 0;
@@ -1111,8 +1135,8 @@ body.doc-page .instrument-card li {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--s-4);
-    width: max-content;
-    max-width: min(840px, calc(100vw - 32px));
+    width: min(var(--code-block-width, 840px), calc(100vw - 32px));
+    max-width: none;
     margin: var(--s-4) 0 var(--s-7) 50%;
     transform: translateX(-50%);
     overflow-x: hidden;

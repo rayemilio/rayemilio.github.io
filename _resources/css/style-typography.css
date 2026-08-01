@@ -311,6 +311,10 @@ body.typography-page code {
     border-radius: 2px;
 }
 
+body.project-typography {
+    --code-block-width: 560px;
+}
+
 body.typography-page .code-block {
     background-color: #20231d;
     border-left: 0;
@@ -326,8 +330,8 @@ body.typography-page .code-block {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--space-code) calc(var(--space-code) * var(--fontRatio));
-    width: max-content;
-    max-width: min(840px, calc(100vw - 32px));
+    width: min(var(--code-block-width, 840px), calc(100vw - 32px));
+    max-width: none;
     margin: var(--space-code) 0 calc(var(--space-meta) + var(--space-code)) 50%;
     transform: translateX(-50%);
     overflow-x: hidden;
