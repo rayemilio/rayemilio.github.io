@@ -1109,8 +1109,10 @@ body.doc-page .instrument-card li {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--s-4);
-    margin: var(--s-4) var(--s-2) var(--s-7);
-    overflow-x: auto;
+    width: min(840px, calc(100vw - 32px));
+    margin: var(--s-4) 0 var(--s-7) 50%;
+    transform: translateX(-50%);
+    overflow-x: hidden;
 }
 
 .code-block pre {
@@ -1118,7 +1120,8 @@ body.doc-page .instrument-card li {
     font-size: 12px;
     line-height: 1.65;
     color: #e7e3d8;
-    white-space: pre;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .code-block pre::selection,

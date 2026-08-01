@@ -324,8 +324,10 @@ body.typography-page .code-block {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--space-code) calc(var(--space-code) * var(--fontRatio));
-    margin: var(--space-code) calc(var(--space-code) * 0.45) calc(var(--space-meta) + var(--space-code));
-    overflow-x: auto;
+    width: min(840px, calc(100vw - 32px));
+    margin: var(--space-code) 0 calc(var(--space-meta) + var(--space-code)) 50%;
+    transform: translateX(-50%);
+    overflow-x: hidden;
 }
 
 body.typography-page .code-block pre {
@@ -334,7 +336,8 @@ body.typography-page .code-block pre {
     font-size: calc(var(--type-code) * 0.8);
     line-height: var(--type-code-line);
     margin: 0;
-    white-space: pre;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 body.typography-page .code-block pre::selection,
