@@ -1109,7 +1109,8 @@ body.doc-page .instrument-card li {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--s-4);
-    width: min(840px, calc(100vw - 32px));
+    width: max-content;
+    max-width: min(840px, calc(100vw - 32px));
     margin: var(--s-4) 0 var(--s-7) 50%;
     transform: translateX(-50%);
     overflow-x: hidden;
