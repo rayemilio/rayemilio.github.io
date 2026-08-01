@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Field Sound Visualizer is a native macOS SwiftUI app for turning field recordings into customizable, YouTube-ready visualizer videos with FFmpeg."
+        />
+        <title>Field Sound Visualizer — Objects on Purpose</title>
+        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
+        <link rel="stylesheet" href="../_resources/css/style.css" />
+        <script src="../_resources/js/code-highlight.js" defer></script>
+        <script src="../_resources/js/portfolio-scroll.js"></script>
+    </head>
+    <body class="doc-page">
+        <a class="back" href="../">← Portfolio</a>
+
+        <main>
+            <p class="doc-label">Technical Documentation</p>
+            <div class="doc-title-row" style="padding-right: 72px">
+                <h1>Field Sound Visualizer</h1>
+                <img
+                    class="doc-title-logo"
+                    src="../_resources/images/png/field-sound-visualizer/field-sound-visualizer-icon.png"
+                    alt="Field Sound Visualizer app icon"
+                />
+            </div>
+            <p class="subtitle">
+                A native macOS front end for turning field recordings into customizable, YouTube-ready visualizer
+                videos with FFmpeg
+            </p>
+
+            <p class="meta tags">
+                <span class="tag">Swift</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag">FFmpeg</span>
+                <span class="tag">FFprobe</span>
+                <span class="tag">AVFoundation</span>
+                <span class="tag">CryptoKit</span>
+                <span class="tag">XCTest</span>
+                <span class="tag">macOS 13+</span>
+            </p>
+
+            <hr />
+
+            <div class="page-images">
+                <picture style="display: block; width: 100%">
+                    <source
+                        type="image/webp"
+                        srcset="
+                            ../_resources/images/webp/field-sound-visualizer/field-sound-visualizer-480.webp 480w,
+                            ../_resources/images/webp/field-sound-visualizer/field-sound-visualizer-768.webp 768w,
+                            ../_resources/images/webp/field-sound-visualizer/field-sound-visualizer-960.webp 960w
+                        "
+                        sizes="(max-width: 640px) calc(100vw - 32px), 720px"
+                    />
+                    <img
+                        src="../_resources/images/png/field-sound-visualizer/field-sound-visualizer.png"
+                        alt="Pale field-recording waveform on a deep green background"
+                        style="width: 100%"
+                        width="1920"
+                        height="1080"
+                        decoding="async"
+                    />
+                </picture>
+            </div>
+
+            <h2>The Idea</h2>
+
+            <p>
+                Field recordings already contain structure: amplitude, density, frequency, stereo movement, silence,
+                and change over time. Field Sound Visualizer makes those structures visible without turning the job
+                into a video-editing project. Drop in a recording, optionally add a still image, choose a visual
+                language, tune a small set of meaningful controls, and export a finished 1920-by-1080 MP4.
+            </p>
+
+            <p>
+                The app is deliberately narrow. It does not have a timeline, clip editor, compositing canvas, or
+                general-purpose effects rack. Its job is to shorten the distance between a finished recording and a
+                considered video, while keeping FFmpeg's rendering power behind a native interface that explains what
+                each choice does.
+            </p>
+
+            <div class="principle-note">
+                <p>Make the sound visible, then get out of the way.</p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Workflow</h2>
+
+            <ul class="feature-list">
+                <li>Drop or choose an audio file; the entire window acts as an import target</li>
+                <li>Optionally add a background image and choose Fill, Fit, or Blur Fill framing</li>
+                <li>Select one of seven visual presets and adjust only the controls relevant to that preset</li>
+                <li>Render one 10-second preview or queue every preset for side-by-side comparison</li>
+                <li>Scrub, loop, play full-screen, and compare completed previews inside the app</li>
+                <li>Export a 1920-by-1080 H.264 MP4 with AAC audio, ready to upload</li>
+            </ul>
+
+            <h3>Seven visual languages</h3>
+
+            <table class="stack-table">
+                <tr>
+                    <td>Waveform</td>
+                    <td>Amplitude over time, with center, lower-third, and full-frame placement</td>
+                </tr>
+                <tr>
+                    <td>Scrolling Spectrum</td>
+                    <td>A moving frequency history for evolving texture</td>
+                </tr>
+                <tr>
+                    <td>Frequency Plot</td>
+                    <td>An instantaneous view of the current frequency response</td>
+                </tr>
+                <tr>
+                    <td>CQT Bands</td>
+                    <td>Log-spaced pitch bands with spectral history and advanced frequency controls</td>
+                </tr>
+                <tr>
+                    <td>Stereo Scope</td>
+                    <td>A vectorscope for channel relationship and stereo width</td>
+                </tr>
+                <tr>
+                    <td>Timeline</td>
+                    <td>A complete waveform landscape with a moving playhead</td>
+                </tr>
+                <tr>
+                    <td>Loudness Bloom</td>
+                    <td>A continuous perceptual-loudness ribbon with persistence and glow</td>
+                </tr>
+            </table>
+
+            <h3>Custom looks</h3>
+
+            <p>
+                Every preset exposes its own structure and style controls: colors, intensity, display mode, placement,
+                smoothing, frequency range, contrast, or axis visibility where those ideas make sense. A finished
+                combination can be saved as a custom preset, renamed, reused, or deleted. Defaults reproduce the
+                shipped look exactly, so experimentation always has a stable point of return.
+            </p>
+
+            <hr class="thin" />
+
+            <h2>The Preview System</h2>
+
+            <p>
+                Final renders are expensive, so the preview system is treated as a first-class part of the product.
+                Previews render at 960 by 540, 20 frames per second, and ten seconds long. The queue runs no more than
+                two jobs concurrently, keeping the machine responsive while still making whole-preset comparison fast.
+            </p>
+
+            <p>
+                Completed previews live in a persistent library and are addressed by a fingerprint of the recording,
+                image, segment, preset, and applicable settings. An exact match can be reused across launches. A
+                settings change marks an older render as stale without making it unplayable, so a useful comparison is
+                never destroyed merely because the current controls moved on.
+            </p>
+
+            <ul class="feature-list">
+                <li>Automatic cache pruning after seven days</li>
+                <li>One-gigabyte cache ceiling with oldest-entry cleanup</li>
+                <li>Per-preview deletion, Clean Up, Delete All, and optional delete-on-quit</li>
+                <li>Cancellation and failure states preserved per queue item</li>
+                <li>Live looping mode that rebakes after visual changes without blanking the stage</li>
+            </ul>
+
+            <hr class="thin" />
+
+            <h2>Technical Approach</h2>
+
+            <h3>FFmpeg as the rendering engine</h3>
+
+            <p>
+                SwiftUI owns the workflow, state, transport, and visual system; FFmpeg owns the pixels and final audio.
+                A filter-graph factory converts the selected preset and its typed parameters into a concrete graph.
+                The app probes the installed toolchain before rendering and checks for every encoder and filter needed
+                by the current look, including H.264, AAC, showwaves, showspectrum, showcqt, avectorscope, and ebur128.
+            </p>
+
+            <p>
+                Final output prefers Apple's hardware H.264 encoder when available and can fall back to libx264.
+                Background images are scaled, padded, cropped, or blurred before the visualization is overlaid. Audio
+                selects the first stream and is encoded as AAC; Original Level preserves the source level, while Match
+                Playback passes it through normalization and a peak limiter.
+            </p>
+
+            <h3>Toolchain discovery</h3>
+
+            <p>
+                FFmpeg and FFprobe remain external dependencies. The locator checks a saved custom path, standard
+                Homebrew locations for Apple Silicon and Intel Macs, and then the current PATH. Keeping the toolchain
+                external avoids silently redistributing a Homebrew binary whose enabled libraries and license
+                obligations have not been reviewed for release.
+            </p>
+
+            <h3>Source structure</h3>
+
+            <div class="code-block">
+                <pre data-code-language="tree">
+Sources/
+  FieldSoundVisualizer/
+    AppViewModel.swift       project state, preview queue, exports, and lifecycle
+    Models.swift             presets, render settings, metadata, and cache records
+    PresetParameters.swift   typed preset controls and defaults
+    Services/
+      FFmpegLocator.swift    tool discovery and capability checks
+      FFprobeService.swift   source metadata and stream inspection
+      FilterGraphFactory.swift
+                            preset-specific FFmpeg graph construction
+      RenderEngine.swift     process execution, progress, cancellation, and output
+      PreviewCache.swift     stable render fingerprints and cache records
+      LivePreviewController.swift
+                            loop baking and responsive visual updates
+    Views/                   three-panel SwiftUI interface, stage, inspector, and library
+  LicenseKit/               shared license payload, signature, and machine identity
+  LicensePublisher/         private-key operations used only by the issuing side
+  LicenseAdmin/             separate native app for issuing and tracking licenses
+  LicenseTool/              command-line license administration</pre
+                >
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Offline Licensing</h2>
+
+            <p>
+                The app can be distributed directly without an account or a server-side activation service. A separate
+                admin app holds an Ed25519 private key and issues a small signed license for one Mac. The shipped
+                visualizer contains only the corresponding public key, so it can verify a license but cannot create one.
+            </p>
+
+            <p>
+                Machine identity comes from the Mac's IOPlatformUUID, salted and hashed before it is displayed as a
+                short machine code. A license signs the holder, machine, issue date, and optional expiry as one payload.
+                Editing any field invalidates the signature. The app never phones home; expiry and signature checks are
+                local, and an issued license remains useful offline.
+            </p>
+
+            <div class="constraint-note">
+                <p>The private signing key never becomes a dependency of the app being distributed.</p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Tech Stack</h2>
+
+            <table class="stack-table">
+                <tr>
+                    <td>Platform</td>
+                    <td>Native macOS 13+ application built with SwiftUI and AppKit bridges</td>
+                </tr>
+                <tr>
+                    <td>Media</td>
+                    <td>FFmpeg filter graphs and encoding, FFprobe metadata, AVFoundation playback</td>
+                </tr>
+                <tr>
+                    <td>Rendering</td>
+                    <td>H.264 video at 1920 × 1080 with AAC audio; VideoToolbox or libx264</td>
+                </tr>
+                <tr>
+                    <td>Persistence</td>
+                    <td>Property lists for custom presets and JSON-backed preview-cache records</td>
+                </tr>
+                <tr>
+                    <td>Licensing</td>
+                    <td>CryptoKit Ed25519 signatures and SHA-256 machine identity</td>
+                </tr>
+                <tr>
+                    <td>Testing</td>
+                    <td>XCTest coverage for filters, parameters, previews, exports, capabilities, and licensing</td>
+                </tr>
+                <tr>
+                    <td>Distribution</td>
+                    <td>Swift Package Manager scripts for app bundles, signing, notarization, and license administration</td>
+                </tr>
+            </table>
+
+            <hr class="thin" />
+
+            <h2>Scope</h2>
+
+            <p>
+                V1 is intentionally a visualizer, not an editor. There is no multitrack timeline, clip cutting, or
+                arbitrary layer system. The bounded preview queue is the only batch operation, and final exports run one
+                at a time. Those constraints keep the interface legible and let the app devote its complexity to the
+                parts that matter: reliable tool discovery, understandable visual choices, reusable previews, and
+                deterministic output.
+            </p>
+        </main>
+
+        <footer>
+            <p class="footer-links">
+                <span>← <a href="../">Return to portfolio</a></span>
+            </p>
+        </footer>
+    </body>
+</html>
