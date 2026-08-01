@@ -169,7 +169,7 @@ body.typography-page .back:hover {
         position: fixed;
         top: var(--space-page);
         transform: translateX(calc(-100% - 48px));
-        z-index: 30;
+        z-index: 0;
     }
     body.typography-page footer > p:not(.footer-links),
     body.typography-page footer .footer-links span:has(a[href="../"]) {
@@ -315,6 +315,8 @@ body.typography-page .code-block {
     background-color: #20231d;
     border-left: 0;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
     box-shadow:
         0 5px 7px -5px rgba(42, 42, 36, 0.27),
         0 13px 18px -10px rgba(42, 42, 36, 0.22),
