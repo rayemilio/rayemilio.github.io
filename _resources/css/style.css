@@ -1160,6 +1160,10 @@ body.project-sound-on-paper {
     --code-block-width: 640px;
 }
 
+body.project-re-mind-timer {
+    --code-block-width: 640px;
+}
+
 body.project-zineroo {
     --code-block-width: 840px;
 }
@@ -1179,8 +1183,9 @@ body.project-zineroo {
         23px 23px 30px -20px rgba(42, 42, 36, 0.19),
         -23px 23px 30px -20px rgba(42, 42, 36, 0.19);
     padding: var(--s-4);
-    width: min(var(--code-block-width, 840px), calc(100vw - 32px));
-    max-width: none;
+    width: fit-content;
+    min-width: min(var(--code-block-min-width, 560px), calc(100vw - 32px));
+    max-width: min(var(--code-block-width, 840px), calc(100vw - 32px));
     margin: var(--s-4) 0 var(--s-7) 50%;
     transform: translateX(-50%);
     overflow-x: hidden;
