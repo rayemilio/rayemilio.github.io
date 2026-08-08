@@ -799,30 +799,36 @@ body.doc-page hr.thin {
     border-radius: 6px;
 }
 
-.concept-render {
-    margin: var(--s-6) 0;
-}
-
-.concept-render img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-}
-
-.concept-render picture {
-    display: block;
+.concept-composite {
+    aspect-ratio: 16 / 9;
+    background: var(--paper);
     border-radius: 6px;
     box-shadow:
         0 10px 22px rgba(24, 24, 24, 0.12),
         0 3px 8px rgba(24, 24, 24, 0.08);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: var(--s-6) 0;
     overflow: hidden;
 }
 
-.concept-render figcaption {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: var(--s-2);
+.concept-composite picture {
+    display: block;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.concept-composite img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.concept-composite picture:last-child img {
+    object-position: 62% center;
 }
 
 .about-photo {
