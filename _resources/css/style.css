@@ -787,6 +787,23 @@ body.doc-page hr.thin {
     border-radius: 6px;
 }
 
+.concept-render {
+    margin: var(--s-6) 0;
+}
+
+.concept-render img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.concept-render figcaption {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: var(--s-2);
+}
+
 .about-photo {
     margin: 0 0 var(--s-6);
 }

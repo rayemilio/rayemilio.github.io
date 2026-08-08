@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta
             name="description"
-            content="EduToneBox is a real-time educational synthesizer that makes synthesis visible, understandable, and interactive.">
+            content="EduToneBox is a real-time C++ sound exploration instrument with oscillator, additive, and sampler sources, calibrated visualizations, and cross-platform deployment tooling.">
         <title>EduToneBox — Objects on Purpose</title>
         <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css">
         <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css">
@@ -20,7 +20,7 @@
         <p class="doc-label">Technical Documentation</p>
         <h1>EduToneBox</h1>
         <p class="subtitle">
-            Real-time educational synthesizer — C++17 DSP engine, Qt6/QML interface, Raspberry Pi deployment
+            Real-time sound exploration instrument — C++17 DSP, Qt6/QML, CoreAudio, and Raspberry Pi
         </p>
 
         <p class="meta tags">
@@ -63,25 +63,25 @@
         <p>
             EduToneBox is a physical, real-time educational synthesizer prototype built around a C++17 DSP engine, a
             Qt6/QML control surface, and OSC-over-UDP communication, deployable on both macOS and Raspberry Pi. The goal
-            is to make core sound synthesis concepts visible and playable: waveform shape, frequency, amplitude, LFO
-            modulation, ADSR envelopes, multi-algorithm filtering, effects, and real-time FFT spectrum visualization
-            feeding back to the UI.
+            is to make sound visible and playable without prescribing a curriculum. Its oscillator, 32-partial additive
+            engine, and self-sampler are peer sources feeding the same envelope, multi-algorithm filter bank, effects,
+            and calibrated post-output visualization path.
         </p>
 
         <p>
             The project is structured as a portfolio-grade systems project rather than a single demo script. It includes
             platform-specific audio backends, reusable DSP modules, a desktop and Raspberry Pi UI, automated tests, and
-            deployment scripts for both macOS and Raspberry Pi.
-            The Raspberry Pi build path adds ALSA, FFTW3, and ARM/NEON optimization hooks with full deploy and
-            audio-test scripts.
+            deployment scripts for both macOS and Raspberry Pi. A shared parameter registry, atomic preset snapshots,
+            bounded callback-to-worker telemetry, and defensive recursive-DSP tests make the instrument a systems
+            project rather than a single synthesis demo.
         </p>
 
         <div class="status-note">
             <p>
-                This project is actively in development. Current test status: 33 of 34 CTest tests pass. The single
-                known failure predates PolyBLEP band-limiting implementation and expects hard-edge waveform samples —
-                the fix is understood and queued. The roadmap below describes near-term engineering work and longer-term
-                product direction.
+                This project is actively in development. Current local verification: 85 of 85 CTest tests pass. The
+                macOS packaging path produces a dependency-closed, ad-hoc-signed application bundle, and CI covers
+                macOS plus a Pi-representative ARM64 Linux build. Native listening/calibration and physical Raspberry Pi
+                audio/display acceptance remain outstanding and are not claimed here.
             </p>
         </div>
 
@@ -119,7 +119,7 @@
 
         <div class="code-block">
             <pre data-code-language="diagram">
-Oscillator
+Oscillator | AdditiveEngine | Sampler
   → ADSR envelope
   → FilterBank (optional)
   → EffectsProcessor (optional)
@@ -138,10 +138,11 @@ QML control change
   → OSCServer handler
   → AudioEngine parameter update
 
-Audio buffer
-  → FFT analysis
-  → /spectrum/bin OSC messages
-  → UI spectrum visualization</pre
+Post-output audio block
+  → bounded SPSC telemetry queue
+  → non-real-time visualization worker
+  → atomic waveform, spectrum, and measurement frames
+  → UI oscilloscope and spectrum analyzer</pre
             >
         </div>
 
@@ -160,6 +161,19 @@ Audio buffer
             </li>
         </ul>
 
+        <h3>Peer sound sources</h3>
+        <ul class="feature-list">
+            <li>
+                32-partial additive engine with custom harmonic levels, all/odd/even sets, missing-fundamental control,
+                roll-off, and canonical sine, saw, square, and triangle reconstruction
+            </li>
+            <li>
+                Volatile self-sampler with preallocated recording storage, trim, loop/one-shot playback, root-frequency
+                mapping, and ±24-semitone pitch control
+            </li>
+            <li>Click-reduced transitions between oscillator, additive, and sampler sources</li>
+        </ul>
+
         <h3>Modulation</h3>
         <ul class="feature-list">
             <li>ADSR envelope with linear and exponential curve support</li>
@@ -169,21 +183,51 @@ Audio buffer
 
         <h3>Filter bank</h3>
         <ul class="feature-list">
-            <li>State variable filter</li>
+            <li>Topology-preserving state variable filter: low-pass, high-pass, band-pass, and notch</li>
             <li>Butterworth low-pass</li>
-            <li>Virtual analog low-pass</li>
-            <li>Modal resonator</li>
+            <li>2×-processed virtual analog low-pass</li>
+            <li>Amplitude-normalized modal resonator</li>
+            <li>
+                Regression-tested decay and boundedness across public cutoff/Q extremes, including recursive feedback
+                paths that can otherwise become limiter-masked runaway audio
+            </li>
         </ul>
 
         <h3>Effects processor</h3>
         <ul class="feature-list">
             <li>Reverb, Delay, Chorus, Flanger, Distortion, Bit crusher</li>
+            <li>Unity-bounded flanger feedback interpolation and non-finite state containment</li>
+            <li>Correct DC rejection after asymmetric tube-style saturation</li>
         </ul>
 
         <h3>Spectrum analysis</h3>
         <ul class="feature-list">
             <li>FFT-based, using Accelerate/vDSP on macOS and FFTW3 on Linux/Raspberry Pi</li>
-            <li>Spectrum bin data sent over OSC to UI for live visualization</li>
+            <li>4096-point Hann window with calibrated dBFS levels and interpolated peak-frequency measurement</li>
+            <li>Peak frequency, peak dBFS, RMS dBFS, peak amplitude, sample rate, and visible measurement window</li>
+            <li>Analysis represents the actual post-filter/post-effects output rather than an illustrative source shape</li>
+        </ul>
+
+        <h3>State and real-time architecture</h3>
+        <ul class="feature-list">
+            <li>Shared registry for parameter identifiers, OSC addresses, ranges, defaults, and quantization</li>
+            <li>Complete versioned preset snapshots with 16 crash-safe, atomically replaced slots</li>
+            <li>Engine-to-UI startup synchronization and authoritative state publication after external changes</li>
+            <li>No FFT, allocation, networking, or locking work in the real-time audio callback</li>
+        </ul>
+
+        <h3>Platform delivery</h3>
+        <ul class="feature-list">
+            <li>CoreAudio and Accelerate/vDSP on macOS; ALSA and FFTW3 on Linux/Raspberry Pi</li>
+            <li>
+                Self-contained macOS bundle packaging with dependency closure, nested signing, bundled-engine lifecycle
+                ownership, and Finder-launch diagnostics
+            </li>
+            <li>
+                Raspberry Pi dependency, build, audio-test, and systemd tooling with separate audio-engine and kiosk UI
+                services
+            </li>
+            <li>CI on macOS and a Pi-representative ARM64 Linux runner, including the offline DSP benchmark</li>
         </ul>
 
         <hr class="thin">
@@ -197,11 +241,16 @@ Audio buffer
         </p>
 
         <ul class="feature-list">
-            <li>Pages for visualization, oscillator and filter control, modulation, and effects</li>
-            <li>Live oscilloscope and harmonic spectrum views</li>
+            <li>Pages for visualization, oscillator/filter, additive harmonics, sampler, modulation, and effects</li>
+            <li>
+                Live oscilloscope with rising-edge auto sync, free-run mode, 1-2-5 timebase control, and momentary
+                frequency-based FIT
+            </li>
+            <li>One-tap FREEZE plus one captured “A” comparison trace, without nested measurement menus</li>
+            <li>Calibrated live spectrum with atomic frames and signal measurements</li>
             <li>Touch-friendly knob controls with hardware-inspired visual styling</li>
             <li>Light and dark theme toggle</li>
-            <li>OSC client for sending control messages and receiving spectrum data</li>
+            <li>Keyboard operation and accessibility names, roles, and state for primary controls</li>
         </ul>
 
         <hr class="thin">
@@ -256,33 +305,38 @@ Audio buffer
 AUDIO_BOX/
 ├── CMakeLists.txt
 ├── README.md
+├── benchmarks/       Representative offline DSP throughput benchmark
 ├── commands/
 │   ├── mac/          Clickable macOS command wrappers
 │   └── pi/           Raspberry Pi desktop launchers
 ├── deploy/
-│   ├── mac/          macOS build, test, run, sync scripts
-│   └── pi/           Pi install, build, run, audio-test scripts
+│   ├── mac/          macOS build, run, sync, and app packaging
+│   └── pi/           Pi build/run, audio test, and systemd kiosk services
 ├── docs/             Planning and deployment docs
 ├── src/
 │   ├── audio_engine/
 │   │   ├── AudioEngine.*     Main synthesis engine and audio backend
 │   │   ├── Oscillator.*      Waveform generation and PolyBLEP
+│   │   ├── AdditiveEngine.*  32-partial additive source
+│   │   ├── Sampler.*         Preallocated volatile self-sampler
 │   │   ├── LFO.*             Modulation source
 │   │   ├── ADSR.*            Envelope generator
-│   │   ├── SVFilter.*        State variable filter
+│   │   ├── SVFilter.*        Stable topology-preserving filter
 │   │   ├── FilterBank.*      Multiple algorithms behind one interface
 │   │   ├── EffectsProcessor.* Reverb, delay, modulation, distortion
+│   │   ├── AudioTelemetry.h  Bounded callback-to-worker queue
+│   │   ├── ScopeProcessor.*  Triggered oscilloscope framing
+│   │   ├── PresetStore.*     Versioned crash-safe snapshots
 │   │   ├── OSCServer.*       UDP OSC control server
 │   │   └── sndkit/           Embedded DSP helper modules
+│   ├── common/
+│   │   └── ParameterRegistry.h Shared engine/UI control contract
 │   └── ui_app/
 │       ├── OSCClient.*       Qt UDP OSC client
 │       ├── main.cpp
 │       └── qml/              Instrument UI pages and controls
 └── tests/
-    ├── test_oscillator.cpp
-    ├── test_lfo.cpp
-    ├── test_adsr.cpp
-    └── test_svfilter.cpp</pre
+    └── test_*.cpp             DSP, OSC, presets, telemetry, scope, and FFT tests</pre
             >
         </div>
 
@@ -318,6 +372,11 @@ AUDIO_BOX/
                 <td>int as float</td>
                 <td>0 Sine · 1 Triangle · 2 Saw · 3 Square · 4 Pulse · 5 Custom</td>
             </tr>
+            <tr>
+                <td>/osc/pulsewidth</td>
+                <td>float</td>
+                <td>Pulse duty cycle, clamped to 0.01–0.99</td>
+            </tr>
         </table>
 
         <h3>LFO</h3>
@@ -341,6 +400,11 @@ AUDIO_BOX/
                 <td>/osc/lfo/waveform</td>
                 <td>int as float</td>
                 <td>0 Sine · 1 Triangle · 2 Saw · 3 Square</td>
+            </tr>
+            <tr>
+                <td>/osc/lfo/range</td>
+                <td>int as float</td>
+                <td>0 Bipolar · 1 Unipolar</td>
             </tr>
             <tr>
                 <td>/osc/lfo/target</td>
@@ -375,6 +439,11 @@ AUDIO_BOX/
                 <td>/osc/adsr/release</td>
                 <td>float</td>
                 <td>Release time in ms</td>
+            </tr>
+            <tr>
+                <td>/osc/adsr/curvetype</td>
+                <td>int as float</td>
+                <td>0 Linear · 1 Exponential</td>
             </tr>
             <tr>
                 <td>/osc/adsr/noteon</td>
@@ -461,9 +530,87 @@ AUDIO_BOX/
                 <th>Meaning</th>
             </tr>
             <tr>
-                <td>/spectrum/bin</td>
-                <td>bin index, magnitude</td>
-                <td>FFT spectrum bin sent from engine to UI</td>
+                <td>/visualization/scope/sync</td>
+                <td>0 or 1</td>
+                <td>Select free-run or rising-edge automatic synchronization</td>
+            </tr>
+            <tr>
+                <td>/visualization/scope/window</td>
+                <td>1–100 ms</td>
+                <td>Set the oscilloscope time window</td>
+            </tr>
+            <tr>
+                <td>/waveform/frame</td>
+                <td>sample rate, samples, window, trigger state</td>
+                <td>Atomic post-output oscilloscope frame</td>
+            </tr>
+            <tr>
+                <td>/spectrum/frame</td>
+                <td>sample rate and calibrated band triples</td>
+                <td>Atomic logarithmic spectrum frame</td>
+            </tr>
+            <tr>
+                <td>/measurement/signal</td>
+                <td>peak Hz, peak/RMS dBFS, amplitude</td>
+                <td>Live post-output signal measurements</td>
+            </tr>
+        </table>
+
+        <h3>Peer sources</h3>
+        <table class="doc-table">
+            <tr>
+                <th>Address</th>
+                <th>Value</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>/osc/source</td>
+                <td>0–2</td>
+                <td>Select oscillator, additive engine, or sampler</td>
+            </tr>
+            <tr>
+                <td>/osc/additive/reconstruction</td>
+                <td>0–7</td>
+                <td>Custom, all, odd, even, sine, saw, square, or triangle</td>
+            </tr>
+            <tr>
+                <td>/osc/additive/harmonic/01..32</td>
+                <td>0.0–1.0</td>
+                <td>Individual harmonic levels</td>
+            </tr>
+            <tr>
+                <td>/sampler/record</td>
+                <td>0 or 1</td>
+                <td>Start or finish recording the final limited output</td>
+            </tr>
+            <tr>
+                <td>/sampler/clear · /sampler/restart</td>
+                <td>trigger</td>
+                <td>Clear the volatile take or restart playback</td>
+            </tr>
+        </table>
+
+        <h3>State and presets</h3>
+        <table class="doc-table">
+            <tr>
+                <th>Address</th>
+                <th>Value</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>/state/request</td>
+                <td>trigger</td>
+                <td>Request publication of every registered parameter</td>
+            </tr>
+            <tr>
+                <td>/state/parameter</td>
+                <td>parameter index, value</td>
+                <td>Authoritative engine-to-client state</td>
+            </tr>
+            <tr>
+                <td>/preset/save · /preset/load</td>
+                <td>slot 1–16</td>
+                <td>Atomically save or restore a complete versioned control snapshot</td>
             </tr>
         </table>
 
@@ -471,7 +618,7 @@ AUDIO_BOX/
 
         <h2>Test Coverage</h2>
 
-        <p>Unit tests are written in Catch2 and run via CTest. Current coverage:</p>
+        <p>Unit tests are written in Catch2 and run via CTest. Current local status: 85 of 85 tests pass.</p>
 
         <ul class="feature-list">
             <li>
@@ -481,14 +628,19 @@ AUDIO_BOX/
             <li>LFO: ranges, waveform generation, frequency accuracy, amplitude scaling, and reset behavior</li>
             <li>ADSR: state transitions, attack/decay/sustain/release phases, full-cycle behavior, and retriggering</li>
             <li>
-                State variable filter: parameter validation, stability, frequency response, DC blocking, resonance
-                behavior, and reset
+                Filters and effects: algorithm selection, response, full public cutoff/Q extremes, decay tails,
+                non-finite recovery, feedback boundedness, DC rejection, and reset behavior
             </li>
+            <li>OSC: encoding, decoding, dispatch, integer/float handling, and malformed-packet rejection</li>
+            <li>State: parameter registry completeness, normalization, preset migration, and crash-safe storage</li>
+            <li>Real-time support: bounded telemetry ordering and pressure behavior without callback allocation</li>
+            <li>Sources: additive reconstruction and harmonic sets plus sampler recording, trim, loop, and pitch mapping</li>
+            <li>Visualization: triggered scope alignment and calibrated Accelerate/vDSP FFT amplitude</li>
         </ul>
 
         <p>
-            Not yet covered: OSC parser, full engine integration, effects, filter-bank algorithms, and UI behavior.
-            These are listed in the near-term roadmap.
+            CI builds and tests on macOS and an ARM64 Linux runner, then runs a representative offline DSP benchmark.
+            Automated pixel-level UI testing and physical audio-device acceptance are still separate tasks.
         </p>
 
         <hr class="thin">
@@ -497,21 +649,17 @@ AUDIO_BOX/
 
         <h3>Near-term engineering</h3>
         <ul class="feature-list">
-            <li>Align remaining UI OSC controls with engine handlers (pulse width, ADSR curve type, LFO range)</li>
-            <li>Add tests for OSC parsing, message dispatch, effects, and filter-bank algorithms</li>
-            <li>Move FFT and OSC visualization feedback off the real-time audio path onto a lock-free queue</li>
-            <li>Add integration tests for engine parameter changes</li>
-            <li>Add CI for configure, build, and CTest</li>
-            <li>Add packaging for Raspberry Pi deployment</li>
+            <li>Native macOS listening, level calibration, and source-transition acceptance with known tones</li>
+            <li>Physical Raspberry Pi audio, display, latency, and thermal acceptance</li>
+            <li>Automated visual regression coverage for the fixed-aspect QML interface</li>
+            <li>Developer ID signing and notarization if the macOS bundle moves beyond local distribution</li>
         </ul>
 
         <h3>Product and hardware</h3>
         <ul class="feature-list">
-            <li>MIDI input</li>
-            <li>Preset storage</li>
-            <li>Hardware encoder and button mapping</li>
-            <li>Guided lesson modes: waveform, harmonics, modulation, filtering</li>
-            <li>Sampler or wavetable recording flow</li>
+            <li>Map the shared software-control registry to physical encoders, buttons, switches, and enclosure</li>
+            <li>Add an external audio-input and calibration abstraction, followed by optional WAV import</li>
+            <li>Add optional MIDI mapping without making MIDI a requirement for the base instrument</li>
         </ul>
 
         <hr class="thin">
@@ -520,17 +668,16 @@ AUDIO_BOX/
 
         <ul class="feature-list">
             <li>
-                Some QML controls emit OSC addresses without matching engine handlers, including
-                <code>/osc/pulsewidth</code>
-                and
-                <code>/osc/adsr/curvetype</code>
+                The engine is monophonic. The sampler is a volatile self-recorder; recorded audio is not embedded in
+                presets or persisted as an audio file.
             </li>
-            <li>The LFO range selector appears in the UI but has no matching OSC endpoint wired into the engine</li>
             <li>
-                Spectrum analysis and OSC feedback currently run close to the audio path — a production hardening pass
-                should move this work onto a non-real-time thread
+                Native macOS listening and calibration acceptance remains outstanding even though the bundle builds,
+                loads its embedded components, and passes automated verification.
             </li>
-            <li>No packaging target yet for an installable macOS app bundle or Debian package</li>
+            <li>ARM64 CI is Pi-representative; physical Raspberry Pi audio/display and latency validation still requires the device.</li>
+            <li>The current macOS bundle is ad-hoc signed for local verification, not Developer ID signed or notarized.</li>
+            <li>UI startup is smoke-tested, but automated pixel-level and physical-control tests are not yet present.</li>
         </ul>
 
         <hr class="thin">
@@ -545,9 +692,16 @@ AUDIO_BOX/
 
         <p>
             DSP modules are kept as plain C++ classes with explicit state and parameter setters — straightforward to
-            unit test, reuse, and eventually move into a plugin or embedded target. The UI is intentionally
-            instrument-like: large controls, fixed 4:3 scaling, pages organized by synthesis concept, and visual
-            feedback designed for teaching rather than decoration.
+            unit test, reuse, and eventually move into a plugin or embedded target. Recursive filters and effects are
+            tested for bounded output and actual decay rather than only for finite numbers, because a final limiter can
+            hide a dangerous internal limit cycle.
+        </p>
+
+        <p>
+            The UI is intentionally instrument-like: large controls, fixed 4:3 scaling, shallow interactions, and visual
+            feedback designed for close listening rather than decoration. EduToneBox supplies raw capabilities; it does
+            not embed lessons or dictate curriculum, and optional MIDI or external input should not become requirements
+            for using the instrument.
         </p>
 
         <p>

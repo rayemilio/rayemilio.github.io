@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Re-Mind Timer is a local-first, radio-free reminder-device design with host-validated scheduling software and unvalidated physical hardware."
+        />
+        <title>Re-Mind Timer — Objects on Purpose</title>
+        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
+        <link rel="stylesheet" href="../_resources/css/style.css" />
+        <script src="../_resources/js/code-highlight.js" defer></script>
+        <script src="../_resources/js/portfolio-scroll.js"></script>
+    </head>
+    <body class="doc-page project-re-mind-timer">
+        <a class="back" href="../">← Portfolio</a>
+
+        <main>
+            <p class="doc-label">Technical Documentation</p>
+            <h1>Re-Mind Timer</h1>
+            <p class="subtitle">
+                A local-first, radio-free reminder device design: tactile alarms with a supervisor-owned schedule and
+                an optional background speech worker.
+            </p>
+
+            <p class="meta tags">
+                <span class="tag">C++17</span>
+                <span class="tag">Python</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Local-first</span>
+            </p>
+
+            <figure class="concept-render">
+                <img
+                    src="../_resources/images/png/re-mind-timer/re-mind-timer.png"
+                    alt="Concept render of a compact black Re-Mind reminder device with two buttons and a display reading CALL MOM and 4:30 PM"
+                    width="1664"
+                    height="936"
+                />
+                <figcaption>
+                    Concept render only. Physical hardware, including the enclosure, display, controls, power, and
+                    alert behavior, remains unvalidated.
+                </figcaption>
+            </figure>
+
+            <hr />
+
+            <h2>The Idea</h2>
+
+            <div class="origin-note">
+                <p>
+                    Re-Mind begins with a simple preference: a reminder should be local, tactile, and hard to lose.
+                    The work is a design and a staged engineering plan for a pocket device, not a finished hardware
+                    product.
+                </p>
+            </div>
+
+            <p>
+                The design keeps alarm obligations independent of a phone, account, radio, or network connection.
+                Spoken capture is useful when it can help, but it is intentionally not allowed to become the authority
+                for time, storage, or whether an alarm fires.
+            </p>
+
+            <hr class="thin" />
+
+            <h2>Interaction and Product Principles</h2>
+
+            <ul class="feature-list">
+                <li>Local operation: no radio hardware, cloud sync, accounts, or telemetry in the planned device.</li>
+                <li>Two-button handling: record to capture; action to address an active reminder.</li>
+                <li>Haptic-only operation is sufficient; audible output is planned as a per-reminder opt-in.</li>
+                <li>Ambiguous or missing times reject rather than being guessed.</li>
+                <li>Short ACTION can temporarily silence a firing item for one minute; completion is a 0.75-second hold.</li>
+            </ul>
+
+            <hr class="thin" />
+
+            <h2>Two-Processor Architecture</h2>
+
+            <p>
+                The schedule path is deliberately asymmetric. The always-on supervisor owns capture, durable storage,
+                RTC arming, firing, deferral, and completion. A separately powered background worker may later turn
+                audio into labels, but its absence must never prevent the alarm path.
+            </p>
+
+            <div class="code-block">
+                <pre data-code-language="diagram">Capture / buttons / RTC
+          │
+          v
++---------------------------------------------+
+| Always-on supervisor                        |
+| time · storage · scheduling · alarm firing  |
++----------------------+----------------------+
+                       | versioned job/result protocol
+                       v
++---------------------------------------------+
+| Background speech worker                    |
+| optional transcription and label generation |
++---------------------------------------------+</pre>
+            </div>
+            <p class="code-caption">The speech worker is non-authoritative: labels may arrive later; alarms do not wait.</p>
+
+            <hr class="thin" />
+
+            <h2>Current Host-Validated Software</h2>
+
+            <p>
+                The current work is a host reference for reminder semantics, recurrence, persistence, protocol
+                framing, backup and iCalendar behavior, and supporting tooling. It is designed to make schedule
+                correctness testable before a physical implementation is selected.
+            </p>
+
+            <div class="status-note">
+                <p>
+                    Host evidence shows deterministic semantic and filesystem behavior on a Mac. It does not turn the
+                    reference implementation into device firmware or a validated physical product.
+                </p>
+            </div>
+
+            <h3>Tech Stack</h3>
+
+            <table class="stack-table">
+                <tbody>
+                    <tr><td>Core schedule reference</td><td>C++17</td></tr>
+                    <tr><td>Validation and tooling</td><td>Python</td></tr>
+                    <tr><td>Planned local interface</td><td>TypeScript PWA</td></tr>
+                    <tr><td>Planned supervisor role</td><td>Always-on time, storage, RTC, and alarm ownership</td></tr>
+                    <tr><td>Planned speech role</td><td>Background, stateless label/transcription work</td></tr>
+                </tbody>
+            </table>
+
+            <hr class="thin" />
+
+            <h2>Validation Evidence</h2>
+
+            <p>
+                The pre-hardware validation report records 7/7 validation stages passing: 1,183 Python tests passed,
+                3 were skipped, and all 19 host-reference targets passed. This is evidence for the tested host
+                reference and its deterministic semantics.
+            </p>
+
+            <div class="constraint-note">
+                <p>
+                    Evidence boundary: this does not establish natural-speech accuracy, microphone performance,
+                    enclosure behavior, flash wear, brownouts, RTC wake, UART or USB electrical behavior, power or
+                    runtime, e-paper, haptics, button timing, WebSerial, or browser compatibility. D-001 has zero
+                    recorded clips, so natural-speech accuracy remains unproven.
+                </p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Physical Concept and Planned Hardware</h2>
+
+            <p>
+                The render above explores a compact two-button object with a visible reminder display. It is a
+                directional concept for a planned prototype, not a claim that the pictured screen, enclosure,
+                electronics, haptics, or power system has been built or measured.
+            </p>
+
+            <p>
+                Hardware selection remains gated by physical evidence, including the supervisor sleep-current and
+                energy measurements. The plan’s four-day use case is a target to prove, not an achieved runtime; the
+                early confirmation-latency figures are likewise measurement candidates, not established limits.
+            </p>
+
+            <hr class="thin" />
+
+            <h2>Local-First PWA Plan</h2>
+
+            <p>
+                The planned companion is a hosted, installable, offline-capable PWA for local reminder management,
+                backup, and correction. Chromium browsers are planned to use WebSerial where supported, with a USB
+                file-transfer fallback for modern browsers. This remains a plan pending browser and device evidence.
+            </p>
+
+            <hr class="thin" />
+
+            <h2>Next Steps</h2>
+
+            <ul class="feature-list">
+                <li>Collect and score natural recordings to resolve D-001’s speech feasibility gate.</li>
+                <li>Measure supervisor power, wake behavior, feedback timing, and the selected physical controls.</li>
+                <li>Validate display, haptic, storage, RTC, UART, USB, and failure behavior on hardware.</li>
+                <li>Prove the PWA transport and offline behavior across the intended browser matrix.</li>
+                <li>Only then integrate the background speech service and pursue a custom PCB or enclosure.</li>
+            </ul>
+        </main>
+
+        <footer>
+            <p class="footer-links">
+                <span>← <a href="../">Return to portfolio</a></span>
+            </p>
+        </footer>
+    </body>
+</html>
