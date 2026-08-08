@@ -378,6 +378,18 @@ body.doc-page h1.tracked-wordmark {
         0 4px 10px rgba(24, 24, 24, 0.12);
 }
 
+.proj-re-mind-timer .proj-img {
+    overflow: visible;
+}
+
+.proj-re-mind-timer .proj-img picture {
+    border-radius: 6px;
+    box-shadow:
+        0 10px 22px rgba(24, 24, 24, 0.14),
+        0 3px 8px rgba(24, 24, 24, 0.1);
+    overflow: hidden;
+}
+
 /* ── Footer ─────────────────────────────────────────────────── */
 .footer {
     display: grid;
@@ -796,6 +808,15 @@ body.doc-page hr.thin {
     width: 100%;
     height: auto;
     border-radius: 6px;
+}
+
+.concept-render picture {
+    display: block;
+    border-radius: 6px;
+    box-shadow:
+        0 10px 22px rgba(24, 24, 24, 0.12),
+        0 3px 8px rgba(24, 24, 24, 0.08);
+    overflow: hidden;
 }
 
 .concept-render figcaption {
