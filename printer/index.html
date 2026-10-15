@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="A small thermal printer for everyday paper objects: notes, drawings, photographs, QR codes, forecasts, shopping lists, and puzzles. Built with ESP32, C++, and TypeScript." />
+        <title>Printer — Objects on Purpose</title>
+        <link rel="canonical" href="https://objectsonpurpose.com/printer/" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-reset.css" />
+        <link rel="stylesheet" href="../_resources/css/stylesheet-fonts.css" />
+        <link rel="stylesheet" href="../_resources/css/style.css" />
+        <script src="../_resources/js/code-highlight.js" defer></script>
+        <script src="../_resources/js/portfolio-scroll.js"></script>
+    </head>
+    <body class="doc-page project-printer">
+        <a class="back" href="../">← Portfolio</a>
+
+        <main>
+            <p class="doc-label">Technical Documentation</p>
+            <h1>Printer</h1>
+            <p class="subtitle">A small thermal printer for everyday paper objects. Notes, drawings, photographs,
+                forecasts, lists, and puzzles — from a browser to a strip of paper.</p>
+
+            <p class="meta tags">
+                <span class="tag">ESP32</span>
+                <span class="tag">C++</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Python</span>
+                <span class="tag">Physical Computing</span>
+            </p>
+
+            <div class="project-links" aria-label="Printer project links">
+                <a href="https://printer.objectsonpurpose.com/">Open the live printer ↗</a>
+            </div>
+            <p class="code-caption printer-access-note">Password required. The live interface sends jobs to a physical printer.</p>
+
+            <figure class="printer-workspace">
+                <img src="../_resources/images/webp/printer/printer-workspace.webp"
+                    alt="Printer web interface with printable modules beside a paper preview and drawing controls"
+                    width="1360" height="1000" decoding="async" />
+                <figcaption class="code-caption">The shared Print workspace, running directly on the ESP32.</figcaption>
+            </figure>
+
+            <hr />
+
+            <h2>The Idea</h2>
+            <div class="origin-note">
+                <p>A receipt printer can make more than receipts. A forecast to take outside, a list to put in a
+                    pocket, a puzzle to leave on a table, or a drawing to give away: small pieces of information
+                    become useful objects when they leave the screen.</p>
+            </div>
+            <p>The project pairs a QR204 thermal printer with a classic ESP32 / ESP-WROOM-32 and a browser interface.
+                The same workspace can run on the device, through a Mac connection, or through an authenticated
+                remote relay. The browser handles composition and previews; the embedded print core turns the
+                result into the printer’s native text or monochrome raster commands.</p>
+
+            <hr class="thin" />
+
+            <h2>What It Prints</h2>
+            <ul class="feature-list">
+                <li><strong>Text:</strong> short notes with typography controls, a receipt preview, and optional timestamps.</li>
+                <li><strong>Images:</strong> photographs prepared for a one-bit thermal print head with cropping and dithering.</li>
+                <li><strong>Drawing:</strong> draw on the paper preview with adjustable pen thickness and inversion.</li>
+                <li><strong>QR codes:</strong> turn a link or text into a printable code with a custom heading.</li>
+                <li><strong>Weather:</strong> a city forecast with hourly temperature charts and a five-day outlook.</li>
+                <li><strong>Shopping lists:</strong> a simple title, checkboxes, and wrapped items.</li>
+                <li><strong>Puzzles:</strong> Sudoku, mazes, mini crosswords, and themed word searches, with explicit solution printing.</li>
+            </ul>
+            <p>Modules share the paper preview, print controls, and job tracking. Puzzle generation happens in the
+                browser; weather is loaded on request. Drafts and preferences stay in that browser’s local storage.</p>
+
+            <hr class="thin" />
+
+            <h2>One Interface, Three Connections</h2>
+            <h3>On the local network</h3>
+            <p>The ESP32 serves the interface directly over Wi-Fi. Local control includes printing, live device
+                status, job history, setup, and application-only firmware updates from the browser.</p>
+            <h3>From the Mac</h3>
+            <p>A local Python bridge serves the current interface and forwards jobs to the physical printer.
+                A separate simulator uses the shared C++ print core so text encoding and image processing can be
+                exercised before touching the device.</p>
+            <h3>From elsewhere</h3>
+            <p>The password-protected live interface submits jobs to a server-side queue. The ESP32 contacts the relay
+                over outbound, certificate-validated HTTPS to collect work and report progress. The device does not
+                need an incoming public network connection. Remote controls are limited to printing and status;
+                device setup and firmware updates stay local.</p>
+
+            <hr class="thin" />
+
+            <h2>From Preview to Paper</h2>
+            <p>The QR204’s 384-dot print width shapes the whole interface. Native text uses the printer’s own
+                character commands; styled content and graphics become packed monochrome bitmaps. Image processing
+                and the device’s paper geometry correction are handled explicitly so a browser preview can map to
+                the physical output.</p>
+            <p>Long raster jobs upload in bounded, ordered chunks and are checked with SHA-256 before committing.
+                One job ID follows a receipt through the queue and transmission. An uncertain delivery is not
+                automatically retried, avoiding an accidental second print.</p>
+            <div class="context-note">
+                <p>Status distinguishes queued work, activity, stale connections, and transmission progress.
+                    “Sent to printer” describes data transmission; the hardware does not independently confirm
+                    that a finished receipt emerged on paper.</p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Compose on the Mac</h2>
+            <p>The Mac interface also has a receipt composer: add independent text, weather, list, QR, puzzle,
+                drawing, and image sections to one continuous strip. Sections can be edited, duplicated, and
+                reordered, with per-section headings and adjustable spacing. The complete receipt is submitted as
+                one raster job.</p>
+            <div class="status-note">
+                <p>Compose is currently a Mac-interface feature. The embedded and hosted interfaces provide the
+                    individual Print modules.</p>
+            </div>
+
+            <hr class="thin" />
+
+            <h2>Architecture</h2>
+            <div class="code-block">
+                <pre data-code-language="tree">web/          TypeScript workspace, previews, and printable modules
+core/         Portable C++ text, raster, and dither implementation
+firmware/     ESP32 device server, UART output, status, and updater
+simulator/    Python server with SQLite-backed simulated jobs
+shared/       API contract across device, simulator, and bridge
+scripts/      Mac bridge, development loop, and release tooling
+tests/        Core, API, browser, and transfer checks</pre>
+            </div>
+            <p>The interface is shared across environments while hardware capabilities remain explicit. A camera
+                or SD feature appears only when the configured hardware supports it; the current classic ESP32
+                build does not claim the earlier camera proposal as an installed feature.</p>
+
+            <hr class="thin" />
+
+            <h2>Tech Stack</h2>
+            <table class="stack-table">
+                <tbody>
+                    <tr><td>Hardware</td><td>QR204 thermal printer, classic ESP32 / ESP-WROOM-32, UART at 9600 baud</td></tr>
+                    <tr><td>Firmware</td><td>Arduino-ESP32 and PlatformIO, with a portable C++ print core</td></tr>
+                    <tr><td>Interface</td><td>TypeScript, Vite, HTML, CSS, and Canvas-based raster previews</td></tr>
+                    <tr><td>Mac tools</td><td>Python bridge and simulator, SQLite job storage</td></tr>
+                    <tr><td>Remote printing</td><td>Authenticated PHP relay, durable queue, outbound HTTPS delivery</td></tr>
+                    <tr><td>Raster transfer</td><td>Chunked uploads, SHA-256 verification, one ID per job</td></tr>
+                </tbody>
+            </table>
+
+            <hr class="thin" />
+
+            <h2>Current Build</h2>
+            <p>Firmware 1.8.4 is installed on the classic ESP32. The working system includes local and remote
+                printing, the shared Print modules, live readiness and transmission status, and a Mac development
+                loop. Weather and Sudoku output have been physically confirmed on the printer. The enclosure,
+                battery runtime, and camera remain separate hardware work.</p>
+
+            <div class="project-links" aria-label="Try the printer">
+                <a href="https://printer.objectsonpurpose.com/">Open the live printer ↗</a>
+                <a href="../#work">Explore the other projects ↗</a>
+            </div>
+        </main>
+
+        <footer>
+            <p class="footer-links"><span>← <a href="../">Return to portfolio</a></span></p>
+        </footer>
+    </body>
+</html>

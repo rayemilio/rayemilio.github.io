@@ -1466,3 +1466,10 @@ body.doc-page footer a:hover {
         gap: var(--s-5);
     }
 }
+
+/* Printer project */
+body.project-printer { --code-block-width: 640px; }
+.printer-workspace { margin: var(--s-6) 0; }
+.printer-workspace img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
+.printer-workspace figcaption { margin-top: var(--s-2); }
+body.project-printer .printer-access-note { margin-top: var(--s-3); }
