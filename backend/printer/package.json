@@ -1,0 +1,11 @@
+{
+  "name": "objects-on-purpose-printer-backend",
+  "private": true,
+  "scripts": {
+    "test:relay": "php tests/relay-status-test.php && php tests/relay-raster-stream-test.php",
+    "test:http": "node tests/auth-relay.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}

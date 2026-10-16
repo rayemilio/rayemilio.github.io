@@ -1,0 +1,6 @@
+Options -Indexes
+RewriteEngine On
+RewriteRule ^\.well-known/acme-challenge/ - [END]
+RewriteRule ^index\.php$ - [END]
+RewriteRule ^ index.php [END]
+Header always set X-Content-Type-Options "nosniff"

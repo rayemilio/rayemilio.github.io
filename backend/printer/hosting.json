@@ -1,0 +1,6 @@
+{
+  "site": "objectsonpurpose",
+  "sshDestination": "rayemilio_objectsonpurpose@ssh.nyc1.nearlyfreespeech.net",
+  "primaryHostname": "printer.objectsonpurpose.com",
+  "status": "Live; independent backend, authentication, and device relay"
+}
