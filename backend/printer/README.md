@@ -6,6 +6,12 @@ Purpose. The main portfolio remains on GitHub Pages; this PHP service runs on a
 dedicated hosting site. There are no selectable accounts or dependencies on the
 personal website.
 
+## Deployment boundary
+
+See the project-wide [deployment guide](../../DEPLOYMENT.md) for the two publishing paths and the [project overview](../../README.md) for source locations. The public portfolio is published automatically from the `v2-design` branch root on GitHub Pages. This service is deployed explicitly to NFS; committing or pushing its source does not update the live service.
+
+Current NFS destination: `rayemilio_objectsonpurpose@ssh.nyc1.nearlyfreespeech.net`, site `objectsonpurpose`; confirm `hosting.json` before deploying. Run all commands below from `coding_portfolio/backend/printer/` unless the physical project is named explicitly.
+
 ## Layout
 
 - `app/`: password-only authentication, relay, console and protected browser assets.
@@ -54,7 +60,7 @@ Build the shared interface in the physical printer project with
 `npm run build:firmware`, then synchronize its production output:
 
 ```sh
-node tools/sync-console.mjs /absolute/path/to/physical-printer/dist-firmware
+node tools/sync-console.mjs /Users/rayemilio/Documents/Visual_Studio_Code/PHYSICAL_PRODUCTS/printer/dist-firmware
 ```
 
 The synchronization adds remote mode, the API prefix, and the CSRF injection
@@ -65,11 +71,11 @@ npm install --ignore-scripts
 npx playwright install chromium
 npm run test:relay
 npm run test:http
-python3 tools/deploy.py --host '<sshDestination from hosting.json>'
+python3 tools/deploy.py --host rayemilio_objectsonpurpose@ssh.nyc1.nearlyfreespeech.net
 ```
 
 The browser tests create a temporary service, disposable password/token and
-simulated device. They never submit a physical print. Use a Playwright-managed
+simulated device on local ports 8894/8896. They never submit a physical print. Use a Playwright-managed
 isolated Chromium installation; `PRINTER_TEST_BROWSER` may identify an existing
 dedicated test executable. Never use an everyday browser profile. Optional
 `PRINTER_TEST_ARTIFACTS` selects the screenshot/report directory and
